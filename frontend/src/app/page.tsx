@@ -23,7 +23,6 @@ export default function WelcomePage() {
         {/* Hero Section - Clean Welcome */}
         <section className="w-full py-16 md:py-24 lg:py-32 relative overflow-hidden">
           {/* Subtle background texture */}
-          <div className="absolute inset-0 bg-[url('/papyrus-texture.png')] opacity-5 mix-blend-multiply pointer-events-none"></div>
 
           <div className="container px-4 md:px-6 mx-auto max-w-7xl relative z-10">
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
@@ -142,7 +141,6 @@ export default function WelcomePage() {
           id="community"
           className="w-full py-16 md:py-24 bg-amber-100 relative"
         >
-          <div className="absolute inset-0 bg-[url('/column-pattern.png')] opacity-5 mix-blend-multiply pointer-events-none"></div>
 
           <div className="container px-4 md:px-6 mx-auto max-w-7xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -255,7 +253,6 @@ export default function WelcomePage() {
 
         {/* Call to Action Section - Meaningful Journey Start */}
         <section className="w-full py-16 md:py-20 relative">
-          <div className="absolute inset-0 bg-[url('/papyrus-light.png')] opacity-5 mix-blend-multiply pointer-events-none"></div>
 
           <div className="container px-4 md:px-6 mx-auto max-w-4xl">
             <div className="flex flex-col items-center text-center">

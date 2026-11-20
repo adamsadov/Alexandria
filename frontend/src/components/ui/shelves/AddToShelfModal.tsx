@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from 'react'
 import { X, Plus, Check, Loader2, Trash } from 'lucide-react'
-import { useJWToken } from '../../../utils/getJWToken'
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface Shelf {
   id: number
@@ -25,7 +26,7 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
   editionId,
   onSuccess
 }) => {
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   const [shelves, setShelves] = useState<Shelf[]>([])
   const [loading, setLoading] = useState(true)
   const [actionInProgress, setActionInProgress] = useState<number | null>(null)
@@ -41,16 +42,10 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
         setLoading(true)
         setError(null)
 
-        const token = jwtToken || await fetchJWToken()
-        if (!token) {
-          setError('Authentication required')
-          return
-        }
 
         // Fetch all user shelves
-        const response = await fetch('http://localhost:8000/', {
+        const response = await apiFetch('/api/shelves/', {
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         })
@@ -67,9 +62,8 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
         
         for (const shelf of data) {
           try {
-            const editionsResponse = await fetch(`http://localhost:8000/${shelf.id}/editions/`, {
+            const editionsResponse = await apiFetch(`/api/shelves/${shelf.id}/editions/`, {
               headers: {
-                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
               }
             })
@@ -101,7 +95,7 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
     }
 
     fetchShelves()
-  }, [isOpen, jwtToken, fetchJWToken, editionId])
+  }, [isOpen, isAuthenticated, editionId])
 
   // Toggle edition on shelf (add or remove)
   const handleToggleEditionOnShelf = async (shelfId: number) => {
@@ -109,20 +103,14 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
       setActionInProgress(shelfId)
       setError(null)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        setError('Authentication required')
-        return
-      }
 
       const isOnShelf = shelvesContainingEdition.includes(shelfId)
       
       if (isOnShelf) {
         // Remove edition from shelf
-        const response = await fetch(`http://localhost:8000/${shelfId}/remove_edition/?edition_id=${editionId}`, {
+        const response = await apiFetch(`/api/shelves/${shelfId}/remove_edition/?edition_id=${editionId}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         })
@@ -136,10 +124,9 @@ const AddToShelfModal: React.FC<AddToShelfModalProps> = ({
         setShelvesContainingEdition(prev => prev.filter(id => id !== shelfId))
       } else {
         // Add edition to shelf
-        const response = await fetch(`http://localhost:8000/${shelfId}/add_edition/`, {
+        const response = await apiFetch(`/api/shelves/${shelfId}/add_edition/`, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ edition_id: editionId })

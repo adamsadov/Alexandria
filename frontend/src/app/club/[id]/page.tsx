@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Token checks (cookie purpose)
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 
 // Components imports
 import { ClubHeader } from "@/components/club/ClubHeader";
@@ -27,6 +27,7 @@ import { BookClubAnnouncementSection } from "@/components/club/announcements/Boo
 
 // Routing pages import
 import { useRouter } from "next/navigation";
+import { apiFetch } from "@/lib/api";
 
 export default function BookClubDetailPage({
   params,
@@ -45,13 +46,8 @@ export default function BookClubDetailPage({
   const [isJoining, setIsJoining] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Fetch JWT token on mount
-  useEffect(() => {
-    fetchJWToken();
-    
-  }, [fetchJWToken]);
 
 
   // Function to fetch club details
@@ -63,23 +59,16 @@ export default function BookClubDetailPage({
         console.log("FORCE REFRESHING club details...");
       }
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
       // Add cache-busting parameter when forcing refresh
       const cacheBuster = forceRefresh ? `?t=${new Date().getTime()}` : "";
 
       // Fetch club details
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/${cacheBuster}`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/${cacheBuster}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           cache: forceRefresh ? "no-store" : "default",
@@ -110,10 +99,10 @@ export default function BookClubDetailPage({
 
   // Fetch club details
   useEffect(() => {
-    if (jwtToken) {
+    if (isAuthenticated) {
       fetchClubDetails();
     }
-  }, [jwtToken, clubId]);
+  }, [isAuthenticated, clubId]);
 
   const handleTabChange = (value) => {
     setActiveTab(value);
@@ -130,20 +119,13 @@ export default function BookClubDetailPage({
     try {
       setIsJoining(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsJoining(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/join/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/join/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -167,20 +149,13 @@ export default function BookClubDetailPage({
     try {
       setIsLeaving(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsLeaving(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/leave/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/leave/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }

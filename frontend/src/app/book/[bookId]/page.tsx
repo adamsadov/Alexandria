@@ -29,6 +29,7 @@ import ClubReadingProgress from "@/components/club/ClubReadingProgress";
 import BookClubsReading from "@/components/club/books/BookClubsReading";
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { apiFetch } from "@/lib/api";
 
 // Define the types needed for component
 interface Author {
@@ -240,8 +241,8 @@ export default function BookPage() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(
-          `http://localhost:8000/api/books/${bookId}/`,
+        const response = await apiFetch(
+          `/api/books/${bookId}/`,
           {
             method: "GET",
             headers: {

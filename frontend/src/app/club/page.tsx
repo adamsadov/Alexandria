@@ -17,9 +17,10 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
 import { CreateBookClubModal } from "@/components/club/CreateBookClubModal";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { apiFetch } from "@/lib/api";
 
 interface BookClubResponse {
   id: number;
@@ -52,27 +53,20 @@ export default function BookClubsPage() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
 
-  // authentication token
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Load in the jwt token when component is mounted
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Fetching book clubs when components are mounted
   useEffect(() => {
     const fetchBookClubs = async () => {
       try {
-        const token = jwtToken || (await fetchJWToken());
         setLoading(true);
 
         // Make an api request to the server
-        const response = await fetch(
-          "http://localhost:8000/api/bookclubs/clubs/",
+        const response = await apiFetch(
+          "/api/bookclubs/clubs/",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -102,7 +96,7 @@ export default function BookClubsPage() {
             nextMeeting: "No upcoming meetings", 
             unreadMessages: 0, 
             clubImage: club.club_image 
-              ? `http://localhost:8000${club.club_image}`
+              ? `${club.club_image}`
               : undefined,
           })
         );
@@ -120,7 +114,7 @@ export default function BookClubsPage() {
             tags: [],
             nextMeeting: "No upcoming meetings",
             clubImage: club.club_image // Make sure this property name matches what we use in JSX
-              ? `http://localhost:8000${club.club_image}`
+              ? `${club.club_image}`
               : undefined,
           })
         );

@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/layout/Header";
 import SearchBar from "@/components/ui/SearchBar";
 import AddToShelfModal from "@/components/ui/shelves/AddToShelfModal";
+import { apiFetch } from "@/lib/api";
 
 // types for results
 type Book = {
@@ -53,7 +54,7 @@ export default function SearchResults() {
     setIsLoading(true);
     setError(null);
 
-    fetch(`http://127.0.0.1:8000/api/search-bar/?q=${encodeURIComponent(query)}&limit=20`)
+    apiFetch(`/api/search-bar/?q=${encodeURIComponent(query)}&limit=20`)
       .then((res) => res.json())
       .then((data) => {
         const books = data.books || [];

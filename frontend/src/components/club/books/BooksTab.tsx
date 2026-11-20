@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { BookOpen, PlusCircle, Search, X } from "lucide-react";
 import Image from "next/image";
+import { apiFetch } from "@/lib/api";
 
 // Type definitions
 interface Book {
@@ -69,20 +70,15 @@ export function BooksTab({
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  // JWT for authentication
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Fetch JWT token on mount
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
-  // Fetch club books whenever the JWT token or clubId changes
+  // Fetch club books whenever sign-in state or clubId changes
   useEffect(() => {
-    if (jwtToken && clubId) {
+    if (isAuthenticated && clubId) {
       fetchClubBooks();
     }
-  }, [jwtToken, clubId]);
+  }, [isAuthenticated, clubId]);
 
   // Extract current book from club data if available
   useEffect(() => {
@@ -101,19 +97,12 @@ export function BooksTab({
       setLoading(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/history/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/history/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -142,21 +131,14 @@ export function BooksTab({
       setIsSearching(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSearching(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/search-bar/?q=${encodeURIComponent(
+      const response = await apiFetch(
+        `/api/search-bar/?q=${encodeURIComponent(
           searchQuery
         )}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -274,11 +256,6 @@ export function BooksTab({
     try {
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
       const bookIdValue = selectedBook.book_id;
       if (!bookIdValue) {
@@ -291,12 +268,11 @@ export function BooksTab({
         title: selectedBook.title,
       };
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/update-book/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/update-book/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(requestData),

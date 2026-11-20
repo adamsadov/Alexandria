@@ -6,11 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { X, Search, BookOpen, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { apiFetch } from "@/lib/api";
 
 interface Book {
   book_id: number;
@@ -44,12 +45,9 @@ export function CreateBookClubModal({
   const [clubImagePreview, setClubImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Reset form when modal is opened
   useEffect(() => {
@@ -74,19 +72,12 @@ export function CreateBookClubModal({
 
     try {
       setIsSearching(true);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSearching(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/search/books?q=${searchQuery}`,
+      const response = await apiFetch(
+        `/api/search/books?q=${searchQuery}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -160,13 +151,7 @@ export function CreateBookClubModal({
       setIsSubmitting(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSubmitting(false);
-        return;
-      }
 
       const clubData = {
         name,
@@ -175,12 +160,11 @@ export function CreateBookClubModal({
         book: selectedBook?.book_id || null,
       };
 
-      const response = await fetch(
-        "http://localhost:8000/api/bookclubs/clubs/create/",
+      const response = await apiFetch(
+        "/api/bookclubs/clubs/create/",
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(clubData),
@@ -200,12 +184,11 @@ export function CreateBookClubModal({
           const formData = new FormData();
           formData.append("club_image", clubImage);
 
-          const imageResponse = await fetch(
-            `http://localhost:8000/api/bookclubs/clubs/${createdClub.id}/update-image/`,
+          const imageResponse = await apiFetch(
+            `/api/bookclubs/clubs/${createdClub.id}/update-image/`,
             {
               method: "POST",
               headers: {
-                Authorization: `Bearer ${token}`,
               },
               body: formData,
             }

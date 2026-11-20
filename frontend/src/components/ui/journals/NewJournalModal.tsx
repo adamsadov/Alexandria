@@ -18,8 +18,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "@/hooks/use-toast"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
 import { motion } from "framer-motion"
+import { apiFetch } from "@/lib/api";
 
 type BookType = {
     book_id: string
@@ -45,7 +46,7 @@ export function NewJournalModal({ onJournalCreated }: NewJournalModalProps) {
     const [isCreating, setIsCreating] = useState(false)
     const [searchError, setSearchError] = useState("")
     const [errors, setErrors] = useState<Record<string, string>>({})
-    const { jwtToken, fetchJWToken } = useJWToken()
+    const { isAuthenticated } = useSession();
 
     useEffect(() => {
         if (!open) {
@@ -83,16 +84,11 @@ export function NewJournalModal({ onJournalCreated }: NewJournalModalProps) {
         try {
             setSearchError("")
             
-            const token = jwtToken || await fetchJWToken()
-            if (!token) {
-                throw new Error("Authentication required. Please log in.")
-            }
 
-            const response = await fetch(
-                `http://127.0.0.1:8000/api/search-bar/?q=${encodeURIComponent(searchQuery)}`,
+            const response = await apiFetch(
+                `/api/search-bar/?q=${encodeURIComponent(searchQuery)}`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     }
                 }
@@ -156,15 +152,6 @@ export function NewJournalModal({ onJournalCreated }: NewJournalModalProps) {
         try {
             setIsCreating(true)
 
-            const token = jwtToken || await fetchJWToken()
-            if (!token) {
-                toast({
-                    title: "Error",
-                    description: "Authentication required. Please log in.",
-                    variant: "destructive",
-                })
-                return
-            }
 
             const journalData = {
                 book: selectedBook!.book_id,
@@ -173,10 +160,9 @@ export function NewJournalModal({ onJournalCreated }: NewJournalModalProps) {
 
             console.log('Creating journal:', journalData)
 
-            const response = await fetch('http://localhost:8000/api/journals/', {
+            const response = await apiFetch('/api/journals/', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(journalData)

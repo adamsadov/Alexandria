@@ -11,7 +11,7 @@ import { NewEntryModal } from "@/components/ui/journals/NewEntryModal"
 import { EditEntryModal } from "@/components/ui/journals/EditEntryModal"
 import { FormPrivacySlider } from "@/components/ui/privacy-slider"
 import { motion, AnimatePresence } from "framer-motion"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
 import { toast } from "@/hooks/use-toast"
 import {
   AlertDialog,
@@ -24,6 +24,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { apiFetch } from "@/lib/api";
 
 interface JournalEntry {
   id: number
@@ -93,7 +94,7 @@ export default function JournalDetailPage() {
   // State for privacy slider
   const [updatingPrivacy, setUpdatingPrivacy] = useState(false)
   
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     if (journalId) {
@@ -107,15 +108,9 @@ export default function JournalDetailPage() {
       setLoading(true)
       setError(null)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        setError("Authentication required")
-        return
-      }
 
-      const response = await fetch(`http://localhost:8000/api/journals/${journalId}/`, {
+      const response = await apiFetch(`/api/journals/${journalId}/`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       })
@@ -135,7 +130,7 @@ export default function JournalDetailPage() {
 
       // Fetch book info using the book_id from the journal
       if (data.book_id) {
-        fetchBookInfo(data.book_id, token)
+        fetchBookInfo(data.book_id)
       }
 
     } catch (err) {
@@ -146,11 +141,10 @@ export default function JournalDetailPage() {
     }
   }
 
-  const fetchBookInfo = async (bookId: string, token: string) => {
+  const fetchBookInfo = async (bookId: string) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/book/${bookId}/`, {
+      const response = await apiFetch(`/api/book/${bookId}/`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       })
@@ -170,14 +164,9 @@ export default function JournalDetailPage() {
     try {
       setEntriesLoading(true)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        return
-      }
 
-      const response = await fetch(`http://localhost:8000/api/journals/${journalId}/entries/`, {
+      const response = await apiFetch(`/api/journals/${journalId}/entries/`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       })
@@ -209,20 +198,10 @@ export default function JournalDetailPage() {
     try {
       setUpdatingPrivacy(true)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        toast({
-          title: "Error",
-          description: "Authentication required",
-          variant: "destructive",
-        })
-        return
-      }
 
-      const response = await fetch(`http://localhost:8000/api/journals/${journalId}/`, {
+      const response = await apiFetch(`/api/journals/${journalId}/`, {
         method: 'PATCH',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ is_private: isPrivate })
@@ -272,20 +251,10 @@ export default function JournalDetailPage() {
     try {
       setDeletingEntryId(entryId)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        toast({
-          title: "Error",
-          description: "Authentication required",
-          variant: "destructive",
-        })
-        return
-      }
 
-      const response = await fetch(`http://localhost:8000/api/entries/${entryId}/`, {
+      const response = await apiFetch(`/api/entries/${entryId}/`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
         }
       })
 

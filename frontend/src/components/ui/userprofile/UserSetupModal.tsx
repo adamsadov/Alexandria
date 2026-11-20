@@ -12,7 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useJWToken } from "../../../utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 export function UserSetupModal({
   isOpen,
@@ -38,7 +39,7 @@ export function UserSetupModal({
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,11 +75,7 @@ export function UserSetupModal({
     setError("");
 
     try {
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        throw new Error("Unable to get authentication token");
-      }
 
       // First, handle the profile picture upload if present
       let profilePicUrl = null;
@@ -86,12 +83,11 @@ export function UserSetupModal({
         const pictureFormData = new FormData();
         pictureFormData.append("profilePicture", formData.profilePicture);
 
-        const pictureResponse = await fetch(
-          "http://localhost:8000/api/auth/user/profile/update-picture/",
+        const pictureResponse = await apiFetch(
+          "/api/auth/user/profile/update-picture/",
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer ${token}`,
             },
             body: pictureFormData,
           }
@@ -109,12 +105,11 @@ export function UserSetupModal({
       }
 
       // Then handle the rest of the profile data as JSON
-      const profileResponse = await fetch(
-        "http://localhost:8000/api/auth/user/profile/update/",
+      const profileResponse = await apiFetch(
+        "/api/auth/user/profile/update/",
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

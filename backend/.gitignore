@@ -8,16 +8,12 @@ __pycache__/
 .env
 .env.local
 
-# Django Secrets
-config/settings.py
 
 # Logs and IDE settings
 *.log
 .vscode/
 *.swp
 
-# Migrations (optional, if you want to ignore generated migrations)
-library/migrations/
 
 # Test and cache files
 test/
@@ -41,3 +37,8 @@ node_modules/
 build/
 dist/
 venv/
+.venv/
+logs/
+
+# User uploads (profile pictures, club images)
+media/

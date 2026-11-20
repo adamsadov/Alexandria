@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface ReadingProgressProps {
   bookId: string;
@@ -38,7 +39,7 @@ export default function ClubReadingProgress({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   // Fetch reading progress
   // In ClubReadingProgress.tsx
@@ -47,22 +48,15 @@ export default function ClubReadingProgress({
       try {
         setLoading(true);
 
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          console.error("Authentication required");
-          setLoading(false);
-          return;
-        }
 
         // Log the URL we're fetching from
-        const url = `http://localhost:8000/api/auth/books/${bookId}/progress/`;
+        const url = `/api/auth/books/${bookId}/progress/`;
         console.log("Fetching reading progress from:", url);
 
         // Fetch current user's reading progress for this book
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -124,7 +118,7 @@ export default function ClubReadingProgress({
     if (bookId) {
       fetchReadingProgress();
     }
-  }, [bookId, jwtToken, fetchJWToken]);
+  }, [bookId, isAuthenticated]);
 
   // Update reading progress
   async function updateProgress() {
@@ -136,13 +130,7 @@ export default function ClubReadingProgress({
     try {
       setIsUpdating(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        console.error("Authentication required");
-        setIsUpdating(false);
-        return;
-      }
 
       // Check if this would complete the book
       let newStatus = progressData.reading_status;
@@ -153,12 +141,11 @@ export default function ClubReadingProgress({
       }
 
       // Update reading progress through the club-specific endpoint
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${progressData.club.id}/progress/update/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${progressData.club.id}/progress/update/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

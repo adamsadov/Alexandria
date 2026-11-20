@@ -64,7 +64,7 @@ export function EditProfileModal({
         setPreviewUrl(
           url.startsWith("http") || url.startsWith("blob:")
             ? url
-            : `http://localhost:8000${url}`
+            : `${url}`
         );
       } else {
         setPreviewUrl("");

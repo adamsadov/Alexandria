@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { Star, Calendar } from 'lucide-react'
-import { useJWToken } from '@/utils/getJWToken'
+import { useSession } from "@/lib/session";
 import Image from 'next/image'
 import Link from 'next/link'
+import { apiFetch } from "@/lib/api";
 
 // Types
 interface Review {
@@ -32,7 +33,7 @@ export default function UserReviews({ userId, className = '', limit }: UserRevie
   const [reviews, setReviews] = useState<Review[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   // Fetch user reviews on component mount
   useEffect(() => {
@@ -45,22 +46,15 @@ export default function UserReviews({ userId, className = '', limit }: UserRevie
       setIsLoading(true)
       setError(null)
 
-      const token = jwtToken || await fetchJWToken()
       
-      if (!token) {
-        setError('Authentication required')
-        setIsLoading(false)
-        return
-      }
 
       // Determine which endpoint to use based on whether userId is provided
       const endpoint = userId 
-        ? `http://localhost:8000/api/reviews/?user_id=${userId}` 
-        : 'http://localhost:8000/api/reviews/user_reviews/'
+        ? `/api/reviews/?user_id=${userId}` 
+        : '/api/reviews/user_reviews/'
 
-      const response = await fetch(endpoint, {
+      const response = await apiFetch(endpoint, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       })

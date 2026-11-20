@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { apiFetch } from "@/lib/api";
 
 interface ReadingProgressProps {
   clubId: string;
@@ -43,27 +44,22 @@ export function ReadingProgress({
   const [saving, setSaving] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Fetch JWT token on mount
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Fetch current reading progress when component mounts
   useEffect(() => {
     const fetchReadingProgress = async () => {
-      if (!jwtToken || !clubId) return;
+      if (!isAuthenticated || !clubId) return;
 
       try {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(
-          `http://localhost:8000/api/bookclubs/clubs/${clubId}/progress/`,
+        const response = await apiFetch(
+          `/api/bookclubs/clubs/${clubId}/progress/`,
           {
             headers: {
-              Authorization: `Bearer ${jwtToken}`,
               "Content-Type": "application/json",
             },
           }
@@ -90,10 +86,10 @@ export function ReadingProgress({
       }
     };
 
-    if (jwtToken && clubId) {
+    if (isAuthenticated && clubId) {
       fetchReadingProgress();
     }
-  }, [jwtToken, clubId]);
+  }, [isAuthenticated, clubId]);
 
   const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -115,18 +111,17 @@ export function ReadingProgress({
 
   // Function to update reading progress
   const handleUpdateProgress = async () => {
-    if (!jwtToken || !clubId) return;
+    if (!isAuthenticated || !clubId) return;
 
     try {
       setSaving(true);
       setError(null);
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/progress/update/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/progress/update/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${jwtToken}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Users, ChevronRight, Loader2, Plus } from "lucide-react";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
+import { apiFetch } from "@/lib/api";
 
 interface BookClub {
   id: number;
@@ -43,31 +44,24 @@ export default function UserBookClubs({
   const [bookClubs, setBookClubs] = useState<BookClub[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     async function fetchUserClubs() {
       try {
         setLoading(true);
 
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          console.error("Authentication required");
-          setLoading(false);
-          return;
-        }
 
         // Use query parameter approach - userId is optional
         const url = userId
-          ? `http://localhost:8000/api/auth/users/book-clubs/?user_id=${userId}`
-          : "http://localhost:8000/api/auth/users/book-clubs/";
+          ? `/api/auth/users/book-clubs/?user_id=${userId}`
+          : "/api/auth/users/book-clubs/";
 
         console.log(`Fetching user clubs from: ${url}`);
 
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -94,14 +88,14 @@ export default function UserBookClubs({
     }
 
     fetchUserClubs();
-  }, [userId, jwtToken, fetchJWToken]);
+  }, [userId, isAuthenticated]);
 
   // Format club image URL
   const getClubImageUrl = (imageUrl: string | undefined) => {
     if (!imageUrl) return null;
     return imageUrl.startsWith("http")
       ? imageUrl
-      : `http://localhost:8000${imageUrl}`;
+      : `${imageUrl}`;
   };
 
   // Format joined date

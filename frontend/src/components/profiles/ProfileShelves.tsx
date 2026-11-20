@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useJWToken } from '@/utils/getJWToken';
+import { useSession } from "@/lib/session";
 import ShelfComponent from '@/components/ui/shelves/ShelfComponent';
 import { ChevronDown, ChevronRight, BookOpen } from 'lucide-react';
+import { apiFetch } from "@/lib/api";
 
 interface Edition {
   id: string;
@@ -39,8 +40,7 @@ export default function ProfileShelves({ userId, className = '', shelfTypes = ['
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Get JWT token
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   // Fetch user's shelves
   useEffect(() => {
@@ -49,24 +49,16 @@ export default function ProfileShelves({ userId, className = '', shelfTypes = ['
         setLoading(true);
         setError(null);
         
-        // Get token
-        const token = jwtToken || await fetchJWToken();
-        if (!token) {
-          setError('Authentication required to view shelves');
-          setLoading(false);
-          return;
-        }
         
         // Build URL based on whether a userId is provided
         const url = userId 
-          ? `http://localhost:8000/?username=${encodeURIComponent(userId)}` 
-          : 'http://localhost:8000/';
+          ? `/api/shelves/?username=${encodeURIComponent(userId)}` 
+          : '/api/shelves/';
         
         console.log(`Fetching shelves from: ${url}`);
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           }
@@ -114,7 +106,7 @@ export default function ProfileShelves({ userId, className = '', shelfTypes = ['
           // Only fetch editions if we have shelves
           if (sortedShelves && sortedShelves.length > 0) {
             for (const shelf of sortedShelves) {
-              fetchShelfEditions(shelf.id, token);
+              fetchShelfEditions(shelf.id);
             }
           }
         } catch (parseError) {
@@ -130,16 +122,15 @@ export default function ProfileShelves({ userId, className = '', shelfTypes = ['
     }
 
     fetchShelves();
-  }, [userId, jwtToken, fetchJWToken, shelfTypes]);
+  }, [userId, isAuthenticated, shelfTypes]);
 
   // Fetch editions for a shelf
-  const fetchShelfEditions = async (shelfId: number, token: string) => {
+  const fetchShelfEditions = async (shelfId: number) => {
     try {
       console.log(`Fetching editions for shelf ${shelfId}...`);
-      const editionsResponse = await fetch(`http://localhost:8000/${shelfId}/editions/`, {
+      const editionsResponse = await apiFetch(`/api/shelves/${shelfId}/editions/`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }

@@ -50,7 +50,7 @@ export function AboutTab({ clubData, isAdmin, onUpdateClub }: AboutTabProps) {
     }
 
     // Make it an absolute URL
-    return `http://localhost:8000${profilePic}`;
+    return `${profilePic}`;
   };
 
   // Handle image load error

@@ -31,8 +31,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AddToShelfModal from '../shelves/AddToShelfModal'
-import { useJWToken } from '../../../utils/getJWToken'
+import { useSession } from "@/lib/session";
 import { Heart } from 'lucide-react'
+import { apiFetch } from "@/lib/api";
 
 enum ReadStatusOptions {
   WANT_TO_READ = 'Want to Read',
@@ -78,7 +79,7 @@ export default function BookHeader({
   )
   const [showAddToShelf, setShowAddToShelf] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   
   // Re-sync state when userStatus changes (e.g. after initialization)
   useEffect(() => {
@@ -95,13 +96,10 @@ export default function BookHeader({
       if (!primaryEditionId) return
       
       try {
-        const token = jwtToken || await fetchJWToken()
-        if (!token) return
         
         // Fetch all shelves
-        const shelvesResponse = await fetch('http://localhost:8000/', {
+        const shelvesResponse = await apiFetch('/api/shelves/', {
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         })
@@ -116,9 +114,8 @@ export default function BookHeader({
             continue
           }
           
-          const editionsResponse = await fetch(`http://localhost:8000/${shelf.id}/editions/`, {
+          const editionsResponse = await apiFetch(`/api/shelves/${shelf.id}/editions/`, {
             headers: {
-              'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
             }
           })
@@ -145,7 +142,7 @@ export default function BookHeader({
     }
     
     checkCurrentStatus()
-  }, [primaryEditionId, jwtToken, fetchJWToken])
+  }, [primaryEditionId, isAuthenticated])
 
   // Function to add edition to shelf by shelf type
   const addToShelf = async (shelfType: string, editionId: number) => {
@@ -156,17 +153,11 @@ export default function BookHeader({
 
     try {
       setIsUpdating(true)
-      const token = jwtToken || await fetchJWToken()
       
-      if (!token) {
-        console.error("Authentication required")
-        return
-      }
 
       // First, find the shelf of this type
-      const shelvesResponse = await fetch('http://localhost:8000/', {
+      const shelvesResponse = await apiFetch('/api/shelves/', {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       })
@@ -183,10 +174,9 @@ export default function BookHeader({
       }
 
       // Now add the edition to the found shelf
-      const addResponse = await fetch(`http://localhost:8000/${targetShelf.id}/add_edition/`, {
+      const addResponse = await apiFetch(`/api/shelves/${targetShelf.id}/add_edition/`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -227,17 +217,11 @@ export default function BookHeader({
 
     try {
       setIsUpdating(true)
-      const token = jwtToken || await fetchJWToken()
       
-      if (!token) {
-        console.error("Authentication required")
-        return
-      }
 
       // First, find the shelf of this type
-      const shelvesResponse = await fetch('http://localhost:8000/', {
+      const shelvesResponse = await apiFetch('/api/shelves/', {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       })
@@ -254,10 +238,9 @@ export default function BookHeader({
       }
 
       // Now remove the edition from the found shelf
-      const removeResponse = await fetch(`http://localhost:8000/${targetShelf.id}/remove_edition/?edition_id=${editionId}`, {
+      const removeResponse = await apiFetch(`/api/shelves/${targetShelf.id}/remove_edition/?edition_id=${editionId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       })

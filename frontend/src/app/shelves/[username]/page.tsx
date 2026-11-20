@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import { Header } from '@/components/layout/Header'
 import ShelfComponent from '@/components/ui/shelves/ShelfComponent'
 import { BookOpen, Lock } from 'lucide-react'
-import { useJWToken } from '../../../utils/getJWToken'
+import { useSession } from "@/lib/session";
 import Link from 'next/link'
+import { apiFetch } from "@/lib/api";
 
 interface Edition {
   id: string
@@ -38,8 +39,7 @@ export default function PublicShelvesPage() {
   const [userNotFound, setUserNotFound] = useState(false)
   const [authRequired, setAuthRequired] = useState(false)
   
-  // Get JWT token
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   // Get username from URL on first render
   useEffect(() => {
@@ -63,20 +63,13 @@ export default function PublicShelvesPage() {
         
         console.log(`Fetching public shelves for user: ${username}`)
         
-        // Try to get JWT token if available
-        const token = jwtToken || await fetchJWToken().catch(() => null)
-        
-        // Prepare headers - include auth token if available
+        // The session cookie is sent automatically; private shelves show up when signed in.
         const headers: Record<string, string> = {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
         
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`
-        }
-        
-        const response = await fetch(`http://localhost:8000/?username=${encodeURIComponent(username)}`, {
+        const response = await apiFetch(`/api/shelves/?username=${encodeURIComponent(username)}`, {
           method: 'GET',
           headers
         })
@@ -124,7 +117,7 @@ export default function PublicShelvesPage() {
           // Only fetch editions if we have shelves
           if (shelvesData && shelvesData.length > 0) {
             for (const shelf of shelvesData) {
-              fetchShelfEditions(shelf.id, token)
+              fetchShelfEditions(shelf.id)
             }
           }
         } catch (parseError) {
@@ -142,9 +135,9 @@ export default function PublicShelvesPage() {
     }
 
     fetchPublicShelves()
-  }, [username, jwtToken, fetchJWToken])
+  }, [username, isAuthenticated])
 
-  const fetchShelfEditions = async (shelfId: number, token: string | null) => {
+  const fetchShelfEditions = async (shelfId: number) => {
     try {
       console.log(`Fetching editions for shelf ${shelfId}...`)
       
@@ -154,11 +147,7 @@ export default function PublicShelvesPage() {
         'Accept': 'application/json'
       }
       
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`
-      }
-      
-      const editionsResponse = await fetch(`http://localhost:8000/${shelfId}/editions/`, {
+      const editionsResponse = await apiFetch(`/api/shelves/${shelfId}/editions/`, {
         method: 'GET',
         headers
       })

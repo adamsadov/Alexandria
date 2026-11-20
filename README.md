@@ -30,7 +30,7 @@ Alexandria is a monolithic full-stack application with the following architectur
 - **Frontend**: Developed with **Next.js** and **React**, supporting SSR (server-side rendering) and client-side interactivity
 - **Backend**: Built using **Django (Python)** and **TypeScript**-based services for future extensions
 - **Database**: Powered by **PostgreSQL** for relational data management
-- **Authentication**: Clerk.dev integration for modern user auth and role management
+- **Authentication**: django-allauth (email + password, email verification, password reset) using Django sessions
 
 # About 4900
 **CISC 4900**, Independent and Group Projects, tasked us with creating a large-scale project which would test the skills we’ve honed during our tenure at Brooklyn College. We were also encouraged to select projects that address a real-world need or challenge, aiming to make a meaningful contribution to the community or industry. The three of us have been working together on projects for a year now, and we take all of our classes together.  Collaborating on CISC 4900 was a natural extension of our ongoing teamwork, providing us with an opportunity to tackle a complex, impactful project that draws on our collective knowledge and experience. Under the leadership of our project supervisor, Professor Priyanka Samanta, and Advisors Allen Lapid and Kathrine Chaung, we set out to build a project that not only showcased our technical capabilities but also addressed a meaningful gap in how readers discover and organize books online. Our goal was to design a platform that reimagines digital book discovery, one that balances user-friendly design with powerful backend architecture, grounded in real user needs and scalable engineering.
@@ -44,7 +44,7 @@ The name and purpose of Alexandria draw inspiration from the **ancient Library o
 - **Book Clubs** - Join or create private/public book clubs to share reads, host discussions, and connect with readers with similar interests
 - **Reading Tracker** - Track your current reads, finished books, and total time spent reading
 - **User Profiles** - Edit your profile, upload avatars, and showcase your reading stats
-- **Secure Authentication** - Powered by Clerk.dev, with support for JWT tokens and role-based access controls
+- **Secure Authentication** - Powered by django-allauth with cookie-based sessions and CSRF protection
 - **Responsive UI** - A sleek and modern interface built with Next.js and TailwindCSS that works across desktop and mobile devices
 
 # Screenshots
@@ -103,7 +103,7 @@ alexandria/
 │   │   │   ├── shelf/               # Individual shelf routes
 │   │   │   └── shelves/             # All shelves listing and browsing
 │   │   ├── components/              # Reusable UI components
-│   │   │   ├── auth/                # Clerk integration
+│   │   │   ├── auth/                # Sign-in / sign-up form components
 │   │   │   ├── club/                # Club cards, join buttons, etc.
 │   │   │   ├── layout/              # Shared layout wrappers
 │   │   │   ├── profiles/            # User profile modules
@@ -120,20 +120,28 @@ alexandria/
 
 # Installation Steps
 ### Prerequisites
-- Node.js
-- Python 3.11+
+- Node.js 20+
+- Python 3.12+
 - PostgreSQL 14+
-- Clerk.deve API Key
 
 ### Backend
 ```bash
 cd backend
-python -m venv venv
-source venv/bin/activate
+python -m venv .venv
+.venv/Scripts/activate        # Windows (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
+cp .env.example .env          # then fill in your Postgres password
+createdb alexandria           # or: psql -U postgres -c "CREATE DATABASE alexandria;"
 python manage.py migrate
+python manage.py seed_books   # loads the shared book catalog (no network needed)
 python manage.py runserver
 ```
+
+`seed_books` loads `backend/library/fixtures/seed_books.json`, so everyone has the same books, editions, authors and Discover shelves. It is safe to re-run; `--clear` wipes the catalog first. To build a fresh catalog from Open Library, run `python manage.py build_seed_data` and commit the updated JSON.
+
+### Looking at the data
+- **Django admin:** http://localhost:8000/admin/. Give your account access with `python manage.py shell -c "from library.models import User; User.objects.filter(email='you@example.com').update(is_staff=True, is_superuser=True)"`, then log in with your username and password.
+- **pgAdmin 4** (installed with PostgreSQL on Windows): connect to `localhost:5432`, user `postgres`, and open `alexandria → Schemas → public → Tables`.
 
 ### Frontend
 ```bash
@@ -141,54 +149,15 @@ cd frontend
 npm install
 npm run dev
 ```
+Open http://localhost:3000. The frontend forwards `/api`, `/_allauth` and `/media` to Django on port 8000 (see `frontend/next.config.ts`), so no frontend environment variables are needed for local development.
 
-### .env.example for frontend and backend
-```bash
-frontend:
-# Clerk keys
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= Your publishable key
-CLERK_SECRET_KEY= Your Clerk secret key
-
-
-# Current progress
-NODE_ENV= Your testing progress (development or production)
-
-
-backend:
-# Database credentials.
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_HOST=
-POSTGRES_PORT=
-
-# Key for django app.
-SECRET_KEY=
-
-# Allowed hosts for django app.
-ALLOWED_HOSTS=127.0.0.1,localhost
-
-# Debuging flag for app
-DEBUG=
-# Origins allowed to make API requests of app.
-CORS_ALLOWED_ORIGINS=http://localhost:3000
-
-# Email credentials of django admin
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
-
-
-# Clerk API key
-CLERK_SECRET_KEY= Your clerk secret key
-```
-
-### Don't forget to setup the .env.local files for both frontend and backend based on .env.example
-
+### Accounts in local development
+Sign up at `/auth/sign-up`. Verification and password-reset emails are printed in the Django server's terminal; open the link from there. To skip verification locally, set `ACCOUNT_EMAIL_VERIFICATION=none` in `backend/.env`.
 
 # Progress
 
 So far, we've accomplished:
-- Full JWT-based auth with Clerk integration
+- Session-based auth with django-allauth
 -
 
 # Future Plans

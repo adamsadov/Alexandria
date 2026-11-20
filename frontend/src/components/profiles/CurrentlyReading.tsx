@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, Loader2, Plus } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
+import { apiFetch } from "@/lib/api";
 
 interface ReadingBook {
   id: string;
@@ -38,30 +39,23 @@ export default function CurrentlyReading({
   const [books, setBooks] = useState<ReadingBook[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     async function fetchCurrentlyReading() {
       try {
         setLoading(true);
 
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          console.error("Authentication required");
-          setLoading(false);
-          return;
-        }
         // Use query parameter approach - userId is optional
         const url = userId
-          ? `http://localhost:8000/api/auth/users/currently-reading/?user_id=${userId}`
-          : "http://localhost:8000/api/auth/users/currently-reading/";
+          ? `/api/auth/users/currently-reading/?user_id=${userId}`
+          : "/api/auth/users/currently-reading/";
           
         console.log(`Fetching currently reading from: ${url}`);
 
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -86,7 +80,7 @@ export default function CurrentlyReading({
     }
 
     fetchCurrentlyReading();
-  }, [userId, jwtToken, fetchJWToken]);
+  }, [userId, isAuthenticated]);
 
   // Format book cover URL
   const getBookCoverUrl = (coverUrl: string | undefined) => {
@@ -94,7 +88,7 @@ export default function CurrentlyReading({
 
     return coverUrl.startsWith("http")
       ? coverUrl
-      : `http://localhost:8000${coverUrl}`;
+      : `${coverUrl}`;
   };
 
   // Loading state
