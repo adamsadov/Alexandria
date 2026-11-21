@@ -16,8 +16,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { FormPrivacySlider } from "@/components/ui/privacy-slider"
 import { Plus, Loader2 } from "lucide-react"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
 import { toast } from "@/hooks/use-toast"
+import { apiFetch } from "@/lib/api";
 
 interface NewEntryModalProps {
   journalId: number
@@ -42,7 +43,7 @@ export function NewEntryModal({ journalId, onEntryCreated }: NewEntryModalProps)
     is_private: false
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -77,15 +78,6 @@ export function NewEntryModal({ journalId, onEntryCreated }: NewEntryModalProps)
     try {
       setIsCreating(true)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        toast({
-          title: "Error",
-          description: "Authentication required. Please log in.",
-          variant: "destructive",
-        })
-        return
-      }
 
       const entryData: CreateEntryData = {
         title: formData.title.trim(),
@@ -97,10 +89,9 @@ export function NewEntryModal({ journalId, onEntryCreated }: NewEntryModalProps)
 
       console.log('Creating entry:', entryData)
 
-      const response = await fetch('http://localhost:8000/api/entries/', {
+      const response = await apiFetch('/api/entries/', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(entryData)

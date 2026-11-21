@@ -15,8 +15,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { FormPrivacySlider } from "@/components/ui/privacy-slider"
 import { Edit, Loader2, Save } from "lucide-react"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
 import { toast } from "@/hooks/use-toast"
+import { apiFetch } from "@/lib/api";
 
 interface JournalEntry {
   id: number
@@ -43,7 +44,7 @@ export function EditEntryModal({ entry, onEntryUpdated }: EditEntryModalProps) {
     is_private: entry.is_private
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   // Reset form data when entry changes
   useEffect(() => {
@@ -89,15 +90,6 @@ export function EditEntryModal({ entry, onEntryUpdated }: EditEntryModalProps) {
     try {
       setIsUpdating(true)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        toast({
-          title: "Error",
-          description: "Authentication required. Please log in.",
-          variant: "destructive",
-        })
-        return
-      }
 
       const updateData = {
         title: formData.title.trim(),
@@ -108,10 +100,9 @@ export function EditEntryModal({ entry, onEntryUpdated }: EditEntryModalProps) {
 
       console.log('Updating entry:', updateData)
 
-      const response = await fetch(`http://localhost:8000/api/entries/${entry.id}/`, {
+      const response = await apiFetch(`/api/entries/${entry.id}/`, {
         method: 'PATCH',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updateData)

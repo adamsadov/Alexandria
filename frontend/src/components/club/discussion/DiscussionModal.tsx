@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface NewDiscussionModalProps {
   clubId: string;
@@ -26,7 +27,7 @@ export function NewDiscussionModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   if (!isOpen) return null;
 
@@ -42,20 +43,13 @@ export function NewDiscussionModal({
       setIsSubmitting(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSubmitting(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/posts/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/posts/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # Auth: login, sign-up, logout, email verification, password reset (JSON API)
+    path("_allauth/", include("allauth.headless.urls")),
     # path('', include('library.urls')),
     path('', include('entity_pages.urls')),
-    path('', include('shelves.urls')),
+    path('api/shelves/', include('shelves.urls')),
     path('api/auth/', include('accounts.urls', namespace='accounts')),
     path('api/', include("search.urls")),
     path('api/bookclubs/', include("bookclubs.urls")),

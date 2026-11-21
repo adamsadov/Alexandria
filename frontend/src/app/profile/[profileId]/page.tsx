@@ -18,9 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Header } from "@/components/layout/Header";
-import { useJWToken } from "@/utils/getJWToken";
-import { useUser } from "@clerk/nextjs";
-import { useAuth } from "@clerk/nextjs";
+import { useSession } from "@/lib/session";
 import { useRouter } from "next/navigation";
 import { EditProfileModal } from "@/components/ui/edit/EditProfileModal";
 import { DeleteAccountDialog } from "@/components/ui/delete/DeleteAccountDialog";
@@ -31,6 +29,7 @@ import { toast } from "@/hooks/use-toast";
 import UserProfileQuiz from "@/components/profiles/UserProfileQuiz";
 import ProfileShelves from '@/components/profiles/ProfileShelves';
 import UserReviews from '@/components/profiles/UserReviews';
+import { apiFetch } from "@/lib/api";
 
 
 // Define profile data interface
@@ -87,89 +86,19 @@ export default function ProfilePage({
   const [showQuizModal, setShowQuizModal] = useState<boolean>(false);
 
   // Hooks
-  const { jwtToken, fetchJWToken } = useJWToken();
-  const { user, isLoaded } = useUser();
-  const { signOut } = useAuth();
+  const { user, isLoaded, logout } = useSession();
   const router = useRouter();
   const { profileId } = use(params);
 
+  // Load the profile once we know who (if anyone) is signed in.
   useEffect(() => {
-    const initProfile = async () => {
-      if (!isLoaded) return;
-
-      try {
-        const token = await fetchJWToken();
-        if (!token) {
-          console.error("No JWT token available");
-          setError("Authentication required. Please log in.");
-          setLoading(false);
-          return;
-        }
-
-        console.log("JWT token retrieved successfully");
-
-      } catch (err) {
-        console.error("Error during profile initialization:", err);
-        setError("Failed to load profile data. Please try again.");
-        setLoading(false);
-      }
-    };
-
-    initProfile();
-  }, [profileId, isLoaded, user]);
-
-  // Fetch profile data when component mounts
-  useEffect(() => {
-    const initProfile = async () => {
-      if (!isLoaded) return;
-
-      // Check if this is the current user's profile
-      if (user) {
-        try {
-          const token = await fetchJWToken();
-          // Get current user's ID from backend
-          const currentUserResponse = await fetch(
-            "http://localhost:8000/api/auth/profile/",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (currentUserResponse.ok) {
-            const currentUserData = await currentUserResponse.json();
-
-            setIsCurrentUser(
-                profileId === user.id ||
-                profileId === currentUserData.id?.toString()
-            );
-
-            if (
-              profileId === user.id ||
-              profileId === currentUserData.id?.toString()
-            ) {
-              await fetchCurrentUserProfile();
-            } else {
-              await fetchUserProfile(profileId);
-            }
-          } else {
-            // If we can't get current user info, try normal profile fetch
-            await fetchUserProfile(profileId);
-          }
-        } catch (err) {
-          console.error("Error initializing profile:", err);
-          await fetchUserProfile(profileId);
-        }
-      } else {
-        // Not logged in, just fetch the requested profile
-        await fetchUserProfile(profileId);
-      }
-    };
-
-    initProfile();
-  }, [profileId, isLoaded, user]);
+    if (!isLoaded) return;
+    const ownProfile = !!user && String(user.id) === profileId;
+    setIsCurrentUser(ownProfile);
+    if (ownProfile) fetchCurrentUserProfile();
+    else fetchUserProfile(profileId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profileId, isLoaded, user?.id]);
 
   // Handling when user completes the quiz
   const handleQuizComplete = async (
@@ -201,17 +130,10 @@ export default function ProfilePage({
       setLoading(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
-      const response = await fetch("http://localhost:8000/api/auth/profile/", {
+      const response = await apiFetch("/api/auth/profile/", {
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
@@ -263,20 +185,13 @@ export default function ProfilePage({
       setLoading(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
       // Fetch the public profile of the specified user
-      const response = await fetch(
-        `http://localhost:8000/api/auth/users/${userId}/`,
+      const response = await apiFetch(
+        `/api/auth/users/${userId}/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -327,7 +242,7 @@ export default function ProfilePage({
     }
 
     // Make it an absolute URL
-    return `http://localhost:8000${profilePic}`;
+    return `${profilePic}`;
   };
 
   // Handle account deletion
@@ -335,32 +250,20 @@ export default function ProfilePage({
     setIsDeleting(true);
 
     try {
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        console.error("Cannot delete account: No Valid JWT token");
-        setIsDeleting(false);
-        return;
-      }
 
-      const response = await fetch(
-        "http://localhost:8000/api/auth/user/delete",
+      const response = await apiFetch(
+        "/api/auth/user/delete",
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
 
       if (response.ok) {
-        const deleteClerk = await fetch("/api/clerk/delete", {
-          method: "POST",
-          credentials: "include",
-        });
-
-        await signOut();
+        await logout();
         router.push("/");
       } else {
         console.error("Delete failed:", await response.text());
@@ -393,19 +296,13 @@ export default function ProfilePage({
     newProfileData: ProfileData
   ): Promise<boolean> => {
     try {
-      const token = jwtToken || (await fetchJWToken());
-      if (!token) {
-        console.error("No valid token");
-        return false;
-      }
 
       
-      const profileUpdateResponse = await fetch(
-        "http://localhost:8000/api/auth/user/profile/update/",
+      const profileUpdateResponse = await apiFetch(
+        "/api/auth/user/profile/update/",
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -433,12 +330,11 @@ export default function ProfilePage({
         const imageFormData = new FormData();
         imageFormData.append("profilePicture", newProfileData.profilePicture);
 
-        const imageUploadResponse = await fetch(
-          "http://localhost:8000/api/auth/user/profile/update-picture/",
+        const imageUploadResponse = await apiFetch(
+          "/api/auth/user/profile/update-picture/",
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer ${token}`,
             },
             body: imageFormData,
           }

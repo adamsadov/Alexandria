@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 // Dynamically import the markdown editor to avoid the SSR issues
 const MDEditor = dynamic(
@@ -29,27 +30,20 @@ export function MarkdownEditor({
   const [content, setContent] = useState(initialContent);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   const handleSave = async () => {
     try {
       setError(null);
       setIsSaving(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSaving(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/update/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/update/`,
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

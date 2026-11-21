@@ -6,9 +6,10 @@ import { Header } from '@/components/layout/Header'
 import ShelfComponent from '@/components/ui/shelves/ShelfComponent'
 import NewShelfModal from '@/components/ui/shelves/NewShelfModal'
 import EditShelfModal from '@/components/ui/shelves/EditShelfModal'
-import { useJWToken } from '../../utils/getJWToken'
+import { useSession } from "@/lib/session";
 import { BookOpen, Plus } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { apiFetch } from "@/lib/api";
 
 interface Edition {
   id: string
@@ -33,7 +34,7 @@ interface Shelf {
 
 export default function ShelvesPage() {
   const router = useRouter()
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   const [shelves, setShelves] = useState<Shelf[]>([])
   const [shelfEditions, setShelfEditions] = useState<Record<number, Edition[]>>({})
   const [loading, setLoading] = useState(true)
@@ -52,18 +53,11 @@ export default function ShelvesPage() {
         setLoading(true);
         setError(null);
         
-        // Get token
-        const token = jwtToken || await fetchJWToken();
-        if (!token) {
-          router.push('/auth/sign-in');
-          return;
-        }
         
         console.log('Fetching shelves...');
-        const response = await fetch('http://localhost:8000/', {
+        const response = await apiFetch('/api/shelves/', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           }
@@ -102,7 +96,7 @@ export default function ShelvesPage() {
           // Only fetch editions if we have shelves
           if (shelvesData && shelvesData.length > 0) {
             for (const shelf of shelvesData) {
-              fetchShelfEditions(shelf.id, token);
+              fetchShelfEditions(shelf.id);
             }
           }
         } catch (parseError) {
@@ -118,16 +112,15 @@ export default function ShelvesPage() {
     }
 
     fetchShelves();
-  }, [jwtToken, fetchJWToken, router]);
+  }, [isAuthenticated, router]);
 
   // Fetch editions for a shelf 
-  const fetchShelfEditions = async (shelfId: number, token: string) => {
+  const fetchShelfEditions = async (shelfId: number) => {
     try {
       console.log(`Fetching editions for shelf ${shelfId}...`);
-      const editionsResponse = await fetch(`http://localhost:8000/${shelfId}/editions/`, {
+      const editionsResponse = await apiFetch(`/api/shelves/${shelfId}/editions/`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
@@ -177,18 +170,12 @@ export default function ShelvesPage() {
     try {
       setIsCreatingShelf(true);
       
-      const token = jwtToken || await fetchJWToken();
-      if (!token) {
-        router.push('/auth/sign-in');
-        return;
-      }
 
       console.log('Creating new shelf:', shelfData);
       
-      const response = await fetch('http://localhost:8000/', {
+      const response = await apiFetch('/api/shelves/', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -251,18 +238,12 @@ export default function ShelvesPage() {
     try {
       setIsDeletingShelf(true);
       
-      const token = jwtToken || await fetchJWToken();
-      if (!token) {
-        router.push('/auth/sign-in');
-        return;
-      }
 
       console.log(`Deleting shelf ${shelfId}`);
       
-      const response = await fetch(`http://localhost:8000/${shelfId}/`, {
+      const response = await apiFetch(`/api/shelves/${shelfId}/`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
         }
       });
 

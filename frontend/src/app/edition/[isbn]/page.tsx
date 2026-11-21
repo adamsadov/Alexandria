@@ -17,6 +17,7 @@ import { Header } from "@/components/layout/Header"
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { apiFetch } from "@/lib/api";
 
 // Define the types needed for component
 interface Author {
@@ -146,7 +147,7 @@ export default function EditionPage() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`http://localhost:8000/api/editions/${isbn}/`, {
+        const response = await apiFetch(`/api/editions/${isbn}/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

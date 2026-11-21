@@ -118,7 +118,7 @@ export function MembersTab({
     }
 
     // Make it an absolute URL
-    return `http://localhost:8000${profilePic}`;
+    return `${profilePic}`;
   };
 
   // Handle image error

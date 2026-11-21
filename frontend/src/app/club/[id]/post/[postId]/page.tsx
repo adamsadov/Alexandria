@@ -5,8 +5,9 @@ import React from "react";
 import Link from "next/link";
 import { ChevronRight, MessageSquare, ThumbsUp, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { CommentsSection } from "@/components/club/comments/CommentSection";
+import { apiFetch } from "@/lib/api";
 
 export default function PostDetailPage({
   params,
@@ -24,32 +25,21 @@ export default function PostDetailPage({
   const [likeCount, setLikeCount] = useState(0);
   const [isLiking, setIsLiking] = useState(false);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Fetch JWT token on mount
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Function to fetch post details
   const fetchPostDetails = async () => {
     try {
       if (!postId || !clubId) return;
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
       // First, fetch club details to get club name for breadcrumbs
-      const clubResponse = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/`,
+      const clubResponse = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -64,11 +54,10 @@ export default function PostDetailPage({
 
       // Now fetch post details
       // Note: You'll need to create this endpoint in your backend API
-      const postResponse = await fetch(
-        `http://localhost:8000/api/bookclubs/posts/${postId}/`,
+      const postResponse = await apiFetch(
+        `/api/bookclubs/posts/${postId}/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -93,25 +82,18 @@ export default function PostDetailPage({
     try {
       setIsLiking(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsLiking(false);
-        return;
-      }
 
       console.log(
         "Sending like request to:",
-        `http://localhost:8000/api/bookclubs/posts/${postId}/like/`
+        `/api/bookclubs/posts/${postId}/like/`
       );
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/posts/${postId}/like/`,
+      const response = await apiFetch(
+        `/api/bookclubs/posts/${postId}/like/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -138,10 +120,10 @@ export default function PostDetailPage({
 
   // Fetch post details
   useEffect(() => {
-    if (jwtToken) {
+    if (isAuthenticated) {
       fetchPostDetails();
     }
-  }, [jwtToken, clubId, postId]);
+  }, [isAuthenticated, clubId, postId]);
 
 
   useEffect(() => {

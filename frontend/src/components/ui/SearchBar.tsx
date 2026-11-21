@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "./button";
+import { apiFetch } from "@/lib/api";
 
 const SearchBar = () => {
     /**
@@ -60,7 +61,7 @@ const SearchBar = () => {
 
             setIsLoading(true)
 
-            fetch(`http://127.0.0.1:8000/api/search-bar/?q=${encodeURIComponent(query)}`)
+            apiFetch(`/api/search-bar/?q=${encodeURIComponent(query)}`)
                 .then((res) => res.json())
                 .then((data: SearchResults) => {
                     setResults(data)

@@ -19,10 +19,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"])
 FRONTEND_URL = env("FRONTEND_URL", default="http://localhost:3000")
 
 # The from: ...@some.com like the no-reply
-DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER", default="your-email@example.com")
-
-# Clerk api key
-CLERK_SECRET_KEY = env("CLERK_SECRET_KEY")
+DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER", default="no-reply@alexandria.local")
 
 # Application definition
 INSTALLED_APPS = [
@@ -38,7 +35,9 @@ INSTALLED_APPS = [
     "library",
     "entity_pages",
     'rest_framework',
-    'rest_framework_simplejwt',
+    "allauth",
+    "allauth.account",
+    "allauth.headless",
     'accounts',
     "search",
     "shelves",
@@ -60,6 +59,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -85,38 +90,17 @@ WSGI_APPLICATION = "config.wsgi.application"
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = False # DO NOT SET TO TRUE FOR PRODUCTION
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=["http://localhost:3000"])
+CORS_ALLOW_CREDENTIALS = True
 
-# specify headers here
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type", 
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken"
-    "x-requested-with",
-]
-
-# specify methods here
-CORS_ALLOW_METHODS = [
-    "GET",
-    "POST",
-    "OPTIONS",
-    "PATCH",
-    "PUT",
-    "HEAD",
-    "OPTIONS",
-    "DELETE",
-    "Patch"
-]
+# The frontend proxies /api and /_allauth through Next.js, so the browser's
+# Origin is the frontend's. CSRF checks must trust it.
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[FRONTEND_URL])
 
 # Database
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("POSTGRES_DB", default="AlexandriaDB"),
+        "NAME": env("POSTGRES_DB", default="alexandria"),
         "USER": env("POSTGRES_USER", default="postgres"),
         "PASSWORD": env("POSTGRES_PASSWORD", default="changeme"),
         "HOST": env("POSTGRES_HOST", default="127.0.0.1"),
@@ -171,6 +155,7 @@ CSRF_COOKIE_SECURE = not DEBUG
 X_FRAME_OPTIONS = "DENY"
 
 # Logging
+os.makedirs(os.path.join(BASE_DIR, "logs"), exist_ok=True)
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -179,17 +164,20 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "filename": os.path.join(BASE_DIR, "logs/django_debug.log"),
+            "encoding": "utf-8",
         },
         "error_file": {
             "level": "ERROR",
             "class": "logging.FileHandler",
             "filename": os.path.join(BASE_DIR, "logs/django_errors.log"),
+            "encoding": "utf-8",
         },
     },
     "loggers": {
         "django": {
             "handlers": ["debug_file", "error_file"],
-            "level": "DEBUG" if DEBUG else "WARNING",
+            # INFO, not DEBUG: DEBUG logs every SQL query, which floods the file.
+            "level": "INFO" if DEBUG else "WARNING",
             "propagate": True,
         },
     },
@@ -209,28 +197,33 @@ else:
 
 
 
-# Rest_framework for making restful calls
+# Rest framework: API requests are authenticated by the Django session cookie
+# that allauth sets at login. SessionAuthentication enforces CSRF on writes.
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'accounts.authentication.SessionAuthentication401',
     ]
 }
 
-# JWT settings
-from datetime import timedelta
+# ===== Authentication (django-allauth, headless) =====
+# Users sign up and log in with email + password. The username starts out
+# equal to the email; the frontend's profile-setup modal asks for a real one.
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*"]
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
+ACCOUNT_EMAIL_VERIFICATION = env("ACCOUNT_EMAIL_VERIFICATION", default="mandatory")
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
+# Only the JSON API; the frontend renders every page.
+HEADLESS_ONLY = True
+HEADLESS_FRONTEND_URLS = {
+    "account_confirm_email": f"{FRONTEND_URL}/auth/verify-email/{{key}}",
+    "account_reset_password": f"{FRONTEND_URL}/auth/forgot-password",
+    "account_reset_password_from_key": f"{FRONTEND_URL}/auth/reset-password/{{key}}",
+    "account_signup": f"{FRONTEND_URL}/auth/sign-up",
 }
+
+SESSION_COOKIE_SAMESITE = "Lax"
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 14  # two weeks

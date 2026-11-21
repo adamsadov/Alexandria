@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { AnnouncementList } from "./AnnouncementList";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface BookClubAnnouncementSectionProps {
   clubId: number;
@@ -14,30 +15,20 @@ export function BookClubAnnouncementSection({
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Check if the current user is an admin of the club
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          console.error("Authentication required");
-          setIsLoading(false);
-          return;
-        }
 
         // Fetch club members to determine if user is admin
-        const response = await fetch(
-          `http://localhost:8000/api/bookclubs/clubs/${clubId}/members/`,
+        const response = await apiFetch(
+          `/api/bookclubs/clubs/${clubId}/members/`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -71,11 +62,10 @@ export function BookClubAnnouncementSection({
         if (!userIsAdmin && members.length === 1) {
           // If there's only one member and we have access to the club,
           // we might be that member (especially if we created the club)
-          const response2 = await fetch(
-            `http://localhost:8000/api/bookclubs/clubs/${clubId}/`,
+          const response2 = await apiFetch(
+            `/api/bookclubs/clubs/${clubId}/`,
             {
               headers: {
-                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
               },
             }
@@ -98,7 +88,7 @@ export function BookClubAnnouncementSection({
     };
 
     checkAdminStatus();
-  }, [clubId, jwtToken, fetchJWToken]);
+  }, [clubId, isAuthenticated]);
 
   if (isLoading) {
     return <div className="p-4 text-amber-800">Loading...</div>;

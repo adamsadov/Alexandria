@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/ui/SearchBar";
 import ShelfComponent from "@/components/ui/shelves/ShelfComponent";
 import { useRouter } from "next/navigation";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { Header } from "@/components/layout/Header";
 
 // Fallback to static data if API fails
@@ -15,6 +15,7 @@ import {
   topRomance,
   topFiction,
 } from "@/components/ui/book_details/StaticCurated";
+import { apiFetch } from "@/lib/api";
 
 // match the interfaces used in ShelfComponent
 interface Edition {
@@ -73,7 +74,7 @@ export default function DiscoveryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     async function fetchFeaturedShelves() {
@@ -81,33 +82,10 @@ export default function DiscoveryPage() {
         setLoading(true);
         setError(null);
 
-        // Try to get token
-        let token = jwtToken || (await fetchJWToken().catch(() => null));
-
-        // If couldn't get a token through the normal flow,
-        // check if there's one directly in the cookies
-        if (!token) {
-          // Direct access to cookies as a backup
-          const cookies = document.cookie.split(";").reduce((acc, cookie) => {
-            const [key, value] = cookie.trim().split("=");
-            acc[key] = value;
-            return acc;
-          }, {} as Record<string, string>);
-
-          token = cookies.access_token;
-        }
-
-        if (!token) {
-          setError("Authentication required to view featured content");
-          setLoading(false);
-          return;
-        }
-
-        const response = await fetch(
-          "http://localhost:8000/api/discovery/featured-shelves/",
+        const response = await apiFetch(
+          "/api/discovery/featured-shelves/",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -136,7 +114,7 @@ export default function DiscoveryPage() {
     }
 
     fetchFeaturedShelves();
-  }, [jwtToken, fetchJWToken]);
+  }, [isAuthenticated]);
 
   return (
     <div

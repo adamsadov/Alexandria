@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Coffee, Users, ChevronRight, PlusCircle } from "lucide-react";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface BookClub {
   id: string;
@@ -40,28 +41,21 @@ export default function BookClubsReading({
   const [clubs, setClubs] = useState<BookClub[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     async function fetchBookClubs() {
       try {
         setLoading(true);
 
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          console.error("Authentication required");
-          setLoading(false);
-          return;
-        }
 
         // Fetch book clubs reading this book
         console.log(`Fetching clubs reading book ${bookId}...`);
-        const response = await fetch(
-          `http://localhost:8000/api/bookclubs/books/${bookId}/book-clubs/`,
+        const response = await apiFetch(
+          `/api/bookclubs/books/${bookId}/book-clubs/`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -91,7 +85,7 @@ export default function BookClubsReading({
     if (bookId) {
       fetchBookClubs();
     }
-  }, [bookId, jwtToken, fetchJWToken]);
+  }, [bookId, isAuthenticated]);
 
   // Format club image URL
   const getClubImageUrl = (imageUrl: string | undefined) => {
@@ -99,7 +93,7 @@ export default function BookClubsReading({
 
     return imageUrl.startsWith("http")
       ? imageUrl
-      : `http://localhost:8000${imageUrl}`;
+      : `${imageUrl}`;
   };
 
   // Loading state

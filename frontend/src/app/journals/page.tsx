@@ -8,9 +8,10 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { NewJournalModal } from "@/components/ui/journals/NewJournalModal"
 import { motion } from "framer-motion"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
 import { BookOpen, Calendar, Eye, EyeOff, Loader2 } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
+import { apiFetch } from "@/lib/api";
 
 interface Journal {
   id: number
@@ -55,7 +56,7 @@ export default function JournalsPage() {
   const [bookInfoCache, setBookInfoCache] = useState<Record<string, BookInfo>>({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     fetchJournals()
@@ -66,15 +67,9 @@ export default function JournalsPage() {
       setLoading(true)
       setError(null)
 
-      const token = jwtToken || await fetchJWToken()
-      if (!token) {
-        setError("Authentication required")
-        return
-      }
 
-      const response = await fetch('http://localhost:8000/api/journals/my_journals/', {
+      const response = await apiFetch('/api/journals/my_journals/', {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       })
@@ -92,7 +87,7 @@ export default function JournalsPage() {
 
       // Fetch book info for all unique book_ids
       const uniqueBookIds = [...new Set(journalsData.map((journal: Journal) => journal.book_id))] as string[]
-      await fetchBookInfoBatch(uniqueBookIds, token)
+      await fetchBookInfoBatch(uniqueBookIds)
 
     } catch (err) {
       console.error('Error fetching journals:', err)
@@ -107,10 +102,10 @@ export default function JournalsPage() {
     }
   }
 
-  const fetchBookInfoBatch = async (bookIds: string[], token: string) => {
+  const fetchBookInfoBatch = async (bookIds: string[]) => {
     try {
       // Fetch book info for all book IDs in parallel
-      const bookPromises = bookIds.map(bookId => fetchBookInfo(bookId, token))
+      const bookPromises = bookIds.map(bookId => fetchBookInfo(bookId))
       const bookResults = await Promise.allSettled(bookPromises)
       
       const newBookCache: Record<string, BookInfo> = {}
@@ -126,11 +121,10 @@ export default function JournalsPage() {
     }
   }
 
-  const fetchBookInfo = async (bookId: string, token: string): Promise<BookInfo | null> => {
+  const fetchBookInfo = async (bookId: string): Promise<BookInfo | null> => {
     try {
-      const response = await fetch(`http://localhost:8000/api/book/${bookId}/`, {
+      const response = await apiFetch(`/api/book/${bookId}/`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       })

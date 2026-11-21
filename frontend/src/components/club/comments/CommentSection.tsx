@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { CommentItem } from "./CommentItem";
+import { apiFetch } from "@/lib/api";
 
 interface CommentsSectionProps {
   postId: string | number;
@@ -15,7 +16,7 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   // Fetch comments when component mounts
   useEffect(() => {
@@ -27,19 +28,12 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
       setIsLoading(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsLoading(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/posts/${postId}/comments/`,
+      const response = await apiFetch(
+        `/api/bookclubs/posts/${postId}/comments/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -66,20 +60,13 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
       setIsSubmitting(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSubmitting(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/posts/${postId}/comments/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/posts/${postId}/comments/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -107,19 +94,13 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
     try {
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/posts/${postId}/comments/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/posts/${postId}/comments/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

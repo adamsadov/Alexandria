@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from 'react'
 import { X, Trash2 } from 'lucide-react'
-import { useJWToken } from '../../../utils/getJWToken'
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface Shelf {
   id: number
@@ -31,7 +32,7 @@ const EditShelfModal = ({
   onUpdate,
   isLoading
 }: EditShelfModalProps) => {
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [isPrivate, setIsPrivate] = useState(false)
@@ -57,10 +58,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     
     try {
       setIsUpdating(true);
-      const token = jwtToken || await fetchJWToken();
       
       // Simple URL construction
-      const url = "http://localhost:8000/" + shelf.id + "/";
+      const url = "/api/shelves/" + shelf.id + "/";
       console.log("URL:", url);
       
       // Simple data object
@@ -72,10 +72,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       console.log("Data:", data);
       
      
-      const response = await fetch(url, {
+      const response = await apiFetch(url, {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)

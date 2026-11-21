@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {Pin, PlusCircle, Edit, Trash2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 import { CreateAnnouncementModal } from "./CreateAnnouncementModal";
+import { apiFetch } from "@/lib/api";
 
 interface Announcement {
   id: number;
@@ -33,30 +34,19 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
   const [refreshCounter, setRefreshCounter] = useState<number>(0);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
   // Memoize fetchAnnouncements to avoid unnecessary re-creations
   const fetchAnnouncements = useCallback(async () => {
     try {
       setIsRefreshing(true);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        setIsRefreshing(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/announcements/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/announcements/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -76,7 +66,7 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
       setLoading(false);
       setIsRefreshing(false);
     }
-  }, [clubId, jwtToken, fetchJWToken]);
+  }, [clubId, isAuthenticated]);
 
   // Fetch announcements when the component mounts or refreshCounter changes
   useEffect(() => {
@@ -100,19 +90,13 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
   ) => {
     try {
       setError(null);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/announcements/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/announcements/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -165,12 +149,7 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
   ) => {
     try {
       setError(null);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
       // Log exactly what we're sending
       const requestData = {
@@ -180,12 +159,11 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
       };
       console.log("Sending update data:", JSON.stringify(requestData, null, 2));
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/announcements/${id}/update/`,
+      const response = await apiFetch(
+        `/api/bookclubs/announcements/${id}/update/`,
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(requestData),
@@ -234,21 +212,15 @@ export function AnnouncementList({ clubId, isAdmin }: AnnouncementListProps) {
 
     try {
       setError(null);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
       console.log(`Deleting announcement with ID: ${id}`);
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/announcements/${id}/delete/`,
+      const response = await apiFetch(
+        `/api/bookclubs/announcements/${id}/delete/`,
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }

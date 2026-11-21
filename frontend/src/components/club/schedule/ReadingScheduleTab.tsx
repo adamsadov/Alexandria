@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 // Token (cookie purpose)
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
 
 // Components
 import { ReadingProgress } from "../members/ReadingProgress";
@@ -39,6 +39,7 @@ import {
   Search,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { apiFetch } from "@/lib/api";
 
 // Type definitions
 interface ReadingSchedule {
@@ -141,20 +142,15 @@ export function ReadingScheduleTab({
       description: "",
     });
 
-  // JWT for authentication
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
-  // Fetch JWT token on mount
-  useEffect(() => {
-    fetchJWToken();
-  }, [fetchJWToken]);
 
-  // Fetch reading schedules whenever the JWT token or clubId changes
+  // Fetch reading schedules whenever sign-in state or clubId changes
   useEffect(() => {
-    if (jwtToken && clubId) {
+    if (isAuthenticated && clubId) {
       fetchReadingSchedules();
     }
-  }, [jwtToken, clubId]);
+  }, [isAuthenticated, clubId]);
 
   // If the club already has a book existing then we'll set it as default
   useEffect(() => {
@@ -182,19 +178,12 @@ export function ReadingScheduleTab({
       setLoading(true);
       setError(null);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setLoading(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/schedules/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/schedules/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -219,18 +208,12 @@ export function ReadingScheduleTab({
   // Function to fetch milestones for a schedule
   const fetchMilestones = async (scheduleId: number) => {
     try {
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/schedules/${scheduleId}/milestones/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/schedules/${scheduleId}/milestones/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -262,24 +245,17 @@ export function ReadingScheduleTab({
 
     try {
       setIsSearching(true);
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        setIsSearching(false);
-        return;
-      }
 
       // Try the real API with the correct endpoint
       try {
         // Changed from /api/search/books to /api/search-bar/
-        const response = await fetch(
-          `http://localhost:8000/api/search-bar/?q=${encodeURIComponent(
+        const response = await apiFetch(
+          `/api/search-bar/?q=${encodeURIComponent(
             searchQuery
           )}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -391,12 +367,7 @@ export function ReadingScheduleTab({
   // Function to create a new reading schedule
   const handleCreateSchedule = async () => {
     try {
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        setError("Authentication required");
-        return;
-      }
 
       // Validate required fields - now book is required
       if (!scheduleFormData.start_date || !scheduleFormData.end_date) {
@@ -439,12 +410,11 @@ export function ReadingScheduleTab({
 
       console.log("Sending schedule data to API:", formattedData);
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/schedules/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/schedules/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formattedData),
@@ -510,10 +480,9 @@ export function ReadingScheduleTab({
   // Function to create a new milestone for a schedule
   const handleCreateMilestone = async () => {
     try {
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token || !activeScheduleId) {
-        setError("Authentication required or no active schedule selected");
+      if (!activeScheduleId) {
+        setError("No active schedule selected");
         return;
       }
 
@@ -536,12 +505,11 @@ export function ReadingScheduleTab({
 
       console.log("Sending milestone data to API:", formattedData);
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/clubs/${clubId}/schedules/${activeScheduleId}/milestones/create/`,
+      const response = await apiFetch(
+        `/api/bookclubs/clubs/${clubId}/schedules/${activeScheduleId}/milestones/create/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formattedData),

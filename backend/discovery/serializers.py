@@ -11,7 +11,7 @@ class FeaturedShelfSerializer(serializers.ModelSerializer):
     
     def get_books(self, obj):
         # Get books from the linked shelf
-        shelf_editions = ShelfEdition.objects.filter(shelf=obj.shelf)
+        shelf_editions = ShelfEdition.objects.filter(shelf=obj.shelf).order_by("id")
         
         # Return formatted book data
         result = []

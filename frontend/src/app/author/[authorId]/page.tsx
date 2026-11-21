@@ -8,6 +8,7 @@ import {
 import ItemCarousel from '@/components/ui/ItemCarousel'
 import CoverImage from '@/components/ui/CoverImage'
 import { Header } from "@/components/layout/Header"
+import { apiFetch } from "@/lib/api";
 
 interface Book {
   id: string;
@@ -75,7 +76,7 @@ export default function AuthorPage() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`http://localhost:8000/api/authors/${authorId}/`, {
+        const response = await apiFetch(`/api/authors/${authorId}/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

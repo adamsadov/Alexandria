@@ -1,18 +1,6 @@
-import { ClerkProvider } from "@clerk/nextjs";
-import React, { ReactNode } from "react";
-import { AuthSynchronizer } from "./AuthSynchronizer";
+import { ReactNode } from "react";
+import { SessionProvider } from "@/lib/session";
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-export function AuthProvider({ children }: AuthProviderProps) {
-  return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""}
-    >
-      <AuthSynchronizer />
-      {children}
-    </ClerkProvider>
-  );
+export function AuthProvider({ children }: { children: ReactNode }) {
+  return <SessionProvider>{children}</SessionProvider>;
 }

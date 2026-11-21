@@ -6,7 +6,8 @@ import Link from "next/link";
 import { PlusCircle, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface BookProgress {
   id: string;
@@ -33,7 +34,7 @@ export default function CurrentlyReading({
   const [books, setBooks] = useState<BookProgress[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
 
   useEffect(() => {
     async function fetchCurrentlyReading() {
@@ -41,20 +42,13 @@ export default function CurrentlyReading({
         setLoading(true);
         setError(null);
 
-        const token = jwtToken || (await fetchJWToken());
 
-        if (!token) {
-          setError("Authentication required");
-          setLoading(false);
-          return;
-        }
         const url = userId
-          ? `http://localhost:8000/api/users/${userId}/currently-reading`
-          : `http://localhost:8000/api/users/me/currently-reading`;
+          ? `/api/users/${userId}/currently-reading`
+          : `/api/users/me/currently-reading`;
 
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -77,14 +71,14 @@ export default function CurrentlyReading({
     }
 
     fetchCurrentlyReading();
-  }, [userId, jwtToken, fetchJWToken]);
+  }, [userId, isAuthenticated]);
 
   // Format book cover URL
   const getBookCoverUrl = (coverUrl: string | undefined) => {
     if (!coverUrl) return "/placeholder.svg?height=96&width=64";
     return coverUrl.startsWith("http")
       ? coverUrl
-      : `http://localhost:8000${coverUrl}`;
+      : `${coverUrl}`;
   };
 
   return (

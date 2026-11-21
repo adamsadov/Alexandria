@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, ThumbsUp } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
-import { useJWToken } from "@/utils/getJWToken";
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface CommentItemProps {
   comment: any;
@@ -40,20 +41,13 @@ export function CommentItem({
     try {
       setIsLikingComment(true);
 
-      const token = jwtToken || (await fetchJWToken());
 
-      if (!token) {
-        // Handle error
-        setIsLikingComment(false);
-        return;
-      }
 
-      const response = await fetch(
-        `http://localhost:8000/api/bookclubs/comments/${comment.id}/like/`,
+      const response = await apiFetch(
+        `/api/bookclubs/comments/${comment.id}/like/`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }

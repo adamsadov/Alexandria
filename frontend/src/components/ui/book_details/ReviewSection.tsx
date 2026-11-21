@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Star, AlertTriangle, ChevronLeft, ChevronRight, Edit, Trash } from 'lucide-react'
-import { useJWToken } from '@/utils/getJWToken'
+import { useSession } from "@/lib/session";
 import { Button } from '@/components/ui/button'
+import { apiFetch } from "@/lib/api";
 
 // Types
 interface Review {
@@ -42,8 +43,7 @@ export default function ReviewSection({ bookId }: ReviewSectionProps) {
   const [sortOrder, setSortOrder] = useState('desc')
   const [minRating, setMinRating] = useState(0)
   
-  // JWT token for authentication
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   
   // Fetch the user's review on component mount
   useEffect(() => {
@@ -58,16 +58,10 @@ export default function ReviewSection({ bookId }: ReviewSectionProps) {
   // Function to fetch the current user's review
   const fetchMyReview = async () => {
     try {
-      const token = jwtToken || await fetchJWToken()
       
-      if (!token) {
-        // User is not logged in, skip fetching personal review
-        return
-      }
       
-      const response = await fetch(`http://localhost:8000/api/reviews/my_book_review/?book_id=${bookId}`, {
+      const response = await apiFetch(`/api/reviews/my_book_review/?book_id=${bookId}`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       })
@@ -96,22 +90,17 @@ const fetchOtherReviews = async () => {
     setIsLoading(true);
     setError(null);
     
-    let apiUrl = `http://localhost:8000/api/reviews/other_reviews/?book_id=${bookId}&page=${currentPage}&sort_by=${sortBy}&sort_order=${sortOrder}`;
+    let apiUrl = `/api/reviews/other_reviews/?book_id=${bookId}&page=${currentPage}&sort_by=${sortBy}&sort_order=${sortOrder}`;
     
     if (minRating > 0) {
       apiUrl += `&min_rating=${minRating}`;
     }
     
-    const token = jwtToken || await fetchJWToken().catch(() => null);
     const headers: HeadersInit = {
       'Content-Type': 'application/json'
     };
     
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-    
-    const response = await fetch(apiUrl, { headers });
+    const response = await apiFetch(apiUrl, { headers });
     
     if (!response.ok) {
       throw new Error(`Failed to fetch reviews: ${response.status}`);
@@ -161,17 +150,11 @@ const fetchOtherReviews = async () => {
     if (!myReview) return
     
     try {
-      const token = jwtToken || await fetchJWToken()
       
-      if (!token) {
-        setError('Authentication required')
-        return
-      }
       
-      const response = await fetch(`http://localhost:8000/api/reviews/${myReview.id}/`, {
+      const response = await apiFetch(`/api/reviews/${myReview.id}/`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
         }
       })
       
@@ -339,7 +322,7 @@ function UserReview({ review, onEdit, onDelete }: {
           <div className="flex-shrink-0 mr-3">
             {review.user_profile_pic ? (
               <img 
-                src={`http://localhost:8000${review.user_profile_pic}`}
+                src={`${review.user_profile_pic}`}
                 alt=""
                 className="h-10 w-10 rounded-full object-cover"
               />
@@ -429,7 +412,7 @@ function UserReviewForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  const { jwtToken, fetchJWToken } = useJWToken();
+  const { isAuthenticated } = useSession();
   
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -444,12 +427,7 @@ function UserReviewForm({
       setIsSubmitting(true);
       setError(null);
       
-      const token = jwtToken || await fetchJWToken();
       
-      if (!token) {
-        setError('Authentication required');
-        return;
-      }
       
       const reviewData = {
         book: bookId,
@@ -461,13 +439,12 @@ function UserReviewForm({
       const isUpdate = initialReview !== null;
       const method = isUpdate ? 'PUT' : 'POST';
       const url = isUpdate 
-        ? `http://localhost:8000/api/reviews/${initialReview.id}/` 
-        : 'http://localhost:8000/api/reviews/';
+        ? `/api/reviews/${initialReview.id}/` 
+        : '/api/reviews/';
       
-      const response = await fetch(url, {
+      const response = await apiFetch(url, {
         method,
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(reviewData)
@@ -576,18 +553,12 @@ function ReviewItem({ review }: { review: Review }) {
   // Handle flagging a review
   const handleFlag = async () => {
     try {
-      const { jwtToken, fetchJWToken } = useJWToken();
-      const token = jwtToken || await fetchJWToken();
+      const { isAuthenticated } = useSession();
       
-      if (!token) {
-        console.error('Authentication required to flag review');
-        return;
-      }
       
-      const response = await fetch(`http://localhost:8000/api/reviews/${review.id}/flag/`, {
+      const response = await apiFetch(`/api/reviews/${review.id}/flag/`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`
         }
       });
       
@@ -617,7 +588,7 @@ function ReviewItem({ review }: { review: Review }) {
           <div className="flex-shrink-0 mr-3">
             {review.user_profile_pic ? (
               <img 
-                src={`http://localhost:8000${review.user_profile_pic}`}
+                src={`${review.user_profile_pic}`}
                 alt=""
                 className="h-10 w-10 rounded-full object-cover"
               />

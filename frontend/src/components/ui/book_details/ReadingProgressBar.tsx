@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
-import { useJWToken } from "@/utils/getJWToken"
+import { useSession } from "@/lib/session";
+import { apiFetch } from "@/lib/api";
 
 interface ReadingProgressBarProps {
   bookId: string
@@ -27,7 +28,7 @@ export default function ReadingProgressBar({
   const [currentPage, setCurrentPage] = useState(initialPage)
   const [isUpdating, setIsUpdating] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const { jwtToken, fetchJWToken } = useJWToken()
+  const { isAuthenticated } = useSession();
   
   const progressPercentage = maxPages > 0 ? (currentPage / maxPages) * 100 : 0
   
@@ -83,24 +84,16 @@ export default function ReadingProgressBar({
         setIsUpdating(true)
         setError(null)
         
-        const token = jwtToken || await fetchJWToken()
-        if (!token) {
-            console.error("Authentication required to update progress")
-            setError("Authentication required")
-            return
-        }
         
         console.log('Saving progress:', {
             bookId,
             page,
-            maxPages,
-            token: token ? 'Token exists' : 'No token'
+            maxPages
         })
         
         // First, ensure the book is on the Reading shelf before updating progress
-        const shelvesResponse = await fetch('http://localhost:8000/', {
+        const shelvesResponse = await apiFetch('/api/shelves/', {
             headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
             }
         })
@@ -115,10 +108,9 @@ export default function ReadingProgressBar({
         }
         
         // Now update the progress
-        const response = await fetch('http://localhost:8000/progress/update-progress/', {
+        const response = await apiFetch('/progress/update-progress/', {
             method: 'POST',
             headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
             },
             body: JSON.stringify({
