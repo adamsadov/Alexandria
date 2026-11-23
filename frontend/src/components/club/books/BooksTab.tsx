@@ -11,11 +11,11 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { BookOpen, PlusCircle, Search, X } from "lucide-react";
+import { BookOpen, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { apiFetch } from "@/lib/api";
+import { BookSearch } from "@/components/search/BookSearch";
+import type { BookResult } from "@/lib/search";
 
 // Type definitions
 interface Book {
@@ -65,10 +65,7 @@ export function BooksTab({
   // State for book addition
   const [isAddBookDialogOpen, setIsAddBookDialogOpen] =
     useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Book[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [selectedBook, setSelectedBook] = useState<BookResult | null>(null);
 
   const { isAuthenticated } = useSession();
 
@@ -122,133 +119,6 @@ export function BooksTab({
     }
   };
 
-  // handle book search
-  // handle book search with improved cover image handling
-  const handleBookSearch = async () => {
-    if (!searchQuery.trim()) return;
-
-    try {
-      setIsSearching(true);
-      setError(null);
-
-
-
-      const response = await apiFetch(
-        `/api/search-bar/?q=${encodeURIComponent(
-          searchQuery
-        )}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Raw search API response:", data);
-
-        if (data.books && data.books.length > 0) {
-          const transformedResults = data.books.map((book) => {
-            // Get book_id as string
-            let bookIdValue = book.book_id
-              ? String(book.book_id)
-              : book.id
-              ? String(book.id)
-              : `unknown-${Math.random().toString(36).substring(2, 10)}`;
-
-            // Process authors
-            let authorArray = ["Unknown Author"];
-            if (book.authors) {
-              if (Array.isArray(book.authors)) {
-                authorArray = book.authors.flat().filter(Boolean);
-              } else if (typeof book.authors === "string") {
-                authorArray = [book.authors];
-              }
-            }
-            if (authorArray.length === 0) {
-              authorArray = ["Unknown Author"];
-            }
-
-            // Extract cover URL - check multiple possible locations
-            let coverUrl = null;
-
-            // First check if cover_url is directly available
-            if (book.cover_url) {
-              coverUrl = book.cover_url;
-            }
-            // Then check primary_edition's cover
-            else if (book.primary_edition && book.primary_edition.cover_image) {
-              coverUrl = book.primary_edition.cover_image;
-            }
-            // Then look through editions for cover images
-            else if (book.editions && book.editions.length > 0) {
-              for (const edition of book.editions) {
-                if (edition.cover_images && edition.cover_images.length > 0) {
-                  // Find primary cover image if available
-                  const primaryImage = edition.cover_images.find(
-                    (img) => img.is_primary
-                  );
-                  if (primaryImage) {
-                    coverUrl = primaryImage.image_url;
-                    break;
-                  } else if (edition.cover_images[0]) {
-                    // Otherwise use the first one
-                    coverUrl = edition.cover_images[0].image_url;
-                    break;
-                  }
-                } else if (edition.cover_image) {
-                  coverUrl = edition.cover_image;
-                  break;
-                }
-              }
-            }
-
-            console.log(`Book "${book.title}" cover URL:`, coverUrl);
-
-            return {
-              book_id: bookIdValue,
-              title: book.title || "Unknown Title",
-              authors: authorArray,
-              cover_url: coverUrl,
-              year_published: book.year_published,
-              summary: book.summary,
-              // Also store page count if available
-              page_count:
-                book.page_count ||
-                (book.primary_edition
-                  ? book.primary_edition.page_count
-                  : null) ||
-                (book.editions && book.editions.length > 0
-                  ? book.editions[0].page_count
-                  : null),
-            };
-          });
-
-          console.log("Transformed search results:", transformedResults);
-          setSearchResults(transformedResults);
-        } else {
-          setSearchResults([]);
-          setError("No books found matching your search.");
-        }
-      } else {
-        throw new Error(`Search failed: ${response.status}`);
-      }
-    } catch (err) {
-      console.error("Error searching books:", err);
-      setError("Failed to search books. Please try again.");
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  // Select a book
-  const handleBookSelect = (book: Book) => {
-    setSelectedBook(book);
-    setSearchResults([]);
-    setSearchQuery("");
-  };
-
   // update the club's current book
   const handleAddBookToClub = async () => {
     if (!selectedBook) return;
@@ -295,42 +165,14 @@ export function BooksTab({
           // Close dialog and reset form
           setIsAddBookDialogOpen(false);
           setSelectedBook(null);
-          setSearchQuery("");
-          setSearchResults([]);
 
           // Refresh parent component
           if (typeof onRefresh === "function") {
             onRefresh(true);
           }
         } else if (responseData.error) {
-          if (
-            responseData.recommendations &&
-            responseData.recommendations.length > 0
-          ) {
-            setError(responseData.message || responseData.error);
-
-            // Transform recommendations into search results
-            const recommendedBooks = responseData.recommendations.map(
-              (book) => ({
-                book_id: book.book_id,
-                title: book.title,
-                authors: book.authors,
-                year_published: book.year_published,
-                summary: book.summary || "",
-                cover_url: book.cover_url || null,
-                is_recommendation: true,
-              })
-            );
-
-            setSearchResults(recommendedBooks);
-            alert(
-              "The selected book was not found in our database. We've suggested some alternative books you might consider instead."
-            );
-            return;
-          } else {
-            setError(responseData.error);
-            return;
-          }
+          setError(responseData.message || responseData.error);
+          return;
         }
       } catch (e) {
         console.error("Failed to parse response as JSON", e);
@@ -503,116 +345,15 @@ export function BooksTab({
           )}
 
           <div className="space-y-4">
-            {/* Book Selection */}
-            <div>
-              <Label htmlFor="book-search" className="text-amber-800">
-                Search for a Book
-              </Label>
-
-              {selectedBook ? (
-                <div className="mt-2 p-3 border border-amber-300 rounded-md flex items-center">
-                  <div className="w-8 h-12 bg-amber-200 rounded overflow-hidden flex items-center justify-center mr-3">
-                    {selectedBook.cover_url ? (
-                      <Image
-                        src={selectedBook.cover_url}
-                        alt={selectedBook.title}
-                        width={32}
-                        height={48}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <BookOpen className="h-6 w-6 text-amber-700" />
-                    )}
-                  </div>
-                  <div>
-                    <div className="font-medium text-amber-900">
-                      {selectedBook.title}
-                    </div>
-                    <div className="text-xs text-amber-700">
-                      {Array.isArray(selectedBook.authors)
-                        ? selectedBook.authors.join(", ")
-                        : typeof selectedBook.authors === "string"
-                        ? selectedBook.authors
-                        : "Unknown Author"}
-                    </div>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-auto text-amber-700"
-                    onClick={() => setSelectedBook(null)}
-                  >
-                    <X className="h-4 w-4" />
-                    <span className="ml-1">Clear</span>
-                  </Button>
-                </div>
-              ) : (
-                <div className="mt-2 space-y-2">
-                  <div className="flex gap-2">
-                    <div className="relative flex-1">
-                      <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-amber-600 h-4 w-4" />
-                      <Input
-                        id="book-search"
-                        placeholder="Search by title or author"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-8 border-amber-300 bg-white"
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            handleBookSearch();
-                          }
-                        }}
-                      />
-                    </div>
-                    <Button
-                      onClick={handleBookSearch}
-                      disabled={isSearching || !searchQuery.trim()}
-                      className="bg-amber-800 text-amber-50"
-                    >
-                      Search
-                    </Button>
-                  </div>
-
-                  {searchResults.length > 0 && (
-                    <div className="border border-amber-200 rounded-md max-h-60 overflow-y-auto bg-white">
-                      {searchResults.map((book) => (
-                        <div
-                          key={book.book_id}
-                          className="p-2 hover:bg-amber-100 cursor-pointer flex items-center"
-                          onClick={() => handleBookSelect(book)}
-                        >
-                          <div className="w-6 h-9 bg-amber-200 rounded-sm overflow-hidden flex items-center justify-center mr-2">
-                            {book.cover_url ? (
-                              <Image
-                                src={book.cover_url}
-                                alt={book.title}
-                                width={24}
-                                height={36}
-                                className="h-full w-full object-cover"
-                              />
-                            ) : (
-                              <BookOpen className="h-4 w-4 text-amber-700" />
-                            )}
-                          </div>
-                          <div>
-                            <div className="font-medium text-amber-900">
-                              {book.title}
-                            </div>
-                            <div className="text-xs text-amber-700">
-                              {Array.isArray(book.authors)
-                                ? book.authors.join(", ")
-                                : typeof book.authors === "string"
-                                ? book.authors
-                                : "Unknown Author"}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            <BookSearch
+              mode="pick"
+              label="Search for a book"
+              showLabel
+              autoFocus
+              selected={selectedBook}
+              onSelect={setSelectedBook}
+              onClear={() => setSelectedBook(null)}
+            />
 
             <div className="flex justify-end space-x-2 pt-2">
               <Button
@@ -620,8 +361,6 @@ export function BooksTab({
                 onClick={() => {
                   setIsAddBookDialogOpen(false);
                   setSelectedBook(null);
-                  setSearchResults([]);
-                  setSearchQuery("");
                 }}
                 className="border-amber-300 text-amber-800"
               >

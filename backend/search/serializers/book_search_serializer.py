@@ -9,7 +9,8 @@ class BookSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = [
-            'book_id',
+            'id',          # database id: what club/schedule endpoints expect
+            'book_id',     # Open Library work id: used in /book/<book_id> URLs
             'title',
             'summary',
             'year_published',

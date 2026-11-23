@@ -36,10 +36,11 @@ import {
   PlusCircle,
   CalendarPlus,
   Calendar as CalendarIcon,
-  Search,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { apiFetch } from "@/lib/api";
+import { BookSearch } from "@/components/search/BookSearch";
+import type { BookResult } from "@/lib/search";
 
 // Type definitions
 interface ReadingSchedule {
@@ -66,13 +67,6 @@ interface Milestone {
   chapter_start: number | null;
   chapter_end: number | null;
   description: string;
-}
-
-interface Book {
-  book_id: number;
-  title: string;
-  authors: string[];
-  cover_url?: string;
 }
 
 interface CreateScheduleFormData {
@@ -112,10 +106,7 @@ export function ReadingScheduleTab({
 
   // State for schedule creation
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Book[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [selectedBook, setSelectedBook] = useState<BookResult | null>(null);
 
   // State for adding milestones
   const [isAddMilestoneDialogOpen, setIsAddMilestoneDialogOpen] =
@@ -157,10 +148,12 @@ export function ReadingScheduleTab({
     if (clubData && clubData.book && clubData.book_details) {
       // If the club already has a book, use it as the default
       setSelectedBook({
-        book_id: clubData.book,
+        id: clubData.book,
+        book_id: "",
         title: clubData.book_details.title,
         authors: clubData.book_details.authors || [],
-        cover_url: clubData.book_details.cover_url,
+        cover_image: clubData.book_details.cover_url ?? null,
+        year_published: clubData.book_details.year_published ?? null,
       });
 
       setScheduleFormData((prev) => ({
@@ -239,109 +232,11 @@ export function ReadingScheduleTab({
     }
   };
 
-  // Function to handle book search (with mock data fallback)
-  const handleBookSearch = async () => {
-    if (!searchQuery.trim()) return;
-
-    try {
-      setIsSearching(true);
-
-
-      // Try the real API with the correct endpoint
-      try {
-        // Changed from /api/search/books to /api/search-bar/
-        const response = await apiFetch(
-          `/api/search-bar/?q=${encodeURIComponent(
-            searchQuery
-          )}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Search API returned:", data);
-
-          // Transform the search results to match our expected format
-          // Your API returns { books: [...], authors: [...] }
-          // We need results with book_id, title, authors
-          if (data.books && data.books.length > 0) {
-            const transformedResults = data.books.map((book) => ({
-              book_id: book.book_id,
-              title: book.title,
-              // Since the API doesn't return authors, we'll add a placeholder
-              authors: ["(Author information unavailable)"],
-            }));
-
-            console.log("Transformed search results:", transformedResults);
-            setSearchResults(transformedResults);
-            setIsSearching(false);
-            return;
-          } else {
-            console.log("No books found in search results");
-          }
-        } else {
-          console.log("Search API failed with status:", response.status);
-        }
-      } catch (err) {
-        console.log("Search API error:", err);
-      }
-
-      // Generate mock results using a valid book ID from the club data if API fails
-      const validBookId = clubData?.book;
-
-      if (!validBookId) {
-        setError(
-          "Could not find a valid book ID. Please add a book to the club first."
-        );
-        setIsSearching(false);
-        return;
-      }
-
-      // All mock results use the same valid book ID to ensure it works
-      const mockResults = [
-        {
-          book_id: validBookId,
-          title: `${searchQuery} - Book 1 (Using ID: ${validBookId})`,
-          authors: ["Jane Austen", "Charlotte Brontë"],
-          cover_url: null,
-        },
-        {
-          book_id: validBookId,
-          title: `${searchQuery} - Book 2 (Using ID: ${validBookId})`,
-          authors: ["Ernest Hemingway"],
-          cover_url: null,
-        },
-        {
-          book_id: validBookId,
-          title: `The Great ${searchQuery} (Using ID: ${validBookId})`,
-          authors: ["F. Scott Fitzgerald"],
-          cover_url: null,
-        },
-      ];
-
-      console.log("Using mock book results with valid ID:", validBookId);
-      setSearchResults(mockResults);
-    } catch (err) {
-      console.error("Error searching books:", err);
-      setError("Failed to search books");
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
   // Function to select a book for the schedule
-  const handleBookSelect = (book: Book) => {
+  // Schedules store the book's database id
+  const handleBookSelect = (book: BookResult) => {
     setSelectedBook(book);
-    setScheduleFormData({
-      ...scheduleFormData,
-      book: book.book_id,
-    });
-    setSearchResults([]);
-    setSearchQuery("");
+    setScheduleFormData((prev) => ({ ...prev, book: book.id }));
   };
 
   // Function to handle form input change for schedule creation
@@ -814,88 +709,17 @@ export function ReadingScheduleTab({
           )}
 
           <div className="space-y-4">
-            {/* Book Selection */}
-            <div>
-              <Label htmlFor="book-search" className="text-amber-800">
-                Book (Required)
-              </Label>
-
-              {selectedBook ? (
-                <div className="mt-2 p-3 border border-amber-300 rounded-md flex items-center">
-                  <div className="w-8 h-12 bg-amber-200 rounded overflow-hidden flex items-center justify-center mr-3">
-                    <BookOpen className="h-6 w-6 text-amber-700" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-amber-900">
-                      {selectedBook.title}
-                    </div>
-                    <div className="text-xs text-amber-700">
-                      {selectedBook.authors.join(", ")}
-                    </div>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-auto text-amber-700"
-                    onClick={() => {
-                      setSelectedBook(null);
-                      setScheduleFormData({
-                        ...scheduleFormData,
-                        book: null,
-                      });
-                    }}
-                  >
-                    Clear
-                  </Button>
-                </div>
-              ) : (
-                <div className="mt-2 space-y-2">
-                  <div className="flex gap-2">
-                    <div className="relative flex-1">
-                      <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-amber-600 h-4 w-4" />
-                      <Input
-                        id="book-search"
-                        placeholder="Search for a book"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-8 border-amber-300 bg-white"
-                        onKeyPress={(e) => {
-                          if (e.key === "Enter") {
-                            handleBookSearch();
-                          }
-                        }}
-                      />
-                    </div>
-                    <Button
-                      onClick={handleBookSearch}
-                      disabled={isSearching || !searchQuery.trim()}
-                      className="bg-amber-800 text-amber-50"
-                    >
-                      Search
-                    </Button>
-                  </div>
-
-                  {searchResults.length > 0 && (
-                    <div className="border border-amber-200 rounded-md max-h-40 overflow-y-auto bg-white">
-                      {searchResults.map((book) => (
-                        <div
-                          key={book.book_id}
-                          className="p-2 hover:bg-amber-100 cursor-pointer"
-                          onClick={() => handleBookSelect(book)}
-                        >
-                          <div className="font-medium text-amber-900">
-                            {book.title}
-                          </div>
-                          <div className="text-xs text-amber-700">
-                            {book.authors.join(", ")}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            <BookSearch
+              mode="pick"
+              label="Book (required)"
+              showLabel
+              selected={selectedBook}
+              onSelect={handleBookSelect}
+              onClear={() => {
+                setSelectedBook(null);
+                setScheduleFormData((prev) => ({ ...prev, book: null }));
+              }}
+            />
 
             {/* Date Fields */}
             <div className="grid grid-cols-2 gap-4">
@@ -957,7 +781,7 @@ export function ReadingScheduleTab({
                   // Reset form if needed
                   if (error) {
                     setScheduleFormData({
-                      book: selectedBook ? selectedBook.book_id : null,
+                      book: selectedBook ? selectedBook.id : null,
                       start_date: "",
                       end_date: "",
                       is_active: true,

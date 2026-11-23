@@ -7,18 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { useSession } from "@/lib/session";
-import { X, Search, BookOpen, Image as ImageIcon } from "lucide-react";
+import { X, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { apiFetch } from "@/lib/api";
-
-interface Book {
-  book_id: number;
-  title: string;
-  authors: string[];
-  cover_url?: string;
-}
+import { BookSearch } from "@/components/search/BookSearch";
+import type { BookResult } from "@/lib/search";
 
 interface CreateBookClubModalProps {
   isOpen: boolean;
@@ -32,10 +27,7 @@ export function CreateBookClubModal({
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Book[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [selectedBook, setSelectedBook] = useState<BookResult | null>(null);
   const [step, setStep] = useState<number>(1); // 1: Club details, 2: Book selection
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,8 +48,6 @@ export function CreateBookClubModal({
       setDescription("");
       setIsPrivate(false);
       setSelectedBook(null);
-      setSearchQuery("");
-      setSearchResults([]);
       setStep(1);
       setError(null);
       setClubImage(null);
@@ -66,42 +56,6 @@ export function CreateBookClubModal({
   }, [isOpen]);
 
   if (!isOpen) return null;
-
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-
-    try {
-      setIsSearching(true);
-
-
-      const response = await apiFetch(
-        `/api/search/books?q=${searchQuery}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Search failed: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setSearchResults(data.results || []);
-    } catch (err) {
-      console.error("Error searching books:", err);
-      setError("Failed to search books");
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  const handleBookSelect = (book: Book) => {
-    setSelectedBook(book);
-    setSearchResults([]);
-    setSearchQuery("");
-  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -157,7 +111,7 @@ export function CreateBookClubModal({
         name,
         club_desc: description,
         is_private: isPrivate,
-        book: selectedBook?.book_id || null,
+        book: selectedBook?.id ?? null,
       };
 
       const response = await apiFetch(
@@ -357,104 +311,17 @@ export function CreateBookClubModal({
         ) : (
           // Step 2: Book Selection
           <div>
-            <div className="mb-4 flex items-center gap-2">
-              <div className="flex-1">
-                <Label htmlFor="book-search" className="sr-only">
-                  Search for a book
-                </Label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-amber-600" />
-                  <Input
-                    id="book-search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-                    className="border-amber-300 bg-white pl-9 focus-visible:ring-amber-600"
-                    placeholder="Search for a book by title or author"
-                  />
-                </div>
-              </div>
-              <Button
-                onClick={handleSearch}
-                disabled={isSearching || !searchQuery.trim()}
-                className="bg-amber-800 text-amber-50 hover:bg-amber-700"
-              >
-                {isSearching ? "Searching..." : "Search"}
-              </Button>
+            <div className="mb-6">
+              <BookSearch
+                mode="pick"
+                label="Choose the book your club will read"
+                showLabel
+                autoFocus
+                selected={selectedBook}
+                onSelect={setSelectedBook}
+                onClear={() => setSelectedBook(null)}
+              />
             </div>
-
-            {searchResults.length > 0 && (
-              <div className="mb-6 max-h-60 overflow-y-auto rounded-md border border-amber-200 bg-white p-2">
-                {searchResults.map((book) => (
-                  <div
-                    key={book.id}
-                    className="flex cursor-pointer items-center gap-3 rounded-md p-2 hover:bg-amber-100"
-                    onClick={() => handleBookSelect(book)}
-                  >
-                    <div className="h-12 w-8 flex-shrink-0 overflow-hidden rounded-sm bg-amber-200">
-                      {book.cover_url ? (
-                        <Image
-                          src={book.cover_url}
-                          alt={book.title}
-                          width={32}
-                          height={48}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-amber-200 text-amber-700">
-                          <BookOpen className="h-6 w-6" />
-                        </div>
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-medium text-amber-900">{book.title}</p>
-                      <p className="text-xs text-amber-700">
-                        {book.authors.join(", ")}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {selectedBook && (
-              <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 p-4">
-                <div className="flex items-center gap-4">
-                  <div className="h-24 w-16 flex-shrink-0 overflow-hidden rounded-md bg-amber-200">
-                    {selectedBook.cover_url ? (
-                      <Image
-                        src={selectedBook.cover_url}
-                        alt={selectedBook.title}
-                        width={64}
-                        height={96}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-amber-200 text-amber-700">
-                        <BookOpen className="h-10 w-10" />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-amber-900">
-                      {selectedBook.title}
-                    </h3>
-                    <p className="text-sm text-amber-700">
-                      by {selectedBook.authors.join(", ")}
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-auto text-amber-700"
-                    onClick={() => setSelectedBook(null)}
-                  >
-                    <X className="h-4 w-4" />
-                    <span className="ml-1">Remove</span>
-                  </Button>
-                </div>
-              </div>
-            )}
 
             <div className="mt-6 flex items-center justify-between">
               <p className="text-sm text-amber-700">

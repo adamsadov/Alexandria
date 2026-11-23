@@ -14,9 +14,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/layout/Header";
-import SearchBar from "@/components/ui/SearchBar";
+import { BookSearch } from "@/components/search/BookSearch";
 import AddToShelfModal from "@/components/ui/shelves/AddToShelfModal";
-import { apiFetch } from "@/lib/api";
+import { searchCatalog } from "@/lib/search";
 
 // types for results
 type Book = {
@@ -54,12 +54,12 @@ export default function SearchResults() {
     setIsLoading(true);
     setError(null);
 
-    apiFetch(`/api/search-bar/?q=${encodeURIComponent(query)}&limit=20`)
-      .then((res) => res.json())
-      .then((data) => {
-        const books = data.books || [];
-        const authors = data.authors || [];
-        setResults([...books, ...authors]);
+    searchCatalog(query, { limit: 20 })
+      .then(({ books, authors }) => {
+        setResults([
+          ...books.map((b) => ({ ...b, type: "book" as const })),
+          ...authors.map((a) => ({ ...a, type: "author" as const })),
+        ] as SearchItem[]);
       })
       .catch((err) => {
         console.error("Search error:", err);
@@ -74,7 +74,13 @@ export default function SearchResults() {
 
       <main className="flex-1 container py-8 mx-auto px-8 md:px-6">
         <div className="mb-9">
-          <SearchBar />
+          <BookSearch
+            key={query}
+            mode="navigate"
+            size="lg"
+            initialQuery={query}
+            placeholder="Search books by title, author or ISBN"
+          />
         </div>
 
         {/* Search Results Header */}
@@ -137,7 +143,7 @@ export default function SearchResults() {
                           </Link>
                           <p className="text-amber-800 italic">
                             by {item.authors?.slice(0,3).join(", ") || "Unknown"} •{" "}
-                            {item.year_published - 1 || "Year TBD"}
+                            {item.year_published || "Year unknown"}
                           </p>
                         </div>
                       </div>
