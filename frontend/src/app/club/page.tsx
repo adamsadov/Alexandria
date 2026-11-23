@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   BookOpen,
   Users,
-  Search,
   Plus,
   Calendar,
   MessageSquare,
@@ -13,9 +12,9 @@ import {
   Filter,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
+import { SearchField } from "@/components/search/BookSearch";
 import { CreateBookClubModal } from "@/components/club/CreateBookClubModal";
 import { useSession } from "@/lib/session";
 import axios from "axios";
@@ -139,11 +138,16 @@ export default function BookClubsPage() {
     setShowCreateModal(false);
   };
 
-  // Simple handling search query for now
-  const handleSearch = () => {
-    if (!searchQuery.trim()) return;
-    // Add your search implementation here
-  };
+  // Filter the loaded clubs as you type (name, description or current book)
+  const q = searchQuery.trim().toLowerCase();
+  const matches = (club: FormattedBookClub) =>
+    !q ||
+    [club.name, club.description, club.currentBook].some((field) =>
+      (field || "").toLowerCase().includes(q)
+    );
+  const shownYourClubs = yourClubs.filter(matches);
+  const shownFeatureClubs = featureClubs.filter(matches);
+  const noMatches = !!q && shownYourClubs.length === 0 && shownFeatureClubs.length === 0;
 
   // If page is loading simple loading page
   if (loading) {
@@ -190,39 +194,23 @@ export default function BookClubsPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="mb-8 rounded-lg border border-amber-200 bg-white p-6">
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-amber-600" />
-              <Input
-                type="text"
-                placeholder="Search book clubs..."
-                className="pl-9 border-amber-300 bg-amber-50 focus-visible:ring-amber-600"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={(e: React.KeyboardEvent) =>
-                  e.key === "Enter" && handleSearch()
-                }
-              />
-            </div>
-            <div className="flex gap-2">
-            <motion.div 
-                whileHover={{ scale: 1.07 }}
-                whileTap={{ scale: 0.9 }}  
-              > 
-                <Button
-                  className="bg-amber-800 text-amber-50 hover:bg-amber-900 rounded-full"
-                  onClick={handleSearch}
-                >
-                  Search
-                </Button>
-              </motion.div>
-            </div>
-          </div>
+        <div className="mb-8">
+          <SearchField
+            size="lg"
+            label="Search book clubs"
+            placeholder="Search book clubs by name, description or book"
+            value={searchQuery}
+            onChange={setSearchQuery}
+          />
+          {noMatches && (
+            <p className="mt-4 text-center text-amber-800">
+              No book clubs match &ldquo;{searchQuery.trim()}&rdquo;.
+            </p>
+          )}
         </div>
 
         {/* Your Book Clubs */}
-        {yourClubs.length > 0 && (
+        {shownYourClubs.length > 0 && (
           <div className="mb-12">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-2xl font-serif font-bold text-amber-900">
@@ -234,7 +222,7 @@ export default function BookClubsPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {yourClubs.map((club) => (
+              {shownYourClubs.map((club) => (
                 <Link
                   key={club.id}
                   href={`/club/${club.id}`}
@@ -255,7 +243,7 @@ export default function BookClubsPage() {
                           <BookOpen className="h-10 w-10" />
                         </div>
                       )}
-                      {club.unreadMessages && club.unreadMessages > 0 && (
+                      {!!club.unreadMessages && club.unreadMessages > 0 && (
                         <div className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-amber-600 text-xs font-medium text-white">
                           {club.unreadMessages}
                         </div>
@@ -311,7 +299,7 @@ export default function BookClubsPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featureClubs.map((club) => (
+            {shownFeatureClubs.map((club) => (
               <div
                 key={club.id}
                 className="rounded-lg border border-amber-200 bg-white p-6 transition-all hover:border-amber-300 hover:shadow-md"

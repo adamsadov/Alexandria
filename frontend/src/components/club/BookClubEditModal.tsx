@@ -7,21 +7,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { useSession } from "@/lib/session";
-import {
-  X,
-  Search,
-  BookOpen,
-  Image as ImageIcon,
-} from "lucide-react";
+import { X, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { apiFetch } from "@/lib/api";
-
-interface Book {
-  book_id: number;
-  title: string;
-  authors: string[];
-  cover_url?: string;
-}
+import { BookSearch } from "@/components/search/BookSearch";
+import type { BookResult } from "@/lib/search";
 
 interface BookClub {
   id: number;
@@ -51,10 +41,7 @@ export function BookClubEditModal({
   const [description, setDescription] = useState<string>("");
   const [aboutContent, setAboutContent] = useState<string>("");
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Book[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [selectedBook, setSelectedBook] = useState<BookResult | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -80,58 +67,24 @@ export function BookClubEditModal({
       );
 
       if (bookClub.book && bookClub.book_title) {
+        // Only the id and title come with the club; enough to show it.
         setSelectedBook({
-          book_id: bookClub.book,
+          id: bookClub.book,
+          book_id: "",
           title: bookClub.book_title,
-          authors: [], // You might want to fetch the full book details to get authors
+          authors: [],
+          cover_image: null,
+          year_published: null,
         });
       } else {
         setSelectedBook(null);
       }
 
-      setSearchQuery("");
-      setSearchResults([]);
       setError(null);
     }
   }, [isOpen, bookClub]);
 
   if (!isOpen || !bookClub) return null;
-
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-
-    try {
-      setIsSearching(true);
-
-
-      const response = await apiFetch(
-        `/api/search/books?q=${searchQuery}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Search failed: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setSearchResults(data.results || []);
-    } catch (err) {
-      console.error("Error searching books:", err);
-      setError("Failed to search books");
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  const handleBookSelect = (book: Book) => {
-    setSelectedBook(book);
-    setSearchResults([]);
-    setSearchQuery("");
-  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -188,7 +141,7 @@ export function BookClubEditModal({
         club_desc: description,
         about_content: aboutContent,
         is_private: isPrivate,
-        book: selectedBook?.book_id || null,
+        book: selectedBook?.id ?? null,
       };
 
       // Update book club details
@@ -363,105 +316,15 @@ export function BookClubEditModal({
             )}
           </div>
 
-          <div>
-            <Label className="text-amber-800 mb-2 inline-block">
-              Current Book
-            </Label>
-            {selectedBook ? (
-              <div className="mb-4 rounded-md border border-amber-300 bg-amber-50 p-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-16 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-amber-200">
-                    <div className="flex h-full w-full items-center justify-center bg-amber-200 text-amber-700">
-                      <BookOpen className="h-8 w-8" />
-                    </div>
-                  </div>
-                  <div>
-                    <p className="font-medium text-amber-900">
-                      {selectedBook.title}
-                    </p>
-                    <p className="text-xs text-amber-700">
-                      {selectedBook.authors.join(", ")}
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-auto text-amber-700"
-                    onClick={() => setSelectedBook(null)}
-                  >
-                    <X className="h-4 w-4" />
-                    <span className="ml-1">Remove</span>
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="mb-4">
-                <p className="text-sm text-amber-700">No book selected</p>
-              </div>
-            )}
-
-            <div className="mb-4">
-              <Label htmlFor="book-search" className="text-amber-800">
-                Change Book (Optional)
-              </Label>
-              <div className="flex items-center gap-2 mt-2">
-                <div className="flex-1">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-amber-600" />
-                    <Input
-                      id="book-search"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-                      className="border-amber-300 bg-white pl-9 focus-visible:ring-amber-600"
-                      placeholder="Search for a book by title or author"
-                    />
-                  </div>
-                </div>
-                <Button
-                  onClick={handleSearch}
-                  disabled={isSearching || !searchQuery.trim()}
-                  className="bg-amber-800 text-amber-50 hover:bg-amber-700"
-                >
-                  {isSearching ? "Searching..." : "Search"}
-                </Button>
-              </div>
-            </div>
-
-            {searchResults.length > 0 && (
-              <div className="mb-6 max-h-60 overflow-y-auto rounded-md border border-amber-200 bg-white p-2">
-                {searchResults.map((book) => (
-                  <div
-                    key={book.id}
-                    className="flex cursor-pointer items-center gap-3 rounded-md p-2 hover:bg-amber-100"
-                    onClick={() => handleBookSelect(book)}
-                  >
-                    <div className="h-12 w-8 flex-shrink-0 overflow-hidden rounded-sm bg-amber-200">
-                      {book.cover_url ? (
-                        <Image
-                          src={book.cover_url}
-                          alt={book.title}
-                          width={32}
-                          height={48}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-amber-200 text-amber-700">
-                          <BookOpen className="h-6 w-6" />
-                        </div>
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-medium text-amber-900">{book.title}</p>
-                      <p className="text-xs text-amber-700">
-                        {book.authors.join(", ")}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <BookSearch
+            mode="pick"
+            label="Club book"
+            showLabel
+            placeholder="Search for a new book by title, author or ISBN"
+            selected={selectedBook}
+            onSelect={setSelectedBook}
+            onClear={() => setSelectedBook(null)}
+          />
 
           <div className="flex items-center space-x-2">
             <Checkbox

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { HomeIcon, Compass, BookmarkIcon, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SearchBar from "@/components/ui/SearchBar";
+import { BookSearch } from "@/components/search/BookSearch";
 import ShelfComponent from "@/components/ui/shelves/ShelfComponent";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/session";
@@ -170,7 +170,7 @@ export default function DiscoveryPage() {
                 <h2 className="text-2xl font-bold text-[var(--card-foreground)] mb-4 text-center">
                   Discover Your Next Great Read
                 </h2>
-                <SearchBar />
+                <BookSearch mode="navigate" size="lg" placeholder="Search books by title, author or ISBN" />
               </div>
             </div>
 
