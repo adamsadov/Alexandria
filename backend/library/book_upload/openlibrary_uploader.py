@@ -4,7 +4,6 @@ import sys
 import json
 import hashlib
 import django
-import datetime
 from typing import Dict, Any, Optional
 from decimal import Decimal
 import sys
@@ -40,6 +39,7 @@ if str(PARENT_DIR) not in sys.path:
     sys.path.append(str(PARENT_DIR))
 
 from utils.genre_utils import extract_genres_from_subjects, get_primary_genre
+from utils.publication_year import parse_edition_year, parse_year, pick_first_year
 
 class LibraryUpload:
     """Uploads book data from local JSON files into database.."""
@@ -65,16 +65,6 @@ class LibraryUpload:
     def _create_hash(self, text: str) -> str:
         """Create a hash from a text string."""
         return hashlib.sha256(text.encode('utf-8')).hexdigest()
-    
-    def _extract_year(self, date_str: Optional[str]) -> Optional[int]:
-        """Extract year from a date string."""
-        if not date_str:
-            return None
-        # Try to extract a 4-digit year from the date string
-        for word in date_str.split():
-            if word.isdigit() and len(word) == 4 and 1000 <= int(word) <= 2100:
-                return int(word)
-        return None
     
     def _get_or_create_publisher(self, name: str) -> Publisher:
         """Get or create a Publisher object."""
@@ -177,44 +167,14 @@ class LibraryUpload:
         if isinstance(description, dict):
             description = description.get('value', '')
         
-        # Extract publication year - look at multiple fields and all editions to ensure we get the oldest
-        year_published = None
-        
-        # Try using the first_publish_year field directly
-        if 'first_publish_year' in self.work_data:
-            year_published = int(self.work_data['first_publish_year'])
-            print(f"Found first_publish_year: {year_published}")
-        
-        # Try to extract from first_publish_date
-        if not year_published and 'first_publish_date' in self.work_data:
-            year_str = self._extract_year(self.work_data['first_publish_date'])
-            if year_str:
-                year_published = year_str
-                print(f"Extracted year from first_publish_date: {year_published}")
-        
-        # Extract years from all editions to find the oldest
-        edition_years = []
-        if self.editions_data and len(self.editions_data) > 0:
-            for edition in self.editions_data:
-                if 'publish_date' in edition:
-                    year_str = self._extract_year(edition['publish_date'])
-                    if year_str and 1000 <= year_str <= datetime.date.today().year + 10:
-                        edition_years.append(year_str)
-                        print(f"Found year {year_str} from edition")
-        
-        # If we have valid edition years, use the oldest (minimum) one
-        if edition_years:
-            oldest_year = min(edition_years)
-            # Only update if we don't have a year or if the oldest edition year is older
-            if not year_published or oldest_year < year_published:
-                year_published = oldest_year
-                print(f"Using oldest edition year: {year_published}")
-        
-        # If we still don't have a year, use a default
+        # Original publication year: what the fetcher looked up on Open Library
+        # (see library/utils/publication_year.py), else the same rule applied
+        # to the editions we downloaded. Unknown stays None, never a made-up year.
+        year_published = parse_year(self.work_data.get('first_publish_year')) or pick_first_year(
+            edition.get('publish_date') for edition in (self.editions_data or []))
         if not year_published:
             print("WARNING: Could not determine publication year from API data")
-            year_published = 1900  # Default fallback value
-        
+
         # Get original language
         languages = self.work_data.get('original_languages', [])
         original_language = languages[0].get('key', '').replace('/languages/', '') if languages else None
@@ -231,11 +191,11 @@ class LibraryUpload:
             }
         )
         
-        # If the book already exists, update its year_published if the new one is older
-        if not created and book.year_published and year_published < book.year_published:
+        # If the book already exists, correct its year when we found one
+        if not created and year_published and book.year_published != year_published:
             book.year_published = year_published
             book.save()
-            print(f"Updated existing book with older year: {year_published}")
+            print(f"Updated existing book's publication year: {year_published}")
         
         # Print debugging info
         print(f"Book year_published set to: {year_published}")
@@ -329,10 +289,8 @@ class LibraryUpload:
             
             # Get publication year
             publish_date = edition_data.get('publish_date')
-            publication_year = self._extract_year(publish_date)
-            if not publication_year:
-                # Use work's publication year as fallback
-                publication_year = book.year_published or 2000 
+            # This printing's own year; left blank if unknown, never the book's year
+            publication_year = parse_edition_year(publish_date)
             
             # Get publisher
             publisher_name = edition_data.get('publishers', ['Unknown Publisher'])[0]

@@ -6,6 +6,10 @@ import sys
 import os
 from typing import Dict, List, Any, Optional, Tuple
 
+# library/ on the path, so this script can use library/utils.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.publication_year import FirstPublishedLookup
+
 class OpenLibraryFetcher:
     """Fetches book data from Open Library API."""
     
@@ -249,6 +253,11 @@ def main():
         # Get detailed work information
         work_data = fetcher.get_work_details(work_id)
         print(f"Retrieved work details for: {work_data.get('title', 'Unknown')}")
+
+        # The work record has no reliable first-publication year; work it out
+        # from all of its editions (library/utils/publication_year.py).
+        work_data['first_publish_year'] = FirstPublishedLookup().year(work_id)
+        print(f"First published: {work_data['first_publish_year'] or 'unknown'}")
         
         # Get author information
         author_keys = []

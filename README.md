@@ -139,6 +139,8 @@ python manage.py runserver
 
 `seed_books` loads `backend/library/fixtures/seed_books.json`, so everyone has the same books, editions, authors and Discover shelves. It is safe to re-run; `--clear` wipes the catalog first. To build a fresh catalog from Open Library, run `python manage.py build_seed_data` and commit the updated JSON.
 
+Publication years: a book's `year_published` is when it was *first* published, and each edition's `publication_year` is that printing's own year. Every importer works the original year out the same way, in `backend/library/utils/publication_year.py`: from the years all of the book's editions came out on Open Library, ignoring single misdated editions. To correct the years of books already in your database, run `python manage.py fix_publication_years --dry-run` to preview, then without `--dry-run` to apply.
+
 ### Looking at the data
 - **Django admin:** http://localhost:8000/admin/. Give your account access with `python manage.py shell -c "from library.models import User; User.objects.filter(email='you@example.com').update(is_staff=True, is_superuser=True)"`, then log in with your username and password.
 - **pgAdmin 4** (installed with PostgreSQL on Windows): connect to `localhost:5432`, user `postgres`, and open `alexandria → Schemas → public → Tables`.

@@ -1,6 +1,6 @@
 {
  "source": "Open Library (openlibrary.org), CC0/ODbL data",
- "generated": "2026-11-20",
+ "generated": "2026-11-23",
  "authors": {
   "OL10032819A": {
    "name": "Jennette McCurdy",
@@ -511,11 +511,6 @@
    "name": "Gabriel García Márquez",
    "bio": "Gabriel García Márquez is a Colombian novelist, short-story writer, screenwriter and journalist. García Márquez, affectionately known as \"Gabo\" throughout Latin America, is considered one of the most significant authors of the 20th century. In 1982, he was awarded the Nobel Prize in Literature. He pursued a self-directed education that resulted in his leaving law school for a career in journalism. From early on, he showed no inhibitions in his criticism of Colombian and foreign politics. In 1958, he married Mercedes Barcha; they have two sons, Rodrigo and Gonzalo.\r\n\r\nHe started as a journalist, and has written many acclaimed non-fiction works and short stories, but is best-known for his novels, such as One Hundred Years of Solitude (1967) and Love in the Time of Cholera (1985). His works have achieved significant critical acclaim and widespread commercial success, most notably for popularizing a literary style labeled as magical realism, which uses magical elements and events in otherwise ordinary and realistic situations. Some of his works are set in a fictional village called Macondo, and most of them express the theme of solitude. [1]\r\n\r\n [1]: http://en.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez\r\n\r\nSource and more information: http://en.wikipedia.org/wiki/Gabriel_García_Márquez",
    "image": "https://covers.openlibrary.org/a/id/6900509-L.jpg"
-  },
-  "OL2745568A": {
-   "name": "Bible",
-   "bio": null,
-   "image": null
   },
   "OL27695A": {
    "name": "Agatha Christie",
@@ -1238,7 +1233,7 @@
    "work": "OL81632W",
    "title": "'Salem’s Lot",
    "summary": "Author Ben Mears returns to ‘Salem's Lot to write a book about a house that has haunted him since childhood only to find his isolated hometown infested with vampires. While the vampires claim more victims, Mears convinces a small group of believers to combat the undead.\r\n([source](https://stephenking.com/library/novel/_salem_s_lot.html))\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Night Shift / Carrie / 'Salem's Lot / Shining](https://openlibrary.org/works/OL19558521W/Night_Shift_Carrie_'Salem's_Lot_Shining)\r\n- ['Salem's Lot: Illustrated Edition](https://openlibrary.org/works/OL19859438W)\r\n- [Works (Danse Macabre / Salem's Lot / Shining)](https://openlibrary.org/works/OL24233994W)",
-   "year": 2004,
+   "year": 1975,
    "rating": 4.03,
    "authors": [
     "OL19981A",
@@ -1301,16 +1296,16 @@
    "work": "OL1268413W",
    "title": "... Trotzdem Ja zum Leben sagen",
    "summary": "Psychiatrist Viktor Frankl's memoir has riveted generations of readers with its descriptions of life in Nazi death camps and its lessons for spiritual survival. Based on his own experience and the stories of his patients, Frankl argues that we cannot avoid suffering but we can choose how to cope with it, find meaning in it, and move forward with renewed purpose. At the heart of his theory, known as logotherapy, is a conviction that the primary human drive is not pleasure but the pursuit of what we find meaningful. Man's Search for Meaning has become one of the most influential books in America; it continues to inspire us all to find significance in the very act of living.",
-   "year": 1998,
-   "rating": 4.28,
+   "year": 1959,
+   "rating": 4.29,
    "authors": [
     "OL128213A"
    ],
    "genres": [
-    "autobiography",
     "biography",
     "memoir",
-    "spirituality",
+    "psychological fiction",
+    "psychology",
     "war fiction"
    ],
    "editions": [
@@ -1423,7 +1418,7 @@
    "work": "OL17837119W",
    "title": "12 Rules for Life",
    "summary": "Duplicate of https://openlibrary.org/books/OL27241047M/12_Rules_For_Life_Paperback",
-   "year": 2018,
+   "year": 2015,
    "rating": 3.84,
    "authors": [
     "OL234426A"
@@ -1487,7 +1482,7 @@
    "work": "OL1892617W",
    "title": "A Brief History of Time",
    "summary": "Stephen Hawking's ‘A Brief History of Time* has become an international publishing phenomenon. Translated into thirty languages, it has sold over ten million copies worldwide and lives on as a science book that continues to captivate and inspire new readers each year. When it was first published in 1988 the ideas discussed in it were at the cutting edge of what was then known about the universe. In the intervening twenty years there have been extraordinary advances in the technology of observing both the micro- and macro-cosmic world. Indeed, during that time cosmology and the theoretical sciences have entered a new golden age . Professor Hawking is one of the major scientists and thinkers to have contributed to this renaissance.",
-   "year": 1989,
+   "year": 1988,
    "rating": 4.16,
    "authors": [
     "OL2675573A"
@@ -1551,7 +1546,7 @@
    "work": "OL66946W",
    "title": "A child called \"it\"",
    "summary": "This book chronicles the unforgettable account of one of the most severe child abuse cases in California history. It is the story of Dave Pelzer, who was brutally beaten and starved by his emotionally unstable, alcoholic mother: a mother who played tortuous, unpredictable games--games that left him nearly dead. He had to learn how to play his mother's games in order to survive because she no longer considered him a son, but a slave; and no longer a boy, but an \"it.\"\r\n\r\nDave's bed was an old army cot in the basement, and his clothes were torn and raunchy. When his mother allowed him the luxury of food, it was nothing more than spoiled scraps that even the dogs refused to eat. The outside world knew nothing of his living nightmare. He had nothing or no one to turn to, but his dreams kept him alive--dreams of someone taking care of him, loving him and calling him their son.",
-   "year": 1995,
+   "year": 1993,
    "rating": 4.58,
    "authors": [
     "OL28674A"
@@ -1615,7 +1610,7 @@
    "work": "OL32466W",
    "title": "A Christmas Carol",
    "summary": "A reprinting of the 1843 first edition, complete with the original illustrations, is supplemented by over eighty related sketches and annotations on and analyses of the text and historical notes on the writing of \"The Christmas Carol.\"",
-   "year": 1986,
+   "year": 1843,
    "rating": 3.95,
    "authors": [
     "OL24638A"
@@ -1678,16 +1673,16 @@
    "work": "OL261794W",
    "title": "A Clockwork Orange",
    "summary": "A Clockwork Orange is a dystopian satirical black comedy novel by English writer Anthony Burgess, published in 1962. It is set in a near-future society that has a youth subculture of extreme violence. The teenage protagonist, Alex, narrates his violent exploits and his experiences with state authorities intent on reforming him. The book is partially written in a Russian-influenced argot called \"Nadsat\", which takes its name from the Russian suffix that is equivalent to '-teen' in English. According to Burgess, it was a jeu d'esprit written in just three weeks.\r\n\r\nIn 2005, A Clockwork Orange was included on Time magazine's list of the 100 best English-language novels written since 1923, and it was named by Modern Library and its readers as one of the 100 best English-language novels of the 20th century. The original manuscript of the book has been kept at McMaster University's William Ready Division of Archives and Research Collections in Hamilton, Ontario, Canada since the institution purchased the documents in 1971. It is considered one of the most influential dystopian books.\r\n\r\n----------\t\t\r\nAlso contained in:\t\t\r\n\r\n[A Clockwork Orange and Honey for the Bears](https://openlibrary.org/works/OL23787405W)\r\n[A Clockwork Orange / The Wanting Seed](https://openlibrary.org/works/OL17306508W)",
-   "year": 1972,
+   "year": 1962,
    "rating": 4.03,
    "authors": [
     "OL142238A"
    ],
    "genres": [
     "classics",
+    "drama",
     "dystopian",
     "literary fiction",
-    "satire",
     "science fiction"
    ],
    "editions": [
@@ -1868,8 +1863,8 @@
    "work": "OL257943W",
    "title": "A Game of Thrones",
    "summary": "***A Game of Thrones*** is the inaugural novel in ***A Song of Ice and Fire***, an epic series of fantasy novels crafted by the American author **George R. R. Martin**. Published on August 1, 1996, this novel introduces readers to the richly detailed world of Westeros and Essos, where political intrigue, power struggles, and magical elements intertwine.\r\n\r\nThe story unfolds through multiple perspectives, each chapter focusing on a different character, allowing readers to experience the narrative from various angles. This complex structure has become a hallmark of Martin's storytelling, immersing readers in the lives and motivations of a diverse cast.\r\n\r\n### Plot Summary\r\n\r\nSet in the fictional continents of Westeros and Essos, the narrative revolves around the power struggles among noble families vying for the Iron Throne, the seat of power in the Seven Kingdoms of Westeros. The story is rich with political intrigue, betrayal, and epic battles, as well as a deep exploration of themes such as loyalty, honor, and the consequences of power.\r\n\r\n### Themes\r\n\r\nThe novel explores themes of power, loyalty, and the moral complexities of leadership. It delves into the consequences of ambition and the struggle between personal honor and political necessity. The richly detailed world-building and intricate character development make ***A Game of Thrones*** a compelling and immersive read.\r\n\r\n### Key Characters\r\n\r\n- **Eddard \"Ned\" Stark**: The honorable Lord of Winterfell and Warden of the North, known for his unwavering honor and sense of duty.\r\n- **Catelyn Stark**: The devoted wife of Eddard Stark, whose strength and wisdom guide her family through challenging times.\r\n- **Robert Baratheon**: The King of the Seven Kingdoms, who won the throne through rebellion. His reign is marked by political intrigue and personal struggles, reflecting the broader conflicts of the realm.\r\n- **Cersei Lannister**: The ambitious and cunning Queen of Westeros, whose political acumen and determination make her a formidable presence in the court.\r\n- **Jaime Lannister**: A skilled swordsman and member of the Kingsguard, known for his prowess in battle and complex loyalties.\r\n- **Tyrion Lannister**: The witty and resourceful dwarf, known for his sharp mind and cunning, navigating the treacherous politics of the realm.\r\n- **Daenerys Targaryen**: An exiled princess of House Targaryen, seeking to reclaim her birthright and restore her family's dynasty.\r\n- **Jon Snow**: The bastard son of Eddard Stark, who joins the Night's Watch and faces unique challenges in the far north.\r\n- **Sansa Stark**: The eldest daughter of Eddard Stark, initially known for her naivety and romantic ideals, who learns to navigate the complexities of court life.\r\n- **Arya Stark**: The youngest daughter of Eddard Stark, known for her spirited and adventurous nature, seeking her own path in the world.\r\n- **Bran Stark**: The second son of Eddard Stark, whose life takes a dramatic turn.\r\n\r\n### Awards and Recognition\r\n\r\n- Winner of the 1997 Locus Award\r\n- Nominated for the 1997 Nebula Award\r\n- Nominated for the 1997 World Fantasy Award\r\n- Winner of the 1997 Hugo Award for Best Novella for \"Blood of the Dragon,\" which includes the Daenerys Targaryen chapters from the novel\r\n- Became a New York Times Bestseller in January 2011 and reached No. 1 on the list in July 2011\r\n\r\nFollowed by: [***A Clash of Kings***][1]\r\n\r\n[1]: https://openlibrary.org/works/OL257939W",
-   "year": 1998,
-   "rating": 4.22,
+   "year": 1996,
+   "rating": 4.23,
    "authors": [
     "OL234664A"
    ],
@@ -1960,7 +1955,7 @@
    "title": "A Good Girl's Guide to Murder",
    "summary": "Everyone is talking about A Good Girl's Guide to Murder! With shades of Serial and Making a Murderer this is the story about an investigation turned obsession, full of twists and turns and with an ending you'll never expect.\r\n\r\nEveryone in Fairview knows the story.\r\n\r\nPretty and popular high school senior Andie Bell was murdered by her boyfriend, Sal Singh, who then killed himself. It was all anyone could talk about. And five years later, Pip sees how the tragedy still haunts her town.\r\n\r\nBut she can't shake the feeling that there was more to what happened that day. She knew Sal when she was a child, and he was always so kind to her. How could he possibly have been a killer?\r\n\r\nNow a senior herself, Pip decides to reexamine the closed case for her final project, at first just to cast doubt on the original investigation. But soon she discovers a trail of dark secrets that might actually prove Sal innocent . . . and the line between past and present begins to blur. Someone in Fairview doesn't want Pip digging around for answers, and now her own life might be in danger.",
    "year": 2019,
-   "rating": 4.06,
+   "rating": 4.05,
    "authors": [
     "OL7722491A"
    ],
@@ -2079,7 +2074,7 @@
    "work": "OL259010W",
    "title": "A Midsummer Night's Dream",
    "summary": "One night two young couples run into an enchanted forest in an attempt to escape their problems. But these four humans do not realize that the forest is filled with fairies and hobgoblins who love making mischief. When Oberon, the Fairy King, and his loyal hobgoblin servant, Puck, intervene in human affairs, the fate of these young couples is magically and hilariously transformed. Like a classic fairy tale, this retelling of William Shakespeare's most beloved comedy is perfect for older readers who will find much to treasure and for younger readers who will love hearing the story read aloud.",
-   "year": 1963,
+   "year": 1600,
    "rating": 3.93,
    "authors": [
     "OL9388A"
@@ -2138,17 +2133,17 @@
    "work": "OL8193465W",
    "title": "A Tale of Two Cities",
    "summary": "A Tale of Two Cities is a historical novel published in 1859 by Charles Dickens, set in London and Paris before and during the French Revolution. The novel tells the story of the French Doctor Manette, his 18-year-long imprisonment in the Bastille in Paris, and his release to live in London with his daughter Lucie whom he had never met. The story is set against the conditions that led up to the French Revolution and the Reign of Terror. In the Introduction to the Encyclopedia of Adventure Fiction, critic Don D'Ammassa argues that it is an adventure novel because the protagonists are in constant danger of being imprisoned or killed.\r\n\r\nAs Dickens's best-known work of historical fiction, A Tale of Two Cities is said to be one of the best-selling novels of all time. In 2003, the novel was ranked 63rd on the BBC's The Big Read poll. The novel has been adapted for film, television, radio, and the stage, and has continued to influence popular culture.",
-   "year": 1996,
+   "year": 1859,
    "rating": 3.79,
    "authors": [
     "OL24638A"
    ],
    "genres": [
     "children's fiction",
-    "classics",
     "historical fiction",
     "history",
-    "literary fiction"
+    "literary fiction",
+    "war fiction"
    ],
    "editions": [
     {
@@ -2201,7 +2196,7 @@
    "work": "OL53908W",
    "title": "Adventures of Huckleberry Finn",
    "summary": "Adventures of Huckleberry Finn or as it is known in more recent editions, The Adventures of Huckleberry Finn, is a novel by American author Mark Twain, which was first published in the United Kingdom in December 1884 and in the United States in February 1885.\r\n\r\nCommonly named among the Great American Novels, the work is among the first in major American literature to be written throughout in vernacular English, characterized by local color regionalism. It is told in the first person by Huckleberry \"Huck\" Finn, the narrator of two other Twain novels (Tom Sawyer Abroad and Tom Sawyer, Detective) and a friend of Tom Sawyer. It is a direct sequel to The Adventures of Tom Sawyer.",
-   "year": 1972,
+   "year": 1876,
    "rating": 3.98,
    "authors": [
     "OL18319A"
@@ -2265,15 +2260,15 @@
    "work": "OL138052W",
    "title": "Alice's Adventures in Wonderland",
    "summary": "Alice's Adventures in Wonderland (commonly Alice in Wonderland) is an 1865 English children's novel by Lewis Carroll. A young girl named Alice falls through a rabbit hole into a fantasy world of anthropomorphic creatures. It is seen as an example of the literary nonsense genre.\r\n\r\nOne of the best-known works of Victorian literature, its narrative, structure, characters and imagery have had huge influence on popular culture and literature, especially in the fantasy genre.",
-   "year": 1869,
+   "year": 1865,
    "rating": 4.05,
    "authors": [
     "OL22098A"
    ],
    "genres": [
     "children's fiction",
-    "classics",
     "fantasy",
+    "humor",
     "literary fiction",
     "plays"
    ],
@@ -2392,7 +2387,7 @@
    "work": "OL471565W",
    "title": "And Then There Were None",
    "summary": "And Then There Were None is a mystery novel by the English writer Agatha Christie, described by her as the most difficult of her books to write. It was first published in the United Kingdom by the Collins Crime Club on 6 November 1939, as Ten Little Niggers, after the children's counting rhyme and minstrel song, which serves as a major element of the plot. A US edition was released in January 1940 with the title And Then There Were None, which is taken from the last five words of the song. All successive American reprints and adaptations use that title, except for the Pocket Books paperbacks published between 1964 and 1986, which appeared under the title Ten Little Indians. UK editions continued to use the original title until the current definitive title appeared with a reprint of the 1963 Fontana Paperback in 1985.\r\n\r\nIn 1990 Crime Writers' Association ranked And Then There Were None 19th in their The Top 100 Crime Novels of All Time list. In 1995 in a similar list Mystery Writers of America ranked the novel 10th. In September 2015, to mark her 125th birthday, And Then There Were None was named the \"World's Favourite Christie\" in a vote sponsored by the author's estate. In the \"Binge!\" article of Entertainment Weekly Issue #1343-44 (26 December 2014–3 January 2015), the writers picked And Then There Were None as an \"EW favorite\" on the list of the \"Nine Great Christie Novels\".\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Five Complete Novels of Murder and Detection](https://openlibrary.org/works/OL471812W)\r\n- [Masterpieces of Murder](https://openlibrary.org/works/OL471974W)\r\n- [Novels](https://openlibrary.org/works/OL24261345W)\r\n- [Oeuvres complètes d'Agatha Christie: Volume VII](https://openlibrary.org/works/OL24710553W)\r\n- [Works](https://openlibrary.org/works/OL17306242W)",
-   "year": 2004,
+   "year": 1940,
    "rating": 4.22,
    "authors": [
     "OL27695A"
@@ -2455,7 +2450,7 @@
    "work": "OL76833W",
    "title": "Angels & Demons",
    "summary": "Angels & Demons is a 2000 bestselling mystery-thriller novel written by American author Dan Brown and published by Pocket Books and then by Corgi Books. The novel introduces the character Robert Langdon, who recurs as the protagonist of Brown's subsequent novels. Angels & Demons shares many stylistic literary elements with its sequels, such as conspiracies of secret societies, a single-day time frame, and the Catholic Church. Ancient history, architecture, and symbology are also heavily referenced throughout the book.\r\n\r\n\r\n----------\r\nContains:\r\n[Angels & Demons [1/2]](https://openlibrary.org/works/OL34545389W)\r\n[Angels & Demons [1/2]](https://openlibrary.org/works/OL36748095W)\r\n[Angels & Demons [1/3]](https://openlibrary.org/works/OL17742693W)\r\n\r\nContained in:\r\n[Angels & Demons / The Da Vinci Code](https://openlibrary.org/works/OL15290520W)",
-   "year": 2003,
+   "year": 2000,
    "rating": 3.65,
    "authors": [
     "OL39307A"
@@ -2463,9 +2458,9 @@
    "genres": [
     "adventure",
     "crime fiction",
+    "detective",
     "literary fiction",
-    "suspense",
-    "thriller"
+    "suspense"
    ],
    "editions": [
     {
@@ -2517,7 +2512,7 @@
    "work": "OL1168007W",
    "title": "Animal Farm",
    "summary": "Animal Farm is a brilliant political satire and a powerful and affecting story of revolutions and idealism, power and corruption. 'All animals are equal. But some animals are more equal than others.' Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm. Vowing to eliminate the terrible inequities of the farmyard, the renamed Animal Farm is organised to benefit all who walk on four legs. But as time passes, the ideals of the rebellion are corrupted, then forgotten. And something new and unexpected emerges..",
-   "year": 1997,
+   "year": 1945,
    "rating": 4.17,
    "authors": [
     "OL118077A"
@@ -2578,7 +2573,7 @@
    "work": "OL77746W",
    "title": "Anne of Green Gables",
    "summary": "Anne, an eleven-year-old orphan, is sent by mistake to live with a lonely, middle-aged brother and sister on a Prince Edward Island farm and proceeds to make an indelible impression on everyone around her.",
-   "year": 1993,
+   "year": 1908,
    "rating": 4.34,
    "authors": [
     "OL39485A"
@@ -2699,7 +2694,7 @@
    "work": "OL528094W",
    "title": "Autobiography of a Yogi",
    "summary": "The autobiography of Paramahansa Yogananda (1893 - 1952) details his search for a guru, during which he encountered many spiritual leaders and world-renowned scientists. When it was published in 1946 it was the first introduction of many westerners to yoga and meditation.The famous opera singer Amelita Galli-Curci said about the book:\"Amazing, true stories of saints and masters of India, blended with priceless superphysical information-much needed to balance the Western material efficiency with Eastern spiritual efficiency-come from the vigorous pen of Paramhansa Yogananda, whose teachings my husband and myself have had the pleasure of studying for twenty years.\"",
-   "year": 1975,
+   "year": 1946,
    "rating": 4.22,
    "authors": [
     "OL37185A"
@@ -2760,7 +2755,7 @@
    "work": "OL50548W",
    "title": "Beloved",
    "summary": "Toni Morrison--author of Song of Solomon and Tar Baby--is a writer of remarkable powers: her novels, brilliantly acclaimed for their passion, their dazzling language and their lyric and emotional force, combine the unassailable truths of experience and emotion with the vision of legend and imagination. It is the story--set in post-Civil War Ohio--of Sethe, an escaped slave who has risked death in order to wrench herself from a living death; who has lost a husband and buried a child; who has borne the unthinkable and not gone mad: a woman of \"iron eyes and backbone to match.\" Sethe lives in a small house on the edge of town with her daughter, Denver, her mother-in-law, Baby Suggs, and a disturbing, mesmerizing intruder who calls herself Beloved. Sethe works at \"beating back the past,\" but it is alive in all of them. It keeps Denver fearful of straying from the house. It fuels the sadness that has settled into Baby Suggs' \"desolated center where the self that was no self made its home.\" And to Sethe, the past makes itself heard and felt incessantly: in memories that both haunt and soothe her...in the arrival of Paul D (\"There was something blessed in his manner. Women saw him and wanted to weep\"), one of her fellow slaves on the farm where she had once been kept...in the vivid and painfully cathartic stories she and Paul D tell each other of their years in captivity, of their glimpses of freedom...and, most powerfully, in the apparition of Beloved, whose eyes are expressionless at their deepest point, whose doomed childhood belongs to the hideous logic of slavery and who, as daughter, sister and seductress, has now come from the \"place over there\" to claim retribution for what she lost and for what was taken from her. Sethe's struggle to keep Beloved from gaining full possession of her present--and to throw off the long, dark legacy of her past--is at the center of this profoundly affecting and startling novel. But its intensity and resonance of feeling, and the boldness of its narrative, lift it beyond its particulars so that it speaks to our experience as an entire nation with a past of both abominable and ennobling circumstance. In Beloved, Toni Morrison has given us a great American novel. Toni Morrison was awarded the 1988 Pulitzer Prize in Literature for Beloved.",
-   "year": 2006,
+   "year": 1987,
    "rating": 3.91,
    "authors": [
     "OL31120A"
@@ -2881,66 +2876,6 @@
    ]
   },
   {
-   "work": "OL17732W",
-   "title": "Bible",
-   "summary": "\"Readers who desire a more intimate knowledge of the historical context of the Bible will appreciate the NIV Archaeological Study Bible. Full of informative articles and full-color photographs of places and objects from biblical times, this Bible examines the archaeological record surrounding God’s Word and brings the biblical world to life. Readers’ personal studies will be enriched as they become more informed about the empires, places, and peoples of the ancient world. Features include: • Four-color interior throughout • Bottom-of-page study notes exploring passages that speak on archaeological and cultural facts • Articles (520) covering five main categories: Archaeological Sites, Cultural and Historical Notes, Ancient Peoples and Lands, the Reliability of the Bible, and Ancient Texts and Artifacts • Approximately 500 4-color photographs interspersed throughout • Detailed book introductions that provide basic, at-a-glance information • Detailed charts on pertinent topics • In-text color maps that assist the reader in placing the action \"",
-   "year": 1975,
-   "rating": 4.09,
-   "authors": [
-    "OL2745568A"
-   ],
-   "genres": [
-    "history",
-    "religion"
-   ],
-   "editions": [
-    {
-     "isbn": "9781586401900",
-     "kind": "Hardcover",
-     "publisher": "B&H Publishing Group",
-     "year": 2006,
-     "language": "eng",
-     "pages": 2016,
-     "covers": [
-      1955152
-     ]
-    },
-    {
-     "isbn": "9781586400675",
-     "kind": "Paperback",
-     "publisher": "B&H Publishing Group",
-     "year": 2004,
-     "language": "eng",
-     "pages": 1139,
-     "covers": [
-      2942742
-     ]
-    },
-    {
-     "isbn": "9781558199477",
-     "kind": "Audiobook",
-     "publisher": "B&H Publishing Group",
-     "year": 2005,
-     "language": "eng",
-     "pages": null,
-     "covers": [
-      1879923
-     ]
-    },
-    {
-     "isbn": "9781586401580",
-     "kind": "Other",
-     "publisher": "B&H Publishing Group",
-     "year": 2005,
-     "language": "eng",
-     "pages": 1600,
-     "covers": [
-      1955143
-     ]
-    }
-   ]
-  },
-  {
    "work": "OL17824318W",
    "title": "Born a Crime",
    "summary": "Born a Crime is the story of a mischievous young boy who grows into a restless young man as he struggles to find himself in a world where he was never supposed to exist. It is also the story of that young man’s relationship with his fearless, rebellious, and fervently religious mother—his teammate, a woman determined to save her son from the cycle of poverty, violence, and abuse that would ultimately threaten her own life.\r\n\r\nThe stories collected here are by turns hilarious, dramatic, and deeply affecting. Whether subsisting on caterpillars for dinner during hard times, being thrown from a moving car during an attempted kidnapping, or just trying to survive the life-and-death pitfalls of dating in high school, Trevor illuminates his curious world with an incisive wit and unflinching honesty. His stories weave together to form a moving and searingly funny portrait of a boy making his way through a damaged world in a dangerous time, armed only with a keen sense of humor and a mother’s unconventional, unconditional love.",
@@ -3007,7 +2942,7 @@
    "work": "OL64365W",
    "title": "Brave New World",
    "summary": "Originally published in 1932, this outstanding work of literature is more crucial and relevant today than ever before. Cloning, feel-good drugs, antiaging programs, and total social control through politics, programming, and media -- has Aldous Huxley accurately predicted our future? With a storyteller's genius, he weaves these ethical controversies in a compelling narrative that dawns in the year 632 AF (After Ford, the deity). When Lenina and Bernard visit a savage reservation, we experience how Utopia can destroy humanity. A powerful work of speculative fiction that has enthralled and terrified readers for generations, Brave New World is both a warning to be heeded and thought-provoking yet satisfying entertainment. - Container.",
-   "year": 2004,
+   "year": 1932,
    "rating": 3.97,
    "authors": [
     "OL19767A"
@@ -3071,7 +3006,7 @@
    "work": "OL59133W",
    "title": "Brown Bear, Brown Bear, What Do You See?",
    "summary": "Children see a variety of animals, each one a different color, and a teacher looking at them.",
-   "year": 1984,
+   "year": 1967,
    "rating": 4.03,
    "authors": [
     "OL28506A",
@@ -3198,7 +3133,7 @@
    "title": "Cadáver exquisito",
    "summary": "**Working at the local processing plant, Marcos is in the business of slaughtering humans—though no one calls them that anymore.**\r\n\r\nHis wife has left him, his father is sinking into dementia, and Marcos tries not to think too hard about how he makes a living. After all, it happened so quickly. First, it was reported that an infectious virus has made all animal meat poisonous to humans. Then governments initiated the “Transition.” Now, eating human meat—“special meat”—is legal. Marcos tries to stick to numbers, consignments, processing.\r\n\r\nThen one day he’s given a a live specimen of the finest quality. Though he’s aware that any form of personal contact is forbidden on pain of death, little by little he starts to treat her like a human being. And soon, he becomes tortured by what has been lost—and what might still be saved.",
    "year": 2020,
-   "rating": 3.89,
+   "rating": 3.88,
    "authors": [
     "OL8106910A"
    ],
@@ -3258,8 +3193,8 @@
    "work": "OL42975424W",
    "title": "Can We Be Strangers Again?",
    "summary": "In the electric haze of college life, three friends are bound by laughter, late-night talks and unspoken promises. But when two of them cross the line from friendship into love, everything changes. Betrayal shatters their world, leaving one friend to pick up the pieces while navigating her own complicated feelings. As friendships fracture and love grows tangled, hearts are broken, and choices become irreversible. Caught between the ache of lost friendship and the bittersweet pull of love, Dev must decide if he’s willing to risk everything—again.",
-   "year": 2025,
-   "rating": 3.59,
+   "year": 2024,
+   "rating": 3.61,
    "authors": [
     "OL15344594A"
    ],
@@ -3417,7 +3352,7 @@
     "dystopian",
     "fantasy",
     "literary fiction",
-    "young adult"
+    "science fiction"
    ],
    "editions": [
     {
@@ -3471,7 +3406,7 @@
    "work": "OL45790W",
    "title": "Charlie and the Chocolate Factory",
    "summary": "Charlie and the Chocolate Factory is a 1964 children's novel by British author Roald Dahl. The story features the adventures of young Charlie Bucket inside the chocolate factory of eccentric chocolatier Willy Wonka.\r\n\r\nCharlie and the Chocolate Factory was first published in the United States by Alfred A. Knopf, Inc. in 1964 and in the United Kingdom by George Allen & Unwin 11 months later. \r\n\r\nIn the 2012 survey published by SLJ, a monthly with primarily US audience, Charlie was the second of four books by Dahl among their Top 100 Chapter Books, one more than any other writer. Time magazine in the US included the novel in its list of the 100 Best Young-Adult Books of All Time.",
-   "year": 1973,
+   "year": 1964,
    "rating": 4.05,
    "authors": [
     "OL34184A"
@@ -3533,7 +3468,7 @@
    "work": "OL483391W",
    "title": "Charlotte's Web",
    "summary": "Charlotte's Web is a book of children's literature by American author E. B. White and illustrated by Garth Williams; it was published on October 15, 1952, by Harper & Brothers. The novel tells the story of a livestock pig named Wilbur and his friendship with a barn spider named Charlotte. When Wilbur is in danger of being slaughtered by the farmer, Charlotte writes messages praising Wilbur (such as \"Some Pig\") in her web in order to persuade the farmer to let him live.\r\n\r\n\r\n----------\r\nAlso contained in:\r\n[Novels](https://openlibrary.org/works/OL483326W)",
-   "year": 1991,
+   "year": 1952,
    "rating": 4.05,
    "authors": [
     "OL30250A"
@@ -3596,8 +3531,8 @@
    "work": "OL274505W",
    "title": "Cien años de soledad",
    "summary": "*Cien años de soledad* es una novela del escritor colombiano Gabriel García Márquez, ganador del Premio Nobel de Literatura en 1982. Es considerada una obra maestra de la literatura hispanoamericana y universal, cumbre del denominado \"realismo mágico\". Es asimismo una de las obras más traducidas y leídas en español. Narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo.\r\n\r\n\r\n----------\r\n\r\n\r\n*Cien años de soledad* is considered the best work of García Márquez. A novel that narrates the vicisitudes of Aureliano Buendía in the mythic Macondo, a town in some unknown region of Colombia. This novel was written in the magic realism (\"realismo mágico\"), a style that mix together amazing elements taken by fiction and reality.",
-   "year": 1999,
-   "rating": 4.12,
+   "year": 1967,
+   "rating": 4.11,
    "authors": [
     "OL27363A"
    ],
@@ -3750,8 +3685,8 @@
    "work": "OL679358W",
    "title": "Coraline",
    "summary": "When Coraline steps through a door to find another house strangely similar to her own (only better), things seem marvelous.\r\n\r\nBut there's another mother there, and another father, and they want her to stay and be their little girl. They want to change her and never let her go.\r\n\r\nCoraline will have to fight with all her wit and courage if she is to save herself and return to her ordinary life.",
-   "year": 2002,
-   "rating": 4.04,
+   "year": 2001,
+   "rating": 4.05,
    "authors": [
     "OL53305A"
    ],
@@ -3813,7 +3748,7 @@
    "work": "OL23535656W",
    "title": "Culpa mía",
    "summary": "Fast-paced and sizzling with a forbidden enemies-to-lovers romance, My Fault is the first book in Mercedes Ron's Culpable trilogy. This suspenseful YA series untangles the threads of love, trauma, and secrets, perfect for fans of Ugly Love and After.\r\n\r\nSeventeen-year-old Noah Morgan loves her quiet, normal life in Toronto. But when her mother returns from a cruise unexpectedly married to a billionaire and announces they are moving to L.A., Noah is suddenly shoved out of her comfort zone and into a glittering world of illegal street races, lavish pool parties, and spoiled rich kids.\r\n\r\nAnd her new stepbrother Nicholas is the most spoiled of them all. Arrogant, aloof, and viciously attractive, Nick is everything she hates, especially when she learns his bad boy persona isn't just a façade. She's spent her life running from danger, and Nick is danger incarnate. Yet neither of them can prevent the powerful attraction that flares between them—enough to turn their worlds upside-down and tempt them beyond all reason.\r\n\r\nBut Noah's past may be even more dangerous than their forbidden romance. And if he wants her, Nick will have to decide if he's willing to risk everything.",
-   "year": 2023,
+   "year": 2017,
    "rating": 3.94,
    "authors": [
     "OL7963911A"
@@ -3991,7 +3926,7 @@
    "work": "OL15719630W",
    "title": "Divergent",
    "summary": "‘Divergent’ is the first in a trilogy of dystopian, YA novels by Veronica Roth. The book is written from Beatrice Prior’s (Tris), point of view and is written in short chapters making it easy to put down and pick up again.\r\n\r\nThe story is fast paced with full on action throughout. It contains elements of humour and romance, alongside some seriously brutal scenes, especially during Tris’s initiation. There is also quite a few though provoking moments.\r\n\r\nThis was one of the first YA novels that I read and I found myself hooked right through to the very last word.\r\n\r\nThe scenes are described in detail giving you a clear picture and making it easy to visualise the on goings in your head.\r\n\r\nTris can be a little moody at times and doubts herself too much, but this only adds to her good nature, fun, determined and strong personality which we see blossom throughout\r\n\r\nThe ending wasn’t what I expected, thus my need to get the second book, ‘Insurgent’, straight away. I Needed to know what happened next.\r\n\r\nI surprisingly found myself enjoying Divergent much more than I first thought I would, and thus my love of YA novels began.\r\n\r\nDivergent was made into a movie back in 2014. If you have seen the film but not read the book then you are missing out on vital aspects of the plot and characters, that didn’t appear in the film. I enjoyed the film, just not as much as the book.",
-   "year": 2011,
+   "year": 2010,
    "rating": 3.99,
    "authors": [
     "OL6895646A"
@@ -4114,7 +4049,7 @@
    "work": "OL5682519W",
    "title": "Dog Days",
    "summary": "In Dog Days, book 4 of the Diary of a Wimpy Kid series from #1 international bestselling author Jeff Kinney, it's summer vacation, the weather's great, and all the kids are having fun outside. So where's Greg Heffley?\r\n\r\nInside his house, playing video games with the shades drawn.\r\n\r\nGreg, a self-confessed \"indoor person,\" is living out his ultimate summer fantasy: no responsibilities and no rules. But Greg's mom has a different vision for an ideal summer . . . one packed with outdoor activities and \"family togetherness.\"\r\n\r\nWhose vision will win out? Or will a new addition to the Heffley family change everything?",
-   "year": 2009,
+   "year": 2008,
    "rating": 4.5,
    "authors": [
     "OL2832500A"
@@ -4176,7 +4111,7 @@
    "work": "OL17610986W",
    "title": "Dog Man",
    "summary": "**Get ready for Action, Suspense, Romance... and Laffs!**\r\n\r\nGeorge and Harold have created a new breed of justice. When Greg the police dog and his cop companion are injured on the job, a life-saving surgery changes the course of history, and Dog Man is born. With the head of a dog and the body of a human, this heroic hound digs into deception, claws after crooks, rolls over robbers, and scampers after squirrels. Will he be able to resist the call of the wild to answer the call of duty?\r\n\r\n\r\n----------\r\n###German-language description:\r\nEs gibt einen neuen Superhelden in der Stadt. Dog Man ist halb Hund, halb Polizist und voller Tatendrang! Mach dich bereit für Spannung und jede Menge Spaß!\r\n\r\n- Farbige Illustrationen auf jeder Seite.\r\n- Neuer Comic-Trend, der auch Lesemuffel motiviert.\r\n- Dav Pilkey ist einer der meistegelesenen Autoren weltweit bei Lesern im Grundschulalter.\r\n- Auch Kinder von 8 bis 11 Jahren werden so zu Viellesern!\r\n- Lesen macht Spaß mit dem Graphic Novel Mega-Bestseller!",
-   "year": 2015,
+   "year": 2016,
    "rating": 4.38,
    "authors": [
     "OL24815A"
@@ -4240,8 +4175,8 @@
    "work": "OL503666W",
    "title": "Don Quijote de la Mancha",
    "summary": "*Don Quijote de la Mancha* es una novela escrita por el español Miguel de Cervantes Saavedra. Publicada su primera parte con el título de *El ingenioso hidalgo don Quijote de la Mancha* a comienzos de 1605, es la obra más destacada de la literatura española y una de las principales de la literatura universal. En 1615 apareció su continuación con el título de *Segunda parte del ingenioso caballero don Quijote de la Mancha.* Es la primera obra genuinamente desmitificadora de la tradición caballeresca y cortés por su tratamiento burlesco. Representa la primera novela moderna y la primera novela polifónica; como tal, ejerció un enorme influjo en toda la narrativa europea. La novela ha sido calificada por numerosos autores de renombre como la «mejor novela de todos los tiempos» y la «obra más importante y fundamental de la literatura universal». Don Quijote es también uno de los libros más traducidos del mundo y una de las novelas más vendidas de todos los tiempos.\r\n\r\n\r\n----------\r\n\r\n\r\n*The Ingenious Gentleman Don Quixote of La Mancha* known simply as *Don Quixote* is a Spanish novel by Miguel de Cervantes, originally published in two parts, in 1605 and 1615 and considered a founding work of Western literature. It's often said to be the first modern novel. The novel has been labelled by many well-known authors as the \"best novel of all time\" and the \"best and most central work in world literature\". Don Quixote is also one of the most-translated books in the world and one of the best-selling novels of all time.",
-   "year": 1896,
-   "rating": 3.9,
+   "year": 1605,
+   "rating": 3.86,
    "authors": [
     "OL66452A"
    ],
@@ -4364,7 +4299,7 @@
    "work": "OL17603394W",
    "title": "Double Down",
    "summary": "The pressure's really piling up on Greg Heffley. His mom thinks video games are turning his brain to mush, so she wnats her son to put down the controller and explore his \"creative side\".\r\n\r\nAs if that's not scary enough, Halloween is just around the corner and the frights are coming at Greg from every angle.\r\n\r\nWhen he discovers a bag of gummy worms, it sparks an idea. Can Greg get his mom off his back by making a movie.... and will he become rich and famous in the progress? Or will doubling down on this path just double Greg's troubles?",
-   "year": 2016,
+   "year": 2010,
    "rating": 4.48,
    "authors": [
     "OL2832500A"
@@ -4401,17 +4336,6 @@
      ]
     },
     {
-     "isbn": "9798855068795",
-     "kind": "Other",
-     "publisher": "67",
-     "year": null,
-     "language": "eng",
-     "pages": 217,
-     "covers": [
-      14812470
-     ]
-    },
-    {
      "isbn": "9781690319849",
      "kind": "Other",
      "publisher": "Turtleback Books Publishing, Limited",
@@ -4422,6 +4346,17 @@
       15136951,
       15136927
      ]
+    },
+    {
+     "isbn": "9781410498687",
+     "kind": "Other",
+     "publisher": "Thorndike Press",
+     "year": 2017,
+     "language": "eng",
+     "pages": 229,
+     "covers": [
+      14458376
+     ]
     }
    ]
   },
@@ -4429,7 +4364,7 @@
    "work": "OL85892W",
    "title": "Dracula",
    "summary": "In the story, a couple and their friends are tormented by Count Dracula—a supernatural, blood-drinking entity bound by a contagious curse—who intends to leave his secluded castle in Transylvania for the bustling London of the 19th century. With the help of Professor Van Helsing, the group sets out to confront the undead, despite all the dangers such an offensive will entail.",
-   "year": 2005,
+   "year": 1897,
    "rating": 4.0,
    "authors": [
     "OL31727A"
@@ -4486,7 +4421,7 @@
    "work": "OL893414W",
    "title": "Dune",
    "summary": "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the \"spice\" melange, a drug capable of extending life and enhancing consciousness. Coveted across the known universe, melange is a prize worth killing for...\r\n\r\nWhen House Atreides is betrayed, the destruction of Paul's family will set the boy on a journey toward a destiny greater than he could ever have imagined. And as he evolves into the mysterious man known as Muad'Dib, he will bring to fruition humankind's most ancient and unattainable dream.\r\n\r\nA stunning blend of adventure and mysticism, environmentalism and politics, Dune won the first Nebula Award, shared the Hugo Award, and formed the basis of what is undoubtedly the grandest epic in science fiction.",
-   "year": 2003,
+   "year": 1965,
    "rating": 4.31,
    "authors": [
     "OL79034A"
@@ -4510,15 +4445,14 @@
      ]
     },
     {
-     "isbn": "0441013597",
+     "isbn": "9789997516787",
      "kind": "Hardcover",
-     "publisher": "Ace Books",
-     "year": 2005,
+     "publisher": "Chilton Book Company",
+     "year": 1965,
      "language": "eng",
-     "pages": 528,
+     "pages": 412,
      "covers": [
-      14856017,
-      14816213
+      15247496
      ]
     },
     {
@@ -4557,8 +4491,8 @@
    "genres": [
     "children's fiction",
     "classics",
-    "domestic fiction",
     "historical fiction",
+    "history",
     "literary fiction"
    ],
    "editions": [
@@ -4735,7 +4669,7 @@
    "work": "OL66513W",
    "title": "Emma",
    "summary": "Emma, by Jane Austen, is a novel about youthful hubris and the perils of misconstrued romance. The novel was first published in December 1815. As in her other novels, Austen explores the concerns and difficulties of genteel women living in Georgian-Regency England; she also creates a lively comedy of manners among her characters. Before she began the novel, Austen wrote, \"I am going to take a heroine whom no one but myself will much like.\" In the very first sentence she introduces the title character as \"Emma Woodhouse, handsome, clever, and rich.\" Emma, however, is also rather spoiled, headstrong, and self-satisfied; she greatly overestimates her own matchmaking abilities; she is blind to the dangers of meddling in other people's lives; and her imagination and perceptions often lead her astray.",
-   "year": 1993,
+   "year": 1815,
    "rating": 3.99,
    "authors": [
     "OL21594A"
@@ -4798,7 +4732,7 @@
    "work": "OL1878267W",
    "title": "Emotional Intelligence",
    "summary": "¿Por qué algunas personas parecen dotadas de un don especial que les permite vivir bien, aunque no sean las que más se destacan por su inteligencia? ¿Por qué no siempre el alumno más inteligente termina siendo el más exitoso? ¿Por qué unos son más capaces que otros para enfrentar contratiempos, superar obstáculos y ver las dificultades bajo una óptica distinta?\r\n\r\nEl libro demuestra cómo la inteligencia emocional puede ser fomentada y fortalecida en todos nosotros, y cómo la falta de la misma puede influir en el intelecto o arruinar una carrera.\r\n\r\nLa inteligencia emocional nos permite tomar conciencia de nuestras emociones, comprender los sentimientos de los demás, tolerar las presiones y frustraciones que soportamos en el trabajo, acentuar nuestra capacidad de trabajar en equipo y adoptar una actitud empática y social, que nos brindará mayores posibilidades de desarrollo personal.",
-   "year": 1997,
+   "year": 1995,
    "rating": 3.9,
    "authors": [
     "OL224907A"
@@ -4859,7 +4793,7 @@
    "work": "OL49488W",
    "title": "Ender's Game",
    "summary": "Ender's Game is a 1985 military science fiction novel by American author Orson Scott Card. Set at an unspecified date in Earth's future, the novel presents an imperiled humankind after two conflicts with the Formics, an insectoid alien species they dub the \"buggers\". In preparation for an anticipated third invasion, children, including the novel's protagonist, Andrew \"Ender\" Wiggin, are trained from a very young age by putting them through increasingly difficult games, including some in zero gravity, where Ender's tactical genius is revealed.\r\n\r\nThe book originated as a short story of the same name, published in the August 1977 issue of Analog Science Fiction and Fact. The novel was published on January 15, 1985. Later, by elaborating on characters and plotlines depicted in the novel, Card was able to write additional books in the Ender's Game series. Card also released an updated version of Ender's Game in 1991, changing some political facts to reflect the times more accurately (e.g., to include the recent collapse of the Soviet Union and the end of the Cold War). The novel has been translated into 34 languages.\r\n\r\nReception of the book has been mostly positive. It has become suggested reading for many military organizations, including the United States Marine Corps. Ender's Game was recognized as \"best novel\" by the 1985 Nebula Award\\[3\\] and the 1986 Hugo Award\\[4\\] in the genres of science fiction and fantasy. Its four sequels—Speaker for the Dead (1986), Xenocide (1991), Children of the Mind (1996), and Ender in Exile (2008)—follow Ender's subsequent travels to many different worlds in the galaxy. In addition, the later novella A War of Gifts (2007) and novel Ender's Shadow (1999), plus other novels in the Shadow saga, take place during the same time period as the original.\r\n\r\n---\r\n\r\nContained in:\r\n[Ender's War](https://openlibrary.org/works/OL49619W)\r\nSee also:\r\n\r\n- [Ender's Game: 1/2](https://openlibrary.org/works/OL19647657W/Ender's_Game._1_2)",
-   "year": 2002,
+   "year": 1985,
    "rating": 4.35,
    "authors": [
     "OL25161A"
@@ -4923,7 +4857,7 @@
    "title": "Eragon",
    "summary": "One boy...\r\nOne dragon...\r\nA world of adventure.\r\n\r\nWhen Eragon finds a polished blue stone in the forest, he thinks it is the lucky discovery of a poor farm boy; perhaps it will buy his family meat for the winter. But when the stone brings a dragon hatchling, Eragon soon realizes he has stumbled upon a legacy nearly as old as the Empire itself.\r\n\r\nOvernight his simple life is shattered, and he is thrust into a perilous new world of destiny, magic, and power. With only an ancient sword and the advice of an old storyteller for guidance, Eragon and the fledgling dragon must navigate the dangerous terrain and dark enemies of an Empire ruled by a king whose evil knows no bounds.\r\n\r\nCan Eragon take up the mantle of the legendary Dragon Riders? The fate of the Empire may rest in his hands.",
    "year": 2003,
-   "rating": 3.77,
+   "rating": 3.78,
    "authors": [
     "OL1425963A"
    ],
@@ -4987,7 +4921,7 @@
    "work": "OL103123W",
    "title": "Fahrenheit 451",
    "summary": "Fahrenheit 451 is a 1953 dystopian novel by American writer Ray Bradbury. Often regarded as one of his best works, the novel presents a future American society where books are outlawed and \"firemen\" burn any that are found. The book's tagline explains the title as \"'the temperature at which book paper catches fire, and burns\": the autoignition temperature of paper. The lead character, Guy Montag, is a fireman who becomes disillusioned with his role of censoring literature and destroying knowledge, eventually quitting his job and committing himself to the preservation of literary and cultural writings.\r\n\r\nThe novel has been the subject of interpretations focusing on the historical role of book burning in suppressing dissenting ideas for change. In a 1956 radio interview, Bradbury said that he wrote Fahrenheit 451 because of his concerns at the time (during the McCarthy era) about the threat of book burning in the United States. In later years, he described the book as a commentary on how mass media reduces interest in reading literature.\r\n\r\nIn 1954, Fahrenheit 451 won the American Academy of Arts and Letters Award in Literature and the Commonwealth Club of California Gold Medal. It later won the Prometheus \"Hall of Fame\" Award in 1984 and a \"Retro\" Hugo Award, one of a limited number of Best Novel Retro Hugos ever given, in 2004. Bradbury was honored with a Spoken Word Grammy nomination for his 1976 audiobook version.\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [451° по Фаренгейту: Рассказы](https://openlibrary.org/works/OL17811384W/Fahrenheit_451_stories)\r\n- [451° по Фаренгейту: повести и рассказы](https://openlibrary.org/works/OL27741633W)\r\n- [Works](https://openlibrary.org/works/OL28185143W)",
-   "year": 1991,
+   "year": 1953,
    "rating": 3.98,
    "authors": [
     "OL24137A"
@@ -4996,8 +4930,8 @@
     "drama",
     "literary fiction",
     "political fiction",
-    "satire",
-    "science fiction"
+    "science fiction",
+    "war fiction"
    ],
    "editions": [
     {
@@ -5051,7 +4985,7 @@
    "work": "OL16336633W",
    "title": "Fifty Shades of Grey",
    "summary": "When literature student Anastasia Steele goes to interview young entrepreneur Christian Grey, she encounters a man who is beautiful, brilliant, and intimidating. The unworldly, innocent Ana is startled to realize she wants this man and, despite his enigmatic reserve, finds she is desperate to get close to him. Unable to resist Ana’s quiet beauty, wit, and independent spirit, Grey admits he wants her, too—but on his own terms.\r\n \r\nShocked yet thrilled by Grey’s singular erotic tastes, Ana hesitates. For all the trappings of success—his multinational businesses, his vast wealth, his loving family—Grey is a man tormented by demons and consumed by the need to control. When the couple embarks on a daring, passionately physical affair, Ana discovers Christian Grey’s secrets and explores her own dark desires.\r\n\r\nErotic, amusing, and deeply moving, the Fifty Shades Trilogy is a tale that will obsess you, possess you, and stay with you forever.\r\n\r\nThis book is intended for mature audiences.",
-   "year": 2012,
+   "year": 2010,
    "rating": 3.91,
    "authors": [
     "OL7093600A"
@@ -5181,7 +5115,7 @@
     "OL22019A"
    ],
    "genres": [
-    "classics",
+    "children's fiction",
     "coming of age",
     "literary fiction",
     "psychological fiction",
@@ -5307,7 +5241,7 @@
    "work": "OL46125W",
    "title": "Foundation",
    "summary": "One of the great masterworks of science fiction, the Foundation novels of Isaac Asimov are unsurpassed for their unique blend of nonstop action, daring ideas, and extensive world-building. \r\n\r\nThe story of our future begins with the history of Foundation and its greatest psychohistorian: Hari Seldon.  For twelve thousand years the Galactic Empire has ruled supreme. Now it is dying.  Only Hari Seldon, creator of the revolutionary science of psychohistory, can see into the future--a dark age of ignorance, barbarism, and warfare that will last thirty thousand years. To preserve knowledge and save mankind, Seldon gathers the best minds in the Empire--both scientists and scholars--and brings them to a bleak planet at the edge of the Galaxy to serve as a beacon of hope for future generations. He calls his sanctuary the Foundation.\r\n\r\nBut soon the fledgling Foundation finds itself at the mercy of corrupt warlords rising in the wake of the receding Empire. And mankind's last best hope is faced with an agonizing choice: submit to the barbarians and live as slaves--or take a stand for freedom and risk total destruction.",
-   "year": 1988,
+   "year": 1951,
    "rating": 4.08,
    "authors": [
     "OL34221A"
@@ -5432,7 +5366,7 @@
    "work": "OL450063W",
    "title": "Frankenstein; or, The Modern Prometheus",
    "summary": "*Frankenstein; or, The Modern Prometheus* is an 1818 novel written by English author Mary Shelley. Frankenstein tells the story of Victor Frankenstein, a young scientist who creates a sapient creature in an unorthodox scientific experiment. Shelley started writing the story when she was 18, and the first edition was published anonymously in London on 1 January 1818, when she was 20. Her name first appeared in the second edition, which was published in Paris in 1821.",
-   "year": 2006,
+   "year": 1818,
    "rating": 3.97,
    "authors": [
     "OL25342A"
@@ -5495,7 +5429,7 @@
    "work": "OL278022W",
    "title": "Freakonomics",
    "summary": "*A Rogue Economist Explores the Hidden Side of Everything*\r\n\r\nWhich is more dangerous, a gun or a swimming pool? What do schoolteachers and sumo wrestlers have in common? Why do drug dealers still live with their moms? How much do parents really matter? How did the legalization of abortion affect the rate of violent crime?\r\n\r\nThese may not sound like typical questions for an economist to ask. But Steven D. Levitt is not a typical economist. He is a much-heralded scholar who studies the riddles of everyday life—from cheating and crime to sports and child-rearing—and whose conclusions turn the conventional wisdom on its head.\r\n\r\nFreakonomics is a ground-breaking collaboration between Levitt and Stephen J. Dubner, an award-winning author and journalist. They usually begin with a mountain of data and a simple, unasked question. Some of these questions concern life-and-death issues; others have an admittedly freakish quality. Thus the new field of study contained in this book: Freakonomics.\r\n\r\nThrough forceful storytelling and wry insight, Levitt and Dubner show that economics is, at root, the study of incentives—how people get what they want, or need, especially when other people want or need the same thing. In Freakonomics, they explore the hidden side of … well, everything. The inner workings of a crack gang. The truth about real-estate agents. The myths of campaign finance. The telltale marks of a cheating schoolteacher. The secrets of the Ku Klux Klan.\r\n\r\nWhat unites all these stories is a belief that the modern world, despite a great deal of complexity and downright deceit, is not impenetrable, is not unknowable, and—if the right questions are asked—is even more intriguing than we think. All it takes is a new way of looking at things.\r\n\r\nFreakonomics establishes this unconventional premise: If morality represents how we would like the world to work, then economics represents how it actually does work. It is true that readers of this book will be armed with enough riddles and stories to last a thousand cocktail parties. ButFreakonomics can provide more than that. It will literally redefine the way we view the modern world.\r\n\r\nFirst published in the U.S. in 2005, Freakonomics went on to sell more than 4 million copies around the world, in 35 languages. It also inspired a follow-up book, SuperFreakonomics; a high-profile documentary film; a radio program, and an award-winning blog, which has been called “the most readable economics blog in the universe.”\r\n\r\n([source][1])\r\n\r\n\r\n  [1]: http://freakonomics.com/books/",
-   "year": 2006,
+   "year": 2005,
    "rating": 3.89,
    "authors": [
     "OL1453058A",
@@ -5559,7 +5493,7 @@
    "work": "OL20234863W",
    "title": "Girl in Pieces",
    "summary": "Charlotte Davis is in pieces. At 17 she's already lost more than most people do in a lifetime. But she's learned how to forget. The broken glass washes away the sorrow until there is nothing but calm. You don't have to think about your father and the river. Your best friend, who is gone forever. Or your mother, who has nothing left to give you. \r\n\r\nEvery new scar hardens Charlie's heart just a little more, yet it still hurts so much. It hurts enough to not care anymore, which is sometimes what has to happen before you can find your way back from the edge. \r\n\r\nA deeply moving portrait of a girl in a world that owes her nothing, and has taken so much, and the journey she undergoes to put herself back together. Kathleen Glasgow's debut is heartbreakingly real and unflinchingly honest. It's a story you won't be able to look away from.",
-   "year": 2016,
+   "year": 2000,
    "rating": 4.19,
    "authors": [
     "OL7632574A"
@@ -5619,15 +5553,15 @@
    "work": "OL16239762W",
    "title": "Gone Girl",
    "summary": "Gone Girl is a 2012 crime thriller novel by American writer Gillian Flynn. It was published by Crown Publishing Group in June 2012. The novel became popular and made the New York Times Best Seller list. The sense of suspense in the novel comes from whether or not Nick Dunne is involved in the disappearance of his wife Amy.\r\n\r\n\r\n----------\r\nAlso contained in:\r\n[Les apparences suvi de la novella Nous allons mourir ce soir](https://openlibrary.org/works/OL24801746W)",
-   "year": 2012,
+   "year": 2011,
    "rating": 3.78,
    "authors": [
     "OL1433006A"
    ],
    "genres": [
     "crime fiction",
+    "detective",
     "literary fiction",
-    "mystery",
     "suspense",
     "thriller"
    ],
@@ -5684,7 +5618,7 @@
    "title": "Good Girl, Bad Blood",
    "summary": "More dark secrets are exposed in this addictive, true-crime fueled sequel when Pip finds herself in another deadly case.\r\n\r\nPip is not a detective anymore. With the help of Ravi Singh, she released a true-crime podcast about the murder case they solved together last year. The podcast has gone viral, yet Pip insists her investigating days are behind her.\r\n\r\nBut she will have to break that promise when someone she knows goes missing. Jamie Reynolds has disappeared, on the very same night the town hosted a memorial for the sixth-year anniversary of the deaths of Andie Bell and Sal Singh.\r\n\r\nThe police won't do anything about it. And if they won't look for Jamie then Pip will, uncovering more of her town's dark secrets along the way... and this time everyone is listening. But will she find him before it's too late?",
    "year": 2020,
-   "rating": 4.16,
+   "rating": 4.17,
    "authors": [
     "OL7722491A"
    ],
@@ -5745,7 +5679,7 @@
    "work": "OL3946622W",
    "title": "Gorin no sho",
    "summary": "A psychological guide to strategy applicable to business, philosophy, or martial arts, written by sixteenth-century warrior Miyamoto Musashi as a means of explaining his success as a practitioner of Japanese swordfighting, or Kendo.",
-   "year": 1982,
+   "year": 1963,
    "rating": 3.86,
    "authors": [
     "OL2716232A"
@@ -5870,13 +5804,13 @@
    "work": "OL9170454W",
    "title": "Hamlet",
    "summary": "In this quintessential Shakespeare tragedy, a young prince's halting pursuit of revenge for the murder of his father unfolds in a series of highly charged confrontations that have held audiences spellbound for nearly four centuries. Those fateful exchanges, and the anguished soliloquies that precede and follow them, probe depths of human feeling rarely sounded in any art. \r\n\r\nThe title role of Hamlet, perhaps the most demanding in all of Western drama, has provided generations of leading actors their greatest challenge. Yet all the roles in this towering drama are superbly delineated, and each of the key scenes offers actors a rare opportunity to create theatrical magic.\r\n\r\nHamlet is a unique pleasure to read as well as to see and hear performed.",
-   "year": 1950,
+   "year": 1603,
    "rating": 4.01,
    "authors": [
     "OL9388A"
    ],
    "genres": [
-    "classics",
+    "drama",
     "history",
     "literary criticism",
     "literary fiction",
@@ -5933,7 +5867,7 @@
    "work": "OL82537W",
    "title": "Harry Potter and the Chamber of Secrets",
    "summary": "Throughout the summer holidays after his first year at Hogwarts School of Witchcraft and Wizardry, Harry Potter has been receiving sinister warnings from a house-elf called Dobby.\r\n\r\nNow, back at school to start his second year, Harry hears unintelligible whispers echoing through the corridors.\r\n\r\nBefore long the attacks begin: students are found as if turned to stone.\r\n\r\nDobby’s predictions seem to be coming true.\r\n\r\n[Source][1]\r\n\r\n\r\n  [1]: https://www.jkrowling.com/book/harry-potter-chamber-secrets/",
-   "year": 1999,
+   "year": 1998,
    "rating": 4.19,
    "authors": [
     "OL23919A"
@@ -6067,7 +6001,7 @@
     "OL23919A"
    ],
    "genres": [
-    "action",
+    "adventure",
     "children's fiction",
     "coming of age",
     "fantasy",
@@ -6507,7 +6441,7 @@
    "work": "OL38663W",
    "title": "Heart of Darkness",
    "summary": "Heart of Darkness (1899) is a novella by Polish-English novelist Joseph Conrad, about a voyage up the Congo River into the Congo Free State, in the heart of Africa, by the story's narrator Charles Marlow. Marlow tells his story to friends aboard a boat anchored on the River Thames. Joseph Conrad is one of the greatest English writers, and Heart of Darkness is considered his best.  His readers are brought to face our psychological selves to answer, ‘Who is the true savage?’. Originally published in 1902, Heart of Darkness remains one of this century’s most enduring works of fiction. Written several years after Joseph Conrad’s grueling sojourn in the Belgian Congo, the novel is a complex meditation on colonialism, evil, and the thin line between civilization and barbarity.",
-   "year": 1998,
+   "year": 1899,
    "rating": 3.62,
    "authors": [
     "OL19441A"
@@ -6632,7 +6566,7 @@
    "work": "OL266178W",
    "title": "Het Achterhuis",
    "summary": "Het Achterhuis is de titel van het dagboek van Anne Frank (1929-1945) voor het eerst uitgegeven op 25 juni 1947. Het is genoemd naar het onderduikpand Het Achterhuis op de Prinsengracht en is het verhaal van een ondergedoken jong Joods meisje ten tijde van de Tweede Wereldoorlog. Het is wereldwijd een van de meest gelezen boeken. Sinds 2009 staat Annes dagboek op de Werelderfgoedlijst voor documenten van UNESCO.\r\n\r\n\r\n----------\r\nAlso contained in:\r\n[Works of Anne Frank](https://openlibrary.org/works/OL2931445W)",
-   "year": 1982,
+   "year": 1947,
    "rating": 4.21,
    "authors": [
     "OL446842A"
@@ -6760,7 +6694,7 @@
    "work": "OL1063267W",
    "title": "How to Win Friends and Influence People",
    "summary": "Available for the first time ever in trade paperback, Dale Carnegie's enduring classic, the inspirational personal development guide that shows how to achieve lifelong success. One of the top-selling books of all time, \"How to Win Friends & Influence People\" has sold more than 15 million copies in all its editions.",
-   "year": 1988,
+   "year": 1936,
    "rating": 4.14,
    "authors": [
     "OL107569A"
@@ -6821,7 +6755,7 @@
    "work": "OL27297240W",
    "title": "Hunting Adeline",
    "summary": "The final installment to the Cat and Mouse Duet...\r\n\r\nThe Diamond:\r\n\r\nDeath walks alongside me, But the reaper is no match for me. I'm trapped in a world full of monsters dressed as men, and those who aren't as they seem.\r\nThey won't keep me forever.\r\nI no longer recognize the person I've become, And I'm fighting to find my way back to the beast who hunts me in the night. They call me a diamond, But they've only created an angel of death.\r\n\r\nThe Hunter:\r\n\r\nI was born a predator, With ruthlessness ingrained in my bones. When what's mine is stolen from me in the night, Like a diamond hidden within a fortress,\r\nI find that I can no longer contain the beast. Blood will paint the ground as I tear apart this world to find her. And bring her back to where she belongs. No one will escape my wrath, Especially not those who have betrayed me.",
-   "year": 2022,
+   "year": 2021,
    "rating": 3.85,
    "authors": [
     "OL10218224A"
@@ -6960,7 +6894,7 @@
    "work": "OL80021W",
    "title": "I Know Why the Caged Bird Sings",
    "summary": "She was born Marguerite, but her brother Bailey nicknamed her Maya (\"mine\"). As little children they were sent to live with their grandmother in Stamps, Arkansas. Their early world revolved around this remarkable woman and the Store she ran for the black community. White people were more than strangers - they were from another planet. And yet, even unseen they ruled. \r\n\r\nThe Store was a microcosm of life: its orderly pattern was a comfort, even among the meanest frustrations. But then came the intruders - first in the form of taunting poorwhite children who were bested only by the grandmother's dignity. But as the awful, unfathomable mystery of prejudice intruded, so did the unexpected joy of a surprise visit by Daddy, the sinful joy of going to Church, the disappointments of a Depression Christmas.\r\n\r\nA visit to St. Louis and the Most Beautiful Mother in the World ended in tragedy - rape. Thereafter Maya refused to speak, except to the person closest to her, Bailey. Eventually, Maya and Bailey followed their mother to California. There, the formative phase of her life (as well as this book) comes to a close with the painful discovery of the true nature of her father, the emergence of a hard-won independence and - perhaps most important - a baby, born out of wedlock, loved and kept.\r\n\r\nSuperbly told, with the poet's gift for language and observation, and charged with the unforgetable emotion of remembered anguish and love - this remarkable autobiography by an equally remarkable black girl from Arkansas captures, indelibly, a world of which most Americans are shamefully ignorant.",
-   "year": 1985,
+   "year": 1969,
    "rating": 4.08,
    "authors": [
     "OL28885A"
@@ -7085,7 +7019,7 @@
    "work": "OL46241W",
    "title": "I, Robot",
    "summary": "I, Robot is a fixup novel of science fiction short stories or essays by American writer Isaac Asimov. The stories originally appeared in the American magazines Super Science Stories and Astounding Science Fiction between 1940 and 1950 and were then compiled into a book for stand-alone publication by Gnome Press in 1950, in an initial edition of 5,000 copies. The stories are woven together by a framing narrative in which the fictional Dr. Susan Calvin tells each story to a reporter (who serves as the narrator) in the 21st century. Although the stories can be read separately, they share a theme of the interaction of humans, robots, and morality, and when combined they tell a larger story of Asimov's fictional history of robotics.\r\n\r\n\r\n----------\r\n\r\nContains:\r\n\"Introduction\" \r\n\"Robbie\" (1940, 1950)\r\n\"Runaround\" (1942)\r\n\"Reason\" (1941)\r\n\"Catch That Rabbit\" (1944)\r\n\"Liar!\" (1941)\r\n\"Little Lost Robot\" (1947)\r\n\"Escape!\" (1945)\r\n\"Evidence\" (1946)\r\n\"The Evitable Conflict\" (1950)",
-   "year": 2000,
+   "year": 1950,
    "rating": 4.25,
    "authors": [
     "OL34221A"
@@ -7272,7 +7206,7 @@
    "work": "OL1992198W",
    "title": "In Cold Blood",
    "summary": "On November 15, 1959, in the small town of Holcomb, Kansas, four members of the Clutter family were savagely murdered by blasts from a shotgun held a few inches from their faces. There was no apparent motive for the crime, and there were almost no clues.",
-   "year": 1998,
+   "year": 1965,
    "rating": 4.07,
    "authors": [
     "OL239800A"
@@ -7374,7 +7308,7 @@
    "work": "OL77826W",
    "title": "Interview With the Vampire",
    "summary": "This is the story of Louis, as told in his own words, of his journey through mortal and immortal life. Louis recounts how he became a vampire at the hands of the radiant and sinister Lestat and how he became indoctrinated, unwillingly, into the vampire way of life. His story ebbs and flows through the streets of New Orleans, defining crucial moments such as his discovery of the exquisite lost young child Claudia, wanting not to hurt but to comfort her with the last breaths of humanity he has inside. Yet, he makes Claudia a vampire, trapping her womanly passion, will, and intelligence inside the body of a small child. Louis and Claudia form a seemingly unbreakable alliance and even \"settle down\" for a while in the opulent French Quarter. Louis remembers Claudia's struggle to understand herself and the hatred they both have for Lestat that sends them halfway across the world to seek others of their kind. Louis and Claudia are desperate to find somewhere they belong, to find others who understand, and someone who knows what and why they are.\r\n\r\nLouis and Claudia travel Europe, eventually coming to Paris and the ragingly successful Theatre des Vampires--a theatre of vampires pretending to be mortals pretending to be vampires. Here they meet the magnetic and ethereal Armand, who brings them into a whole society of vampires. But Louis and Claudia find that finding others like themselves provides no easy answers and in fact presents dangers they scarcely imagined.\r\n\r\nOriginally begun as a short story, the book took off as Anne wrote it, spinning the tragic and triumphant life experiences of a soul. As well as the struggles of its characters, Interview captures the political and social changes of two continents. The novel also introduces Lestat, Anne's most enduring character, a heady mixture of attraction and revulsion. The book, full of lush description, centers on the themes of immortality, change, loss, sexuality, and power.\r\n([source][1])\r\n\r\n\r\n  [1]: http://annerice.com/Bookshelf-Interview.html",
-   "year": 1994,
+   "year": 1976,
    "rating": 3.89,
    "authors": [
     "OL39486A"
@@ -7435,7 +7369,7 @@
    "title": "Iron Flame",
    "summary": "“The first year is when some of us lose our lives. The second year is when the rest of us lose our humanity.” —Xaden Riorson\r\n\r\nEveryone expected Violet Sorrengail to die during her first year at Basgiath War College—Violet included. But Threshing was only the first impossible test meant to weed out the weak-willed, the unworthy, and the unlucky.\r\n\r\nNow the real training begins, and Violet’s already wondering how she’ll get through. It’s not just that it’s grueling and maliciously brutal, or even that it’s designed to stretch the riders’ capacity for pain beyond endurance. It’s the new vice commandant, who’s made it his personal mission to teach Violet exactly how powerless she is–unless she betrays the man she loves.\r\n\r\nAlthough Violet’s body might be weaker and frailer than everyone else’s, she still has her wits—and a will of iron. And leadership is forgetting the most important lesson Basgiath has taught her: Dragon riders make their own rules.\r\n\r\nBut a determination to survive won’t be enough this year.\r\n\r\nBecause Violet knows the real secret hidden for centuries at Basgiath War College—and nothing, not even dragon fire, may be enough to save them in the end.",
    "year": 2023,
-   "rating": 4.3,
+   "rating": 4.31,
    "authors": [
     "OL7825177A"
    ],
@@ -7495,7 +7429,7 @@
    "work": "OL81613W",
    "title": "It",
    "summary": "\"*It*\" is a 1986 horror novel by American author Stephen King. \"*It*\" was his 22nd book and his 17th novel written under his own name. The story follows the experiences of seven children as they are terrorized by an evil entity that exploits the fears of its victims to disguise itself while hunting its prey. \"*It*\" primarily appears in the form of Pennywise the Dancing Clown to attract its preferred prey of young children.\r\n\r\nThe novel won the British Fantasy Award in 1987, and received nominations for the Locus and World Fantasy Awards that same year.\r\n\r\nIn 2003, \"*It*\" was listed at number 144 on the BBC's The Big Read poll.\r\n\r\n---\r\n\r\nSee also:\r\n\r\n- [IT 1/2](https://openlibrary.org/works/OL14916816W/It_1_2)\r\n- [IT 2/2](https://openlibrary.org/works/OL14916818W/It_2_2)",
-   "year": 1987,
+   "year": 1986,
    "rating": 4.08,
    "authors": [
     "OL19981A"
@@ -7503,9 +7437,9 @@
    "genres": [
     "coming of age",
     "horror",
+    "literary fiction",
     "science",
-    "suspense",
-    "thriller"
+    "suspense"
    ],
    "editions": [
     {
@@ -7528,8 +7462,8 @@
      "language": "eng",
      "pages": 1090,
      "covers": [
-      14651795,
-      15171097
+      15283511,
+      14651795
      ]
     },
     {
@@ -7560,7 +7494,7 @@
    "work": "OL18020194W",
    "title": "It Ends With Us",
    "summary": "Lily hasn’t always had it easy, but that’s never stopped her from working hard for the life she wants. She’s come a long way from the small town where she grew up—she graduated from college, moved to Boston, and started her own business. And when she feels a spark with a gorgeous neurosurgeon named Ryle Kincaid, everything in Lily’s life seems too good to be true.\r\n\r\nRyle is assertive, stubborn, maybe even a little arrogant. He’s also sensitive, brilliant, and has a total soft spot for Lily. And the way he looks in scrubs certainly doesn’t hurt. Lily can’t get him out of her head. But Ryle’s complete aversion to relationships is disturbing. Even as Lily finds herself becoming the exception to his “no dating” rule, she can’t help but wonder what made him that way in the first place.\r\n\r\nAs questions about her new relationship overwhelm her, so do thoughts of Atlas Corrigan—her first love and a link to the past she left behind. He was her kindred spirit, her protector. When Atlas suddenly reappears, everything Lily has built with Ryle is threatened.\r\n\r\nWith this bold and deeply personal novel, It Ends With Us is a heart-wrenching story and an unforgettable tale of love that comes at the ultimate price.",
-   "year": 2016,
+   "year": 2012,
    "rating": 4.18,
    "authors": [
     "OL7315784A"
@@ -7683,7 +7617,7 @@
    "work": "OL1095427W",
    "title": "Jane Eyre",
    "summary": "The novel is set somewhere in the north of England. Jane's childhood at Gateshead Hall, where she is emotionally and physically abused by her aunt and cousins; her education at Lowood School, where she acquires friends and role models but also suffers privations and oppression; her time as the governess of Thornfield Hall, where she falls in love with her Byronic employer, Edward Rochester; her time with the Rivers family, during which her earnest but cold clergyman cousin, St John Rivers, proposes to her. Will she or will she not marry him?",
-   "year": 1996,
+   "year": 1847,
    "rating": 4.04,
    "authors": [
     "OL113362A"
@@ -7746,7 +7680,7 @@
    "work": "OL46881W",
    "title": "Jurassic Park",
    "summary": "Jurassic Park is a 1990 science fiction novel written by Michael Crichton. A cautionary tale about genetic engineering, it presents the collapse of an amusement park showcasing genetically re-created dinosaurs to illustrate the mathematical concept of chaos theory and its real-world implications. A sequel titled The Lost World, also written by Crichton, was published in 1995. In 1997, both novels were re-published as a single book titled Michael Crichton's Jurassic World. In 1996 it was awarded the Secondary BILBY Award.\r\n\r\nAlso contained in:\r\n[Congo/Jurassic Park](https://openlibrary.org/works/OL8475707W)\r\n[Michael Crichton's Jurassic World](https://openlibrary.org/works/OL14950507W)",
-   "year": 1993,
+   "year": 1990,
    "rating": 4.18,
    "authors": [
     "OL28257A"
@@ -7927,7 +7861,7 @@
    "work": "OL36287W",
    "title": "Le Comte de Monte-Cristo",
    "summary": "\"Farewell, all sentiments that uplift the heart! I have acted as Providence, rewarding the good. Now, let God the Avenger take my place, that I may punish the wicked!\"\r\n\r\nThe year is 1815. Edmond Dantès, a ship’s officer, is preparing to marry the beautiful Mercédès. Through the machinations of the envious accountant Danglars and the jealousy of his romantic rival, Fernand, Dantès is arrested as an enemy of the state. Fearing that his own reputation might be compromised, the deputy public prosecutor, Villefort, has him imprisoned for life in the Château d’If—without a trial. The wretched young man nearly loses his mind from grief; his life is saved by a fellow prisoner in the adjacent cell, the Abbé Faria, who offers him friendship, hope, and, ultimately, a map to a staggering treasure. Following a dramatic escape from prison, Dantès orchestrates his revenge against those who wronged him, assuming the identity of the mysterious and fabulously wealthy Count of Monte Cristo.",
-   "year": 2001,
+   "year": 1845,
    "rating": 4.27,
    "authors": [
     "OL18236A"
@@ -7990,7 +7924,7 @@
    "work": "OL10263W",
    "title": "Le petit prince",
    "summary": "*Le Petit Prince* est une œuvre de langue française, la plus connue d'Antoine de Saint-Exupéry. Publié en 1943 à New York simultanément à sa traduction anglaise, c'est une œuvre poétique et philosophique sous l'apparence d'un conte pour enfants.\r\n\r\nTraduit en quatre cent cinquante-sept langues et dialectes, *Le Petit Prince* est le deuxième ouvrage le plus traduit au monde après la Bible.\r\n\r\nLe langage, simple et dépouillé, parce qu'il est destiné à être compris par des enfants, est en réalité pour le narrateur le véhicule privilégié d'une conception symbolique de la vie. Chaque chapitre relate une rencontre du petit prince qui laisse celui-ci perplexe, par rapport aux comportements absurdes des « grandes personnes ». Ces différentes rencontres peuvent être lues comme une allégorie.\r\n\r\nLes aquarelles font partie du texte et participent à cette pureté du langage : dépouillement et profondeur sont les qualités maîtresses de l'œuvre.\r\n\r\nOn peut y lire une invitation de l'auteur à retrouver l'enfant en soi, car « toutes les grandes personnes ont d'abord été des enfants. (Mais peu d'entre elles s'en souviennent.) ». L'ouvrage est dédié à Léon Werth, mais « quand il était petit garçon ».\r\n\r\n(Wikipedia)",
-   "year": 1971,
+   "year": 1943,
    "rating": 4.36,
    "authors": [
     "OL31901A"
@@ -8049,7 +7983,7 @@
    "work": "OL695408W",
    "title": "Leonardo",
    "summary": "Bill Gates bought the Codex Leicester a notebook of Leonardo da Vinci's scientific observations and theories in 1994 from the estate of Armand Hammer for $30.8 million. Last year Gates loaned the work to Australia's Powerhouse Museum, which prepared this companion to its exhibition. No longer in codex form (the pages were bound in the 1600s, but Gates had the binding dismantled for digital reproduction), the manuscript ranges over topics from fossils to astronomy. Each recto of this edition reproduces one of Leonardo's pages, written in mirror-script Italian with sketches jotted in the margins; a discussion (but not a translation) appears on the verso. It includes an introduction to Leonardo's life, but no index.",
-   "year": 1978,
+   "year": 1948,
    "rating": 3.95,
    "authors": [
     "OL54736A",
@@ -8114,7 +8048,7 @@
    "work": "OL2827199W",
    "title": "Life of Pi",
    "summary": "After the tragic sinking of a cargo ship, one solitary lifeboat remains bobbing on the wild, blue Pacific. The only survivors from the wreck are a sixteen-year-old boy named Pi, a hyena, a zebra (with a broken leg), a female orang-utan… and a 450-pound Royal Bengal tiger. The scene is set for one of the most extraordinary works of fiction in recent years.",
-   "year": 2003,
+   "year": 2001,
    "rating": 3.94,
    "authors": [
     "OL422052A"
@@ -8181,11 +8115,11 @@
     "OL11132702A"
    ],
    "genres": [
-    "dark fantasy",
     "literary fiction",
     "plays",
     "romance",
-    "suspense"
+    "suspense",
+    "thriller"
    ],
    "editions": [
     {
@@ -8237,7 +8171,7 @@
    "work": "OL29983W",
    "title": "Little Women",
    "summary": "Louisa May Alcotts classic novel, set during the Civil War, has always captivated even the most reluctant readers. Little girls, especially, love following the adventures of the four March sisters--Meg, Beth, Amy, and most of all, the tomboy Jo--as they experience the joys and disappointments, tragedies and triumphs, of growing up. This simpler version captures all the charm and warmth of the original.",
-   "year": 1996,
+   "year": 1867,
    "rating": 4.06,
    "authors": [
     "OL26680A"
@@ -8300,7 +8234,7 @@
    "work": "OL627084W",
    "title": "Lolita",
    "summary": "Lolita is a 1955 novel written by Russian-American novelist Vladimir Nabokov. The novel is notable for its controversial subject: the protagonist and unreliable narrator, a middle-aged literature professor under the pseudonym Humbert Humbert, is obsessed with a 12-year-old girl, Dolores Haze, whom he sexually molests after he becomes her stepfather. \"Lolita\" is his private nickname for Dolores. The novel was originally written in English and first published in Paris in 1955 by Olympia Press. Later it was translated into Russian by Nabokov himself and published in New York City in 1967 by Phaedra Publishers.\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Собрание сочинений русского периода в пяти томах: Смех в темноте / Lolita](https://openlibrary.org/works/OL22529308W)\r\n- [Novels 1955-1962](https://openlibrary.org/works/OL20643775W/Novels_1955-1962)\r\n- [Works: Ada / Lolita](https://openlibrary.org/works/OL17687842W/Ada_Lolita)",
-   "year": 1992,
+   "year": 1955,
    "rating": 3.96,
    "authors": [
     "OL48139A"
@@ -8364,7 +8298,7 @@
    "work": "OL455327W",
    "title": "Lord of the Flies",
    "summary": "Lord of the Flies is a 1954 novel by Nobel Prize–winning British author William Golding. The book focuses on a group of British boys stranded on an uninhabited island and their disastrous attempt to govern themselves. Themes include the tension between groupthink and individuality, between rational and emotional reactions, and between morality and immorality.\r\n\r\nThe novel has been generally well received. It was named in the Modern Library 100 Best Novels, reaching number 41 on the editor's list, and 25 on the reader's list. In 2003 it was listed at number 70 on the BBC's The Big Read poll, and in 2005 Time magazine named it as one of the 100 best English-language novels from 1923 to 2005. Time also included the novel in its list of the 100 Best Young-Adult Books of All Time. Popular reading in schools, especially in the English-speaking world, a 2016 UK poll saw Lord of the Flies ranked third in the nation's favourite books from school.\r\n\r\n(From https://en.wikipedia.org/wiki/Lord_of_the_Flies)",
-   "year": 2006,
+   "year": 1954,
    "rating": 3.69,
    "authors": [
     "OL335424A"
@@ -8374,7 +8308,7 @@
     "children's fiction",
     "history",
     "literary fiction",
-    "thriller"
+    "psychological fiction"
    ],
    "editions": [
     {
@@ -8427,7 +8361,7 @@
    "work": "OL1230613W",
    "title": "L’étranger",
    "summary": "*L'Étranger* est le premier roman publié d’Albert Camus, paru en 1942. Il prend place dans la tétralogie que Camus nommera « cycle de l’absurde » qui décrit les fondements de la philosophie camusienne : l’absurde. Le roman a été traduit en soixante-huit langues.",
-   "year": 1998,
+   "year": 1942,
    "rating": 4.12,
    "authors": [
     "OL124171A"
@@ -8490,7 +8424,7 @@
    "work": "OL258902W",
    "title": "Macbeth",
    "summary": "The play concerns a trusted general who secretly lusts for power. Encouraged by the prophecies of three witches and urged on by his ambitious wife Macbeth commits regicide. Left fearful and superstitious by this desperate act he is driven to a spiralling course of murder and outrage, almost inevitably culminating in his own death. One of Shakespeare’s most popular tragedies, Macbeth is ostensibly based on the Scottish king although the story represented in the play bears no relation to historical fact as the true King Macbeth was well respected by his contemporaries. This book includes the hero Macbeth becoming more and more evil after he gets told his \"destiny\" by the witches and becomes greedy with power.",
-   "year": 2003,
+   "year": 1673,
    "rating": 3.98,
    "authors": [
     "OL9388A"
@@ -8498,9 +8432,9 @@
    "genres": [
     "classics",
     "drama",
+    "history",
     "literary fiction",
-    "plays",
-    "young adult"
+    "plays"
    ],
    "editions": [
     {
@@ -8549,7 +8483,7 @@
    "work": "OL629052W",
    "title": "Manifest der Kommunistischen Partei",
    "summary": "Available under a Creative Commons Attribution-ShareAlike License:\r\nhttp://www.marxists.org/archive/marx/works/1848/communist-manifesto/\r\n\r\nOne of the most influential political tracts ever published this short book succinctly explains the aims and purpose of the Communist League of the 19th century, giving the author’s theories of the class struggle which they assumed would inevitably lead to world wide communism.  \r\n\r\nFull text available at Project Gutenberg too:\r\nhttp://www.gutenberg.org/files/61/61.txt",
-   "year": 2008,
+   "year": 1902,
    "rating": 3.6,
    "authors": [
     "OL48230A",
@@ -8613,7 +8547,7 @@
    "work": "OL45846W",
    "title": "Matilda",
    "summary": "Matilda applies her untapped mental powers to rid the school of the evil, child-hating headmistress, Miss Trunchbull, and restore her nice teacher, Miss Honey, to financial security.",
-   "year": 2001,
+   "year": 1988,
    "rating": 4.33,
    "authors": [
     "OL34184A"
@@ -8675,7 +8609,7 @@
    "title": "Maus I",
    "summary": "A story of a Jewish survivor of Hitler's Europe and his son, a cartoonist who tries to come to terms with his father's story and history itself.",
    "year": 1986,
-   "rating": 4.5,
+   "rating": 4.51,
    "authors": [
     "OL250856A"
    ],
@@ -8801,7 +8735,7 @@
    "work": "OL1317211W",
    "title": "Meditations",
    "summary": "Meditations is a collection of personal reflections and notes by the Roman Emperor Marcus Aurelius (reigned 161 to 180 AD), offering a profound look into the philosophy of Stoicism. It was never intended for publication, making it a raw and intimate self-help manual for the emperor during his campaigns and rule. The central theme revolves around living a good, rational, and virtuous life in harmony with nature and the cosmos.\r\nAurelius continually reminds himself that everything in the universe is constantly changing and fleeting, urging the reader to accept the impermanence of life and the inevitability of death. He stresses the importance of focusing on what one can control—namely, their own thoughts and actions—and accepting everything else with tranquility, including the behavior of others and external events. This inner fortress of the mind is the only true source of peace.\r\nThe book emphasizes duty and service to the greater community. As a rational being, one's purpose is to act justly and benevolently towards fellow humans. Aurelius encourages practicing humility, rising above petty insults, and viewing difficulties as opportunities for growth and the exercise of virtue. He advocates for an objective, detached perspective on all things, stripping away subjective judgment to see the world as it truly is. Ultimately, Meditations is a powerful, timeless guide on how to face adversity, manage emotions, maintain personal integrity, and find contentment through disciplined, rational self-examination and adherence to virtue.",
-   "year": 1635,
+   "year": 1701,
    "rating": 4.1,
    "authors": [
     "OL133986A"
@@ -8863,7 +8797,7 @@
    "work": "OL1067314W",
    "title": "Mein Kampf",
    "summary": "1925 autobiographical book \"My Struggle\" (USA: \"My Battle\") by Nazi Party leader Adolf Hitler\r\n\r\nOn April 1, 1924, because of the sentence handed down by the People's Court of Munich, I had to begin that day, serving my term in the fortress at Landsberg on the Lech. Thus, after years of uninterrupted work, I was afforded for the first time an opportunity to embark on a task insisted upon by many and felt to be serviceable to the movement by myself. Therefore, I resolved not only to set forth, in two volumes, the object of our movement, but also to draw a picture of its development. From this more can be learned than from any purely doctrinary treatise. That also gave me the opportunity to describe my own development, as far as this is necessary for the understanding of the first as well as the second volume, and which may serve to destroy the evil legends created about my person by the Jewish press. - Preface.",
-   "year": 1942,
+   "year": 1925,
    "rating": 4.07,
    "authors": [
     "OL108070A"
@@ -8927,8 +8861,8 @@
    "work": "OL498556W",
    "title": "Metamorphosis",
    "summary": "Metamorphosis (German: Die Verwandlung) is a novella written by Franz Kafka which was first published in 1915. One of Kafka's best-known works, Metamorphosis tells the story of salesman Gregor Samsa, who wakes one morning to find himself inexplicably transformed into a huge insect (German: ungeheueres Ungeziefer, lit. \"monstrous vermin\") and subsequently struggles to adjust to this new condition. The novella has been widely discussed among literary critics, with differing interpretations being offered. In popular culture and adaptations of the novella, the insect is commonly depicted as a cockroach.\r\n\r\nWith a length of about 70 printed pages over three chapters, it is the longest of the stories Kafka considered complete and published during his lifetime. The text was first published in 1915 in the October issue of the journal Die weißen Blätter under the editorship of René Schickele. The first edition in book form appeared in December 1915 in the series Der jüngste Tag, edited by Kurt Wolff.",
-   "year": 1997,
-   "rating": 4.16,
+   "year": 1946,
+   "rating": 4.17,
    "authors": [
     "OL33146A"
    ],
@@ -8990,7 +8924,7 @@
    "work": "OL3524935W",
    "title": "Midnight in the Garden of Good and Evil",
    "summary": "Read John Berendt's Midnight in the Garden of Good and Evil in Large Print. All Random House Large Print editions are published in a 16-point typefaceShots rang out in Savannah's grandest mansion in the misty,early morning hours of May 2, 1981.  Was it murder or self-defense?  For nearly a decade, the shooting and its aftermath reverberated throughout this hauntingly beautiful city of moss-hung oaks and shaded squares.  John Berendt's sharply observed, suspenseful, and witty narrative reads like a thoroughly engrossing novel, and yet it is a work of nonfiction.  Berendt skillfully interweaves a hugely entertaining first-person account of life in this isolated remnant of the Old South with the unpredictable twists and turns of a landmark murder case.It is a spellbinding story peopled by a gallery of remarkable characters: the well-bred society ladies of the Married Woman's Card Club; the turbulent young redneck gigolo; the hapless recluse who owns a bottle of poison so powerful it could kill every man, woman, and child in Savannah; the aging and profane Southern belle who is the \"soul of pampered self-absorption\"; the uproariously funny black drag queen; the acerbic and arrogant antiques dealer; the sweet-talking, piano-playing con artist; young blacks dancing the minuet at the black debutante ball; and Minerva, the voodoo priestess who works her magic in the graveyard at midnight.  These and other Savannahians act as a Greek chorus, with Berendt revealing the alliances, hostilities, and intrigues that thrive in a town where everyone knows everyone else.  Midnight in the Garden of Good and Evil: A Savannah Story  is a sublime and seductive reading experience.  Brilliantly conceived and masterfully written, this enormously engaging portrait of a most beguiling Southern city is certain to become a modern classic.From the Trade Paperback edition.",
-   "year": 1999,
+   "year": 1994,
    "rating": 3.83,
    "authors": [
     "OL590331A"
@@ -9053,7 +8987,7 @@
    "work": "OL17606111W",
    "title": "Milk and Honey",
    "summary": "The book is divided into four chapters, each chapter serves a different purpose. They deal with different pains; heal different heartaches. Milk and honey takes readers through a journey of the most bitter moments in life and finds sweetness in them, because there is sweetness everywhere If you are just willing to look.",
-   "year": 2015,
+   "year": 2014,
    "rating": 4.02,
    "authors": [
     "OL7362769A"
@@ -9115,7 +9049,7 @@
    "work": "OL119421W",
    "title": "Mindhunter",
    "summary": "Discover the classic, behind-the-scenes chronicle of John E. Douglas’ twenty-five-year career in the FBI Investigative Support Unit, where he used psychological profiling to delve into the minds of the country’s most notorious serial killers and criminals—the basis for the upcoming Netflix original series.\r\n\r\nIn chilling detail, the legendary Mindhunter takes us behind the scenes of some of his most gruesome, fascinating, and challenging cases—and into the darkest recesses of our worst nightmares.\r\n\r\nDuring his twenty-five year career with the Investigative Support Unit, Special Agent John Douglas became a legendary figure in law enforcement, pursuing some of the most notorious and sadistic serial killers of our time: the man who hunted prostitutes for sport in the woods of Alaska, the Atlanta child murderer, and Seattle's Green River killer, the case that nearly cost Douglas his life.\r\n\r\nAs the model for Jack Crawford in The Silence of the Lambs, Douglas has confronted, interviewed, and studied scores of serial killers and assassins, including Charles Manson, Ted Bundy, and Ed Gein, who dressed himself in his victims' peeled skin. Using his uncanny ability to become both predator and prey, Douglas examines each crime scene, reliving both the killer's and the victim's actions in his mind, creating their profiles, describing their habits, and predicting their next moves.",
-   "year": 1996,
+   "year": 1995,
    "rating": 3.95,
    "authors": [
     "OL32880A",
@@ -9243,8 +9177,8 @@
    "work": "OL81634W",
    "title": "Misery",
    "summary": "Novelist Paul Sheldon has plans to make the difficult transition from writing historical romances featuring heroine Misery Chastain to publishing literary fiction. Annie Wilkes, Sheldon's number one fan, rescues the author from the scene of a car accident. The former nurse takes care of him in her remote house, but becomes irate when she discovers that the author has killed Misery off in his latest book. Annie keeps Sheldon prisoner while forcing him to write a book that brings Misery back to life.\r\n\r\n[Source][1]\r\n\r\n\r\n  [1]: https://stephenking.com/library/novel/misery.html",
-   "year": 2002,
-   "rating": 4.17,
+   "year": 1987,
+   "rating": 4.16,
    "authors": [
     "OL19981A"
    ],
@@ -9306,7 +9240,7 @@
    "work": "OL102749W",
    "title": "Moby Dick",
    "summary": "\"Command the murderous chalices! Drink ye harpooners! Drink and swear, ye men that man the deathful whaleboat's bow -- Death to Moby Dick!\" So Captain Ahab binds his crew to fulfil his obsession -- the destruction of the great white whale. Under his lordly but maniacal command the Pequod's commercial mission is perverted to one of vengeance. To Ahab, the monster that destroyed his body is not a creature, but the symbol of \"some unknown but still reasoning thing.\" Uncowed by natural disasters, ill omens, even death, Ahab urges his ship towards \"the undeliverable, nameless perils of the whale.\"",
-   "year": 2007,
+   "year": 1851,
    "rating": 3.96,
    "authors": [
     "OL29497A"
@@ -9432,8 +9366,8 @@
    "work": "OL471576W",
    "title": "Murder on the Orient Express",
    "summary": "***While en route from Syria to Paris, in the middle of a freezing winter's night, the Orient Express is stopped dead in its tracks by a snowdrift.*** Passengers awake to find the train still stranded and to discover that a wealthy American has been brutally stabbed to death in his private compartment. Incredibly, that compartment is locked from the inside. With no escape into the wintery landscape the killer must still be on board. ***Fortunately, the brilliant Belgian inspector Hercule Poirot is also on board, having booked the last available berth.***\r\n\r\n***Murder on the Orient Express is one of Agatha Christie’s most famous novels***, owing no doubt to a combination of its romantic setting and the ingeniousness of its plot; its non-exploitative reference to the sensational kidnapping and murder of the infant son of Charles and Anne Morrow Lindbergh only two years prior; and a popular ***1974 film adaptation, starring Albert Finney as Poirot - one of the few cinematic versions of a Christie work that met with the approval, however mild, of the author herself.***",
-   "year": 1970,
-   "rating": 4.17,
+   "year": 1933,
+   "rating": 4.14,
    "authors": [
     "OL27695A"
    ],
@@ -9698,16 +9632,16 @@
    "work": "OL1168083W",
    "title": "Nineteen Eighty-Four",
    "summary": "Nineteen Eighty-Four: A Novel, often referred to as 1984, is a dystopian social science fiction novel by the English novelist George Orwell (the pen name of Eric Arthur Blair). It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. Thematically, Nineteen Eighty-Four centres on the consequences of totalitarianism, mass surveillance, and repressive regimentation of persons and behaviours within society. Orwell, himself a democratic socialist, modelled the authoritarian government in the novel after Stalinist Russia. More broadly, the novel examines the role of truth and facts within politics and the ways in which they are manipulated.\r\n\r\n----------\t\t\r\nAlso contained in:\t\t\r\n[Novels (Animal Farm / Burmese Days / Clergyman's Daughter / Coming Up for Air / Keep the Aspidistra Flying / Nineteen Eighty-Four)](https://openlibrary.org/works/OL1168045W)\t\t\r\n[Novels (Animal Farm / Nineteen Eighty-Four)](https://openlibrary.org/works/OL1167981W)\r\n[Orwell's Nineteen Eighty-Four: Text, Sources, Criticism](https://openlibrary.org/works/OL1168095W)",
-   "year": 2004,
+   "year": 1949,
    "rating": 4.29,
    "authors": [
     "OL15318546A"
    ],
    "genres": [
-    "classics",
     "crime fiction",
     "historical fiction",
     "literary fiction",
+    "political fiction",
     "war fiction"
    ],
    "editions": [
@@ -9723,14 +9657,15 @@
      ]
     },
     {
-     "isbn": "9788192910901",
+     "isbn": "0451524934",
      "kind": "Paperback",
-     "publisher": "Amazing Reads",
-     "year": 2014,
+     "publisher": "Signet Classic",
+     "year": 1984,
      "language": "eng",
-     "pages": 310,
+     "pages": 352,
      "covers": [
-      15256055
+      15279182,
+      15257377
      ]
     },
     {
@@ -9884,7 +9819,7 @@
    "work": "OL796465W",
    "title": "O Alquimista",
    "summary": "The Alchemist details the journey of a young Andalusian shepherd boy named Santiago. Santiago, believing a recurring dream to be prophetic, decides to travel to the pyramids of Egypt to find treasure. On the way, he encounters love, danger, opportunity and disaster. One of the significant characters that he meets is an old king named Melchizedek who tells him that \"When you want something, all the universe conspires in helping you to achieve it.\" This is the core philosophy and motif of the book.",
-   "year": 2004,
+   "year": 1988,
    "rating": 3.83,
    "authors": [
     "OL66700A"
@@ -9953,11 +9888,11 @@
     "OL25788A"
    ],
    "genres": [
+    "children's fiction",
     "classics",
     "contemporary fiction",
     "historical fiction",
-    "literary fiction",
-    "psychological fiction"
+    "literary fiction"
    ],
    "editions": [
     {
@@ -10011,7 +9946,7 @@
    "work": "OL8193478W",
    "title": "Oliver Twist",
    "summary": "Oliver Twist; or, The Parish Boy's Progress, is the second novel by English author Charles Dickens. It was originally published as a serial from 1837 to 1839, and as a three-volume book in 1838. The story follows the titular orphan, who, after being raised in a workhouse, escapes to London, where he meets a gang of juvenile pickpockets led by the elderly criminal Fagin, discovers the secrets of his parentage, and reconnects with his remaining family.\r\n\r\nOliver Twist unromantically portrays the sordid lives of criminals, and exposes the cruel treatment of the many orphans in London in the mid-19th century.[2] The alternative title, The Parish Boy's Progress, alludes to Bunyan's The Pilgrim's Progress, as well as the 18th-century caricature series by painter William Hogarth, A Rake's Progress and A Harlot's Progress.\r\n\r\nIn an early example of the social novel, Dickens satirises child labour, domestic violence, the recruitment of children as criminals, and the presence of street children. The novel may have been inspired by the story of Robert Blincoe, an orphan whose account of working as a child labourer in a cotton mill was widely read in the 1830s. It is likely that Dickens's own experiences as a youth contributed as well, considering he spent two years of his life in the workhouse at the age of 12 and subsequently, missed out on some of his education.",
-   "year": 1800,
+   "year": 1838,
    "rating": 4.1,
    "authors": [
     "OL24638A"
@@ -10070,7 +10005,7 @@
    "work": "OL81601W",
    "title": "On Writing",
    "summary": "On Writing is both a textbook for writers and a memoir of Stephen's life and will, thus, appeal even to those who are not aspiring writers. If you've always wondered what led Steve to become a writer and how he came to be the success he is today, this will answer those questions.\r\n\r\n([source][1])\r\n\r\n\r\n  [1]: https://stephenking.com/library/nonfiction/on_writing_a_memoir_of_the_craft.html",
-   "year": 2001,
+   "year": 2000,
    "rating": 4.14,
    "authors": [
     "OL19981A"
@@ -10133,8 +10068,8 @@
    "work": "OL17797857W",
    "title": "One Of Us Is Lying",
    "summary": "Pay close attention and you might solve this.\r\nOn Monday afternoon, five students at Bayview High walk into detention.\r\n\r\n    Bronwyn, the brain, is Yale-bound and never breaks a rule.\r\n    Addy, the beauty, is the picture-perfect homecoming princess.\r\n    Nate, the criminal, is already on probation for dealing.\r\n    Cooper, the athlete, is the all-star baseball pitcher.\r\n    And Simon, the outcast, is the creator of Bayview High’s notorious gossip app.\r\n \r\nOnly, Simon never makes it out of that classroom. Before the end of detention Simon's dead. And according to investigators, his death wasn’t an accident. On Monday, he died. But on Tuesday, he’d planned to post juicy reveals about all four of his high-profile classmates, which makes all four of them suspects in his murder. Or are they the perfect patsies for a killer who’s still on the loose?\r\n\r\nEveryone has secrets, right? What really matters is how far you would go to protect them.",
-   "year": 2018,
-   "rating": 4.11,
+   "year": 2017,
+   "rating": 4.1,
    "authors": [
     "OL7399550A",
     "OL9947293A",
@@ -10198,7 +10133,7 @@
    "title": "Onyx Storm",
    "summary": "After nearly eighteen months at Basgiath War College, Violet Sorrengail knows there’s no more time for lessons. No more time for uncertainty. Because the battle has truly begun, and with enemies closing in from outside their walls and within their ranks, it’s impossible to know who to trust.\r\n\r\nNow Violet must journey beyond the failing Aretian wards to seek allies from unfamiliar lands to stand with Navarre. The trip will test every bit of her wit, luck, and strength, but she will do anything to save what she loves—her dragons, her family, her home, and him.\r\n\r\nEven if it means keeping a secret so big, it could destroy everything. They need an army. They need power. They need magic. And they need the one thing only Violet can find—the truth. But a storm is coming...and not everyone can survive its wrath.",
    "year": 2025,
-   "rating": 4.4,
+   "rating": 4.41,
    "authors": [
     "OL7825177A"
    ],
@@ -10258,7 +10193,7 @@
    "work": "OL81631W",
    "title": "Pet Sematary",
    "summary": "Pet Sematary is a 1983 horror novel by American writer Stephen King. The novel was nominated for a World Fantasy Award for Best Novel in 1986",
-   "year": 1996,
+   "year": 1983,
    "rating": 4.05,
    "authors": [
     "OL19981A"
@@ -10268,7 +10203,7 @@
     "literary fiction",
     "psychological fiction",
     "suspense",
-    "thriller"
+    "war fiction"
    ],
    "editions": [
     {
@@ -10383,7 +10318,7 @@
    "work": "OL66554W",
    "title": "Pride and Prejudice",
    "summary": "Pride and Prejudice is an 1813 novel of manners written by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.\r\n\r\nMr. Bennet, owner of the Longbourn estate in Hertfordshire, has five daughters, but his property is entailed and can only be passed to a male heir. His wife also lacks an inheritance, so his family faces becoming very poor upon his death. Thus, it is imperative that at least one of the girls marry well to support the others, which is a motivation that drives the plot.",
-   "year": 1853,
+   "year": 1813,
    "rating": 4.2,
    "authors": [
     "OL21594A"
@@ -10513,7 +10448,7 @@
     "OL7680979A"
    ],
    "genres": [
-    "high fantasy",
+    "dark fantasy",
     "literary fiction",
     "new adult",
     "romance",
@@ -10612,9 +10547,9 @@
     "OL6941868A"
    ],
    "genres": [
-    "action",
     "adventure",
     "cyberpunk",
+    "dystopian",
     "literary fiction",
     "science fiction"
    ],
@@ -10979,7 +10914,7 @@
    "work": "OL362427W",
    "title": "Romeo and Juliet",
    "summary": "Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young Italian star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays. Today, the title characters are regarded as archetypal young lovers.",
-   "year": 1949,
+   "year": 1597,
    "rating": 3.68,
    "authors": [
     "OL9388A"
@@ -11043,7 +10978,7 @@
    "work": "OL17075811W",
    "title": "Sapiens",
    "summary": "From a renowned historian comes a groundbreaking narrative of humanity’s creation and evolution—a #1 international bestseller—that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be “human.”\r\n\r\nOne hundred thousand years ago, at least six different species of humans inhabited Earth. Yet today there is only one—homo sapiens. What happened to the others? And what may happen to us?\r\n\r\nMost books about the history of humanity pursue either a historical or a biological approach, but Dr. Yuval Noah Harari breaks the mold with this highly original book that begins about 70,000 years ago with the appearance of modern cognition. From examining the role evolving humans have played in the global ecosystem to charting the rise of empires, Sapiens integrates history and science to reconsider accepted narratives, connect past developments with contemporary concerns, and examine specific events within the context of larger ideas.\r\n\r\nDr. Harari also compels us to look ahead, because over the last few decades humans have begun to bend laws of natural selection that have governed life for the past four billion years. We are acquiring the ability to design not only the world around us, but also ourselves. Where is this leading us, and what do we want to become?\r\n\r\nFeaturing 27 photographs, 6 maps, and 25 illustrations/diagrams, this provocative and insightful work is sure to spark debate and is essential reading for aficionados of Jared Diamond, James Gleick, Matt Ridley, Robert Wright, and Sharon Moalem.",
-   "year": 2014,
+   "year": 2011,
    "rating": 4.19,
    "authors": [
     "OL3778242A"
@@ -11169,7 +11104,7 @@
    "work": "OL21802553W",
    "title": "Shatter Me Complete Collection",
    "summary": "Juliette can kill with a touch—will she wield her power for good, or will it turn her into the monster she’s always feared she truly is? Find out in the New York Times and USA Today bestselling Shatter Me series—all six novels are now available in this paperback box set!\r\n\r\nOne touch is all it takes. One touch, and Juliette Ferrars can bring a grown man to his knees, begging for mercy. One touch, and she can kill.\r\n\r\nNo one knows why Juliette has such incredible power. It feels like a curse, like too great a burden for one person alone to bear. But The Reestablishment sees her as an opportunity. As a deadly weapon. And they’ll stop at nothing to shape her into what they want.\r\n\r\nJuliette has never fought for herself before. But when she’s reunited with the one person who ever cared about her, she finds a strength she never knew she had.\r\n\r\nThis bestselling series from powerhouse author Tahereh Mafi showcases relentlessly thrilling action, heart stopping romance, and a war-torn world in which rebellion is the only path to freedom.",
-   "year": 2014,
+   "year": 2021,
    "rating": 4.41,
    "authors": [
     "OL6964763A"
@@ -11278,8 +11213,8 @@
    "work": "OL872932W",
    "title": "Siddhartha",
    "summary": "Hermann Hesse wrote Siddhartha after he traveled to India in the 1910s. It tells the story of a young boy who travels the country in a quest for spiritual enlightenment in the time of Guatama Buddha. It is a compact, lyrical work, which reads like an allegory about the finding of wisdom.",
-   "year": 1998,
-   "rating": 4.03,
+   "year": 1950,
+   "rating": 4.04,
    "authors": [
     "OL76437A"
    ],
@@ -11406,7 +11341,7 @@
    "work": "OL98459W",
    "title": "Slaughterhouse-Five",
    "summary": "Slaughterhouse-Five is one of the world's great anti-war books. Centering on the infamous fire-bombing of Dresden, Billy Pilgrim's odyssey through time reflects the mythic journey of our own fractured lives as we search for meaning in what we are afraid to know.",
-   "year": 1991,
+   "year": 1969,
    "rating": 4.17,
    "authors": [
     "OL20187A"
@@ -11469,7 +11404,7 @@
    "work": "OL892130W",
    "title": "Small sacrifices",
    "summary": "the mesmerizing story of Diane Downs, a beautiful, brillient, sociopath, who commits the ultimate evil when she shoots her three children to gain the love of a married man. Anne Rule's insight into the personality of Downs is as horrifying as it is disturbing. She never confesses to shooting her children, but her conduct at the trial is sickening. She taps her foot and smiles while listening to \"Hungry Like the Wolf,\" the song that was playing in her car while she slaughtered her children; she laughs when she should cry, she cries when it benefits her. One daughter is dead, one has lost the use of her arm and speech, and the little boy is paralyzed. None of this horror seems to penetrate Diane. She has no feelings for her children's suffering. The detail in this book is fascinating. Anne Rule describes every bit of evidence and presents it in such a way as to keep the reader of the edge of her seat. A must read for all true crime buffs.",
-   "year": 1989,
+   "year": 1987,
    "rating": 4.4,
    "authors": [
     "OL78937A"
@@ -11616,6 +11551,69 @@
    ]
   },
   {
+   "work": "OL43426400W",
+   "title": "Sunrise on the Reaping",
+   "summary": "As the day dawns on the fiftieth annual Hunger Games, fear grips the districts of Panem. This year, in honor of the Quarter Quell, twice as many tributes will be taken from their homes.\r\n\r\nBack in District 12, Haymitch Abernathy is trying not to think too hard about his chances. All he cares about is making it through the day and being with the girl he loves.\r\n\r\nWhen Haymitch's name is called, he can feel all his dreams break. He's torn from his family and his love, shuttled to the Capitol with the three other District 12 tributes: a young friend who's nearly a sister to him, a compulsive oddsmaker, and the most stuck-up girl in town. As the Games begin, Haymitch understands he's been set up to fail. But there's something in him that wants to fight . . . and have that fight reverberate far beyond the deadly arena.",
+   "year": 2025,
+   "rating": 4.59,
+   "authors": [
+    "OL1394359A"
+   ],
+   "genres": [
+    "dystopian",
+    "fantasy",
+    "literary fiction",
+    "science fiction",
+    "young adult"
+   ],
+   "editions": [
+    {
+     "isbn": "9781546171461",
+     "kind": "Hardcover",
+     "publisher": "Scholastic",
+     "year": 2025,
+     "language": "eng",
+     "pages": 382,
+     "covers": [
+      14847912
+     ]
+    },
+    {
+     "isbn": "9780702340581",
+     "kind": "eBook",
+     "publisher": "Scholastic",
+     "year": 2025,
+     "language": "eng",
+     "pages": 400,
+     "covers": [
+      14847911
+     ]
+    },
+    {
+     "isbn": "9798225019280",
+     "kind": "Hardcover",
+     "publisher": "Scholastic",
+     "year": 2025,
+     "language": "eng",
+     "pages": 382,
+     "covers": [
+      15248782
+     ]
+    },
+    {
+     "isbn": "9781761641176",
+     "kind": "Other",
+     "publisher": "Scholastic Inc",
+     "year": 2025,
+     "language": "eng",
+     "pages": 400,
+     "covers": [
+      15169776
+     ]
+    }
+   ]
+  },
+  {
    "work": "OL21216897W",
    "title": "Talking With Psychopaths and Savages",
    "summary": "The leading writer and criminologist directs his uncompromising gaze on a growing phenomenon - so-called 'rampage killers', whose random multiple killings invariably leave entire communities in shock and mourning.\r\n\r\nA natural subject for the UK's bestselling true-crime a study of people who randomly kill large numbers of others (spree killers), or who set out to do so in specific places or situations (mass killers). Because of the ease of obtaining firearms in the USA, many of these, inevitably, are American, but there have been other recent examples in New Zealand and Norway, while three major mass shootings took place in the UK at Hungerford in 1987 (17 dead, including the killer), Dunblane in 1996 (18, including the killer), and in Cumbria in 2010 (13, including the killer).\r\n\r\nAs such killings become more frequent, it is easy to blame them on the ready availability of firearms and weak or non-existent background checks, even though many countries, including the UK, have extremely robust firearms legislation. What is more difficult to establish, however, is the motivation behind such some are occasioned by grievance, real or imagined, while others have their origins in a sense of failure or feelings of inadequacy. Other killers, however, seem to be driven by a desire for power over their fellow humans, often coupled with an overriding contempt for the lives of others. In search of answers to the questions raised, Christopher Berry-Dee offers case studies in some of the most infamous mass killings of the past fifty years, from school massacres to workplace killings, hate crimes to familicides. In doing so he demonstrates, chillingly, that such murders are almost impossible to predict, and therefore almost impossible to prevent.",
@@ -11687,7 +11685,7 @@
    "work": "OL1968368W",
    "title": "The 48 Laws of Power",
    "summary": "Amoral, cunning, ruthless, and instructive, this piercing work distills three thousand years of the history of power in to forty-eight well explicated laws. As attention--grabbing in its design as it is in its content, this bold volume outlines the laws of power in their unvarnished essence, synthesizing the philosophies of Machiavelli, Sun-tzu, Carl von Clausewitz, and other great thinkers. Some laws teach the need for prudence (\"Law 1: Never Outshine the Master\"), the virtue of stealth (\"Law 3: Conceal Your Intentions\"), and many demand the total absence of mercy (\"Law 15: Crush Your Enemy Totally\"), but like it or not, all have applications in real life. Illustrated through the tactics of Queen Elizabeth I, Henry Kissinger, P. T. Barnum, and other famous figures who have wielded--or been victimized by--power, these laws will fascinate any reader interested in gaining, observing, or defending against ultimate control.",
-   "year": 2005,
+   "year": 1998,
    "rating": 4.03,
    "authors": [
     "OL236414A"
@@ -11750,7 +11748,7 @@
    "work": "OL2629977W",
    "title": "The 7 Habits of Highly Effective People",
    "summary": "*New York Times bestseller—over 40 million copies sold*\r\n*The #1 Most Influential Business Book of the Twentieth Century*\r\n\r\nOne of the most inspiring and impactful books ever written, The 7 Habits of Highly Effective People has captivated readers for nearly three decades. It has transformed the lives of presidents and CEOs, educators and parents—millions of people of all ages and occupations. Now, this 30th anniversary edition of the timeless classic commemorates the wisdom of the 7 Habits with modern additions from Sean Covey.\r\n\r\nThe 7 Habits have become famous and are integrated into everyday thinking by millions and millions of people. Why? Because they work!\r\n\r\nWith Sean Covey’s added takeaways on how the habits can be used in our modern age, the wisdom of the 7 Habits will be refreshed for a new generation of leaders.",
-   "year": 2001,
+   "year": 1989,
    "rating": 4.04,
    "authors": [
     "OL383159A"
@@ -11813,7 +11811,7 @@
    "work": "OL471509W",
    "title": "The A.B.C. Murders",
    "summary": "There's a serial killer on the loose, bent on working his way though the alphabet.  There seems little chance of the murderer being caught - until her makes the crucial and vain mistake of challenging Hercule Poirot to frustrate his plans . . .",
-   "year": 1941,
+   "year": 1936,
    "rating": 4.03,
    "authors": [
     "OL27695A"
@@ -11876,15 +11874,15 @@
    "work": "OL262421W",
    "title": "The Adventures of Sherlock Holmes [12 stories]",
    "summary": "The Adventures of Sherlock Holmes is a collection of twelve short stories by Arthur Conan Doyle, first published on 14 October 1892. It contains the earliest short stories featuring the consulting detective Sherlock Holmes, which had been published in twelve monthly issues of The Strand Magazine from July 1891 to June 1892. The stories are collected in the same sequence, which is not supported by any fictional chronology. The only characters common to all twelve are Holmes and Dr. Watson and all are related in first-person narrative from Watson's point of view.\r\n\r\nContains:\r\n[Scandal in Bohemia](https://openlibrary.org/works/OL14930611W/A_Scandal_in_Bohemia)\r\n[Red-headed League](https://openlibrary.org/works/OL14930336W/The_Red-Headed_League)\r\n[Case of Identity](https://openlibrary.org/works/OL14929939W/A_Case_of_Identity)\r\n[Boscombe Valley Mystery](https://openlibrary.org/works/OL18495288W/The_Boscombe_Valley_Mystery)\r\n[Five Orange Pips](https://openlibrary.org/works/OL1518120W/Five_Orange_Pips)\r\n[Man with the Twisted Lip](https://openlibrary.org/works/OL14930258W/The_Man_With_the_Twisted_Lip)\r\n[Adventure of the Blue Carbuncle](https://openlibrary.org/works/OL1518317W/Adventure_of_the_Blue_Carbuncle)\r\n[Adventure of the Speckled Band](https://openlibrary.org/works/OL262561W/Adventure_of_the_Speckled_Band)\r\n[Adventure of the Engineer's Thumb](https://openlibrary.org/works/OL1518318W/Adventure_of_the_Engineer's_Thumb)\r\n[Adventure of the Noble Bachelor](https://openlibrary.org/works/OL14929841W/Adventure_of_the_Noble_Bachelor)\r\n[Adventure of the Beryl Coronet](https://openlibrary.org/works/OL14929825W/Adventure_of_the_Beryl_Coronet)\r\n[Adventure of the Copper Beeches](https://openlibrary.org/works/OL1518116W/Adventure_of_the_Copper_Beeches)\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Adventures and Memoirs of Sherlock Holmes](https://openlibrary.org/works/OL1518128W)\r\n- [Adventures of Sherlock Holmes](https://openlibrary.org/works/OL20624138W)\r\n- [Celebrated Cases of Sherlock Holmes](https://openlibrary.org/works/OL16076930W)\r\n- [Complete Sherlock Holmes](https://openlibrary.org/works/OL18188824W)\r\n- [Complete Sherlock Holmes: Volume I](https://openlibrary.org/works/OL14929975W)\r\n- [Illustrated Sherlock Holmes](https://openlibrary.org/works/OL1518342W)\r\n- [Obras completas de Conan Doyle: II](https://openlibrary.org/works/OL20787319W)\r\n- [Original Illustrated Sherlock Holmes](https://openlibrary.org/works/OL262528W)\r\n- [Original Illustrated 'Strand' Sherlock Holmes](https://openlibrary.org/works/OL262529W)\r\n- [Short Stories](https://openlibrary.org/works/OL18188661W)\r\n- [Works](https://openlibrary.org/works/OL16173818W)\r\n- [Works](https://openlibrary.org/works/OL14930383W)",
-   "year": 2005,
-   "rating": 4.16,
+   "year": 1892,
+   "rating": 4.17,
    "authors": [
     "OL161167A"
    ],
    "genres": [
     "classics",
-    "crime fiction",
     "dark fantasy",
+    "detective",
     "literary fiction",
     "mystery"
    ],
@@ -11901,14 +11899,14 @@
      ]
     },
     {
-     "isbn": "9781507761663",
+     "isbn": "9781785999284",
      "kind": "Paperback",
-     "publisher": "Amazon?",
-     "year": null,
+     "publisher": "Arcturus Publishing",
+     "year": 2019,
      "language": "eng",
-     "pages": 176,
+     "pages": 286,
      "covers": [
-      13389294
+      13422980
      ]
     },
     {
@@ -11937,7 +11935,7 @@
    "work": "OL53919W",
    "title": "The Adventures of Tom Sawyer",
    "summary": "Mark Twain created the memorable characters Tom Sawyer and Huckleberry Finn drawing from the experiences of boys he grew up with in Missouri. Set by the Mississippi River in the 1840's, it follows these boys as they get into predicament after predicament. Tom's classic whitewashing of the fence has become part of American legend, and the book paints a nostalgic picture of life in the middle of the nineteenth century. Tom runs away from home to an island in the river, chases Injun Joe and his treasure, and even gets trapped in a cave for days with Becky Thatcher. The book is one of Twain's most beloved stories.",
-   "year": 1973,
+   "year": 1876,
    "rating": 3.95,
    "authors": [
     "OL18319A"
@@ -11962,14 +11960,14 @@
      ]
     },
     {
-     "isbn": "9783257213690",
+     "isbn": "9780140439571",
      "kind": "Paperback",
-     "publisher": "Not Avail",
-     "year": null,
+     "publisher": "Penguin Books Ltd",
+     "year": 2002,
      "language": "eng",
-     "pages": 256,
+     "pages": 208,
      "covers": [
-      11550826
+      11399786
      ]
     },
     {
@@ -12000,7 +11998,7 @@
    "work": "OL1968364W",
    "title": "The Art of Seduction",
    "summary": "This mesmerizing exploration of the most subtle, elusive, and effective form of power is a masterful analysis of civilization's greatest seducers, from Cleopatra to JFK, as well as the classic literature of seduction from Freud to Kierkegaard and Ovid to Casanova. Robert Greene once again identifies the rules of a timeless, amoral game and explores how to cast a spell, break down resistance, and, ultimately, compel a target to surrender. Presenting the timeless profiles of each type of seducer and the twenty-four maneuvers that will guide you step by step in the game of seduction, The Art of Seduction is an indispensable primer of persuasion that reveals the timeless power of this age-old art.",
-   "year": 2003,
+   "year": 2001,
    "rating": 4.02,
    "authors": [
     "OL236414A"
@@ -12130,9 +12128,9 @@
     "OL19981A"
    ],
    "genres": [
-    "crime fiction",
-    "dystopian",
+    "horror",
     "literary fiction",
+    "psychological thriller",
     "science fiction",
     "suspense"
    ],
@@ -12315,7 +12313,7 @@
    "work": "OL1865528W",
    "title": "The Bell Jar",
    "summary": "The Bell Jar is the only novel written by American poet Sylvia Plath. It is an intensely realistic and emotional record of a successful and talented young woman's descent into madness.",
-   "year": 2006,
+   "year": 1963,
    "rating": 4.17,
    "authors": [
     "OL4327652A"
@@ -12441,7 +12439,7 @@
    "work": "OL5819456W",
    "title": "The Book Thief",
    "summary": "The extraordinary, beloved novel about the ability of books to feed the soul even in the darkest of times.\r\n\r\nWhen Death has a story to tell, you listen.\r\n\r\nIt is 1939. Nazi Germany. The country is holding its breath. Death has never been busier, and will become busier still.\r\n\r\nLiesel Meminger is a foster girl living outside of Munich, who scratches out a meager existence for herself by stealing when she encounters something she can’t resist–books. With the help of her accordion-playing foster father, she learns to read and shares her stolen books with her neighbors during bombing raids as well as with the Jewish man hidden in her basement. \r\n\r\nIn superbly crafted writing that burns with intensity, award-winning author Markus Zusak, author of I Am the Messenger, has given us one of the most enduring stories of our time.\r\n \r\n“The kind of book that can be life-changing.” —The New York Times",
-   "year": 2008,
+   "year": 2005,
    "rating": 4.15,
    "authors": [
     "OL1425869A",
@@ -12631,7 +12629,7 @@
    "work": "OL3335245W",
    "title": "The Catcher in the Rye",
    "summary": "Story of Holden Caufield with his idiosyncrasies, penetrating insight, confusion, sensitivity and negativism. Holden, knowing he is to be expelled from school, decides to leave early. He spends three days in New York City and tells the story of what he did and suffered there.",
-   "year": 1945,
+   "year": 1951,
    "rating": 3.61,
    "authors": [
     "OL540486A",
@@ -12692,7 +12690,7 @@
    "work": "OL273644W",
    "title": "The Color Purple",
    "summary": "The Color Purple is a 1982 epistolary novel by American author Alice Walker which won the 1983 Pulitzer Prize for Fiction and the National Book Award for Fiction.\r\n\r\nThe novel has been the frequent target of censors and appears on the American Library Association list of the 100 Most Frequently Challenged Books of 2000–2009 at number seventeenth because of the sometimes explicit content, particularly in terms of violence. In 2003, the book was listed on the BBC's The Big Read poll of the UK's \"best-loved novels.\"\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [The Third Life of Grange Copeland / Meridian / The Color Purple](https://openlibrary.org/works/OL18025207W/The_Third_Life_of_Grange_Copeland_Meridian_The_Color_Purple)",
-   "year": 1983,
+   "year": 1982,
    "rating": 4.16,
    "authors": [
     "OL217774A"
@@ -12816,7 +12814,7 @@
    "work": "OL2965102W",
    "title": "The Curious Incident of the Dog in the Night-Time",
    "summary": "This is Christopher's murder mystery story. There are no lies in this story because Christopher can't tell lies. Christopher does not like strangers or the colours yellow or brown or being touched. On the other hand, he knows all the countries in the world and their capital cities and every prime number up to 7507. When Christohper decides to find out who killed the neighbour's dog, his mystery story becomes more complicated than he could ever have predicted.",
-   "year": 2004,
+   "year": 2002,
    "rating": 3.94,
    "authors": [
     "OL453119A"
@@ -12877,7 +12875,7 @@
    "work": "OL76837W",
    "title": "The Da Vinci Code",
    "summary": "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It is Brown's second novel to include the character Robert Langdon: the first was his 2000 novel Angels & Demons. The Da Vinci Code follows \"symbologist\" Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris causes them to become involved in a battle between the Priory of Sion and Opus Dei over the possibility of Jesus Christ and Mary Magdalene having had a child together.\r\n\r\n\r\n----------\r\nSee also:\r\n[The Da Vinci Code [1/2]](https://openlibrary.org/works/OL24164822W)\r\n[The Da Vinci Code [2/2]](https://openlibrary.org/works/OL24210437W)\r\n\r\n\t\t\r\nContained in:\r\n[Angels & Demons / The Da Vinci Code](https://openlibrary.org/works/OL15290520W)",
-   "year": 2004,
+   "year": 2003,
    "rating": 3.92,
    "authors": [
     "OL39307A"
@@ -13066,7 +13064,7 @@
    "work": "OL257746W",
    "title": "The Eyes of Darkness",
    "summary": "Tina Evans has spent a year suffering from incredible heartache since her son Danny's tragic death. But now, with her Vegas show about to premiere, Tina can think of no better time for a fresh start. Maybe she can finally move on and put her grief behind her.\r\n\r\nOnly there is a message for Tina, scrawled on the chalkboard in Danny's room: NOT DEAD. Two words that send her on a terrifying journey from the bright lights of Las Vegas to the cold shadows of the High Sierras, where she uncovers a terrible secret..",
-   "year": 1993,
+   "year": 1981,
    "rating": 3.87,
    "authors": [
     "OL33088A"
@@ -13189,7 +13187,7 @@
    "work": "OL27513W",
    "title": "The Fellowship of the Ring",
    "summary": "One Ring to rule them all, One Ring to find them, One Ring to bring them all and in the darkness bind them.\r\n\r\n“A unique, wholly realized other world, evoked from deep in the well of Time, massively detailed, absorbingly entertaining, profound in meaning.”—The New York Times\r\n\r\nIn ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him. After many ages it fell into the hands of Bilbo Baggins, as told in The Hobbit. In a sleepy village in the Shire, young Frodo Baggins finds himself faced with an immense task, as his elderly cousin Bilbo entrusts the Ring to his care. Frodo must leave his home and make a perilous journey across Middle-earth to the Cracks of Doom, there to destroy the Ring and foil the Dark Lord in his evil purpose.",
-   "year": 1972,
+   "year": 1954,
    "rating": 4.35,
    "authors": [
     "OL26320A"
@@ -13317,7 +13315,7 @@
    "work": "OL1846076W",
    "title": "The Giver",
    "summary": "At the age of twelve, Jonas, a young boy from a seemingly utopian, futuristic world, is singled out to receive special training from The Giver, who alone holds the memories of the true joys and pain of life.",
-   "year": 1999,
+   "year": 1993,
    "rating": 4.03,
    "authors": [
     "OL221009A"
@@ -13382,7 +13380,7 @@
    "work": "OL1673205W",
    "title": "The Godfather",
    "summary": "The Godfather is a crime novel by American author Mario Puzo. Originally published in 1969 by G. P. Putnam's Sons, the novel details the story of a fictional Mafia family in New York City (and Long Beach, New York), headed by Vito Corleone. Puzo's dedication for The Godfather is \"For Anthony Cleri\". The novel's epigraph is by the French author Honoré de Balzac: \"Behind every great fortune there is a crime.\" The novel covers the years 1945 to 1955 and includes the back story of Vito Corleone from early childhood to adulthood.\r\n\r\n\r\n----------\r\nAlso contained in:\r\n\r\n - [The Godfather / The Fortunate Pilgrim](https://openlibrary.org/works/OL7920005W)\r\n - [The Godfather / The Last Don](https://openlibrary.org/works/OL1673242W)",
-   "year": 2004,
+   "year": 1969,
    "rating": 4.29,
    "authors": [
     "OL188486A"
@@ -13445,7 +13443,7 @@
    "work": "OL468431W",
    "title": "The Great Gatsby",
    "summary": "Here is a novel, glamorous, ironical, compassionate – a marvelous fusion into unity of the curious incongruities of the life of the period – which reveals a hero like no other – one who could live at no other time and in no other place. But he will live as a character, we surmise, as long as the memory of any reader lasts.\r\n\r\n\"There was something gorgeous about him, some heightened sensitivity to the promises of life.... It was an extraordinary gift for hope, a romantic readiness such as I have never found in any other person and which it is not likely I shall ever find again.\"\r\n\r\nIt is the story of this Jay Gatsby who came so mysteriously to West Egg, of his sumptuous entertainments, and of his love for Daisy Buchanan – a story that ranges from pure lyrical beauty to sheer brutal realism, and is infused with a sense of the strangeness of human circumstance in a heedless universe.\r\n\r\nIt is a magical, living book, blended of irony, romance, and mysticism.\r\n\r\n\\--first edition jacket\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [The Fitzgerald Reader](https://openlibrary.org/works/OL468551W/The_Fitzgerald_Reader)\r\n- [Three Novels of F. Scott Fitzgerald](https://openlibrary.org/works/OL468557W)",
-   "year": 2007,
+   "year": 1925,
    "rating": 3.99,
    "authors": [
     "OL27349A"
@@ -13508,7 +13506,7 @@
    "work": "OL81629W",
    "title": "The Green Mile",
    "summary": "The Green Mile is a 1996 serial novel by American writer Stephen King. It tells the story of death row supervisor Paul Edgecombe's encounter with John Coffey, an unusual inmate who displays inexplicable healing and empathetic abilities. The serial novel was originally released in six volumes before being republished as a single-volume work. The book is an example of magical realism.\r\n\r\nThe Green Mile won the Bram Stoker Award for Best Novel in 1996. In 1997, The Green Mile was nominated as Best Novel for the British Fantasy Award and the Locus Award. In 2003 the book was listed on the BBC's The Big Read poll of the UK's \"best-loved novel\".\r\n\r\n---\r\n\r\nContains:\r\n\r\n1. [The Two Dead Girls](https://openlibrary.org/works/OL149165W/The_Two_Dead_Girls)\r\n2. [The Mouse on the Mile](https://openlibrary.org/works/OL149147W/The_Mouse_on_the_Mile)\r\n3. [Coffey's Hands](https://openlibrary.org/works/OL149107W/Coffey's_Hands)\r\n4. [The Bad Death of Eduard Delacroix](https://openlibrary.org/works/OL15861106W/The_Bad_Death_of_Eduard_Delacroix)\r\n5. [Night Journey](https://openlibrary.org/works/OL16252000W/Night_Journey)\r\n6. [Coffey on the Mile](https://openlibrary.org/works/OL15136222W/Coffey_on_the_Mile)",
-   "year": 1998,
+   "year": 1996,
    "rating": 4.32,
    "authors": [
     "OL19981A"
@@ -13571,15 +13569,15 @@
    "work": "OL81628W",
    "title": "The Gunslinger",
    "summary": "[The Dark Tower][1] I\r\n\r\nThe Gunslinger is a dark-fantasy by American author Stephen King. It is the first volume in the Dark Tower series.\r\n\r\nThe Gunslinger was first published in 1982 as a fix-up novel, joining five short stories that had been published between 1978 and 1981. King substantially revised the novel in 2003; this version has remained in print ever since, with the subtitle RESUMPTION.\r\n\r\nThe story centers upon Roland Deschain, the last gunslinger, who has been chasing his adversary, \"the man in black,\" for many years. The novel fuses Western fiction with fantasy, science fiction, and horror, following Roland's trek through a vast desert and beyond in search of the man in black. Roland meets several people along his journey, including a boy named Jake Chambers, who travels with him part of the way.\r\n\r\n\"The Gunslinger\" (October 1978)\r\n\"The Way Station\" (April 1980)\r\n\"The Oracle and the Mountains\" (February 1981)\r\n\"The Slow Mutants\" (July 1981)\r\n\"The Gunslinger and the Dark Man\" (November 1981)\r\n\r\n  [1]: https://openlibrary.org/works/OL81600W/The_Dark_Tower_1-7",
-   "year": 1976,
+   "year": 1982,
    "rating": 4.04,
    "authors": [
     "OL19981A"
    ],
    "genres": [
     "adventure",
+    "epic fantasy",
     "fantasy",
-    "horror",
     "literary fiction",
     "science fiction"
    ],
@@ -13636,7 +13634,7 @@
    "work": "OL675783W",
    "title": "The Handmaid's Tale",
    "summary": "The Handmaid's Tale is a dystopian novel by Canadian author Margaret Atwood, published in 1985. It is set in a near-future New England, in a strongly patriarchal, totalitarian theonomic state, known as the Republic of Gilead, which has overthrown the United States government. The central character and narrator is a woman named Offred, one of the group known as \"handmaids\", who are forcibly assigned to produce children for the \"commanders\" — the ruling class of men in Gilead.\r\n\r\nThe novel explores themes of subjugated women in a patriarchal society, loss of female agency and individuality, and the various means by which they resist and attempt to gain individuality and independence.\r\n\r\nThe Handmaid's Tale won the 1985 Governor General's Award and the first Arthur C. Clarke Award in 1987; it was also nominated for the 1986 Nebula Award, the 1986 Booker Prize, and the 1987 Prometheus Award.\r\n\r\n\r\n----------\r\nAlso contained in:\r\n[Novels](https://openlibrary.org/works/OL24301311W)",
-   "year": 1986,
+   "year": 1985,
    "rating": 3.97,
    "authors": [
     "OL52922A"
@@ -13762,7 +13760,7 @@
    "work": "OL2163649W",
    "title": "The Hitchhiker's Guide to the Galaxy",
    "summary": "The Hitchhiker's Guide to the Galaxy is the first of six books in the Hitchhiker's Guide to the Galaxy comedy science fiction \"hexalogy\" by Douglas Adams. The novel is an adaptation of the first four parts of Adams's radio series of the same name. The novel was first published in London on 12 October 1979. It sold 250,000 copies in the first three months.\r\n\r\nThe namesake of the novel is The Hitchhiker's Guide to the Galaxy, a fictional guide book for hitchhikers (inspired by the Hitch-hiker's Guide to Europe) written in the form of an encyclopaedia.\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [The Hitch Hiker's Guide to the Galaxy: A Trilogy in Four Parts](https://openlibrary.org/works/OL2163692W)\r\n- [The More than Complete Hitchhiker's Guide](https://openlibrary.org/works/OL2163713W)\r\n- [Ultimate Hitchhiker's Guide to the Galaxy](https://openlibrary.org/works/OL2163706W)",
-   "year": 1984,
+   "year": 1979,
    "rating": 4.51,
    "authors": [
     "OL272947A"
@@ -13825,7 +13823,7 @@
    "work": "OL27482W",
    "title": "The Hobbit",
    "summary": "The Hobbit is a tale of high adventure, undertaken by a company of dwarves in search of dragon-guarded gold. A reluctant partner in this perilous quest is Bilbo Baggins, a comfort-loving unambitious hobbit, who surprises even himself by his resourcefulness and skill as a burglar.\r\n\r\nEncounters with trolls, goblins, dwarves, elves, and giant spiders, conversations with the dragon, Smaug, and a rather unwilling presence at the Battle of Five Armies are just some of the adventures that befall Bilbo.\r\n\r\nBilbo Baggins has taken his place among the ranks of the immortals of children’s fiction. Written by Professor Tolkien for his children, The Hobbit met with instant critical acclaim when published.",
-   "year": 1938,
+   "year": 1937,
    "rating": 4.29,
    "authors": [
     "OL26320A"
@@ -14083,8 +14081,8 @@
    ],
    "genres": [
     "biography",
+    "crime fiction",
     "literary fiction",
-    "science",
     "sociology",
     "true crime"
    ],
@@ -14137,7 +14135,7 @@
    "work": "OL273184W",
    "title": "The Intelligent Investor",
    "summary": "This classic text is annotated to update Graham's timeless wisdom for today's market conditions... \r\n\r\nThe greatest investment advisor of the twentieth century, Benjamin Graham, taught and inspired people worldwide. Graham's philosophy of \"value investing\" -- which shields investors from substantial error and teaches them to develop long-term strategies -- has made *The Intelligent Investor* the stock market bible ever since its original publication in 1949.\r\n\r\nOver the years, market developments have proven the wisdom of Graham's strategies. While preserving the integrity of Graham's original text, this revised edition includes updated commentary by noted financial journalist Jason Zweig, whose perspective incorporates the realities of today's market, draws parallels between Graham's examples and today's financial headlines, and gives readers a more thorough understanding of how to apply Graham's principles.\r\n\r\nVital and indispensable, this HarperBusiness Essentials edition of *The Intelligent Investor* is the most important book you will ever read on how to reach your financial goals.",
-   "year": 2005,
+   "year": 1949,
    "rating": 4.12,
    "authors": [
     "OL69672A"
@@ -14262,7 +14260,7 @@
    "work": "OL5781992W",
    "title": "The Kite Runner",
    "summary": "The unforgettable, heartbreaking story of the unlikely friendship between a wealthy boy and the son of his father’s servant, The Kite Runner is a beautifully crafted novel set in a country that is in the process of being destroyed. It is about the power of reading, the price of betrayal, and the possibility of redemption; and an exploration of the power of fathers over sons—their love, their sacrifices, their lies.\r\n\r\nA sweeping story of family, love, and friendship told against the devastating backdrop of the history of Afghanistan over the last thirty years, The Kite Runner is an unusual and powerful novel that has become a beloved, one-of-a-kind classic.\r\n([source][1])\r\n\r\n\r\n  [1]: https://khaledhosseini.com/books/the-kite-runner/",
-   "year": 2004,
+   "year": 2003,
    "rating": 4.07,
    "authors": [
     "OL1412764A"
@@ -14325,7 +14323,7 @@
    "title": "The Last Olympian",
    "summary": "All year the half-bloods have been preparing for battle against the Titans, knowing the odds of victory are grim. Kronos's army is stronger than ever, and with every god and half-blood he recruits, the evil Titan's power only grows. While the Olympians struggle to contain the rampaging monster Typhon, Kronos begins his advance on New York City, where Mount Olympus stands virtually unguarded. Now it's up to Percy Jackson and an army of young demigods to stop the Lord of Time.\r\nIn this momentous final book in the New York Times best-selling Percy Jackson and the Olympians series, the long-awaited prophecy surrounding Percy's sixteenth birthday unfolds. And as the battle for Western civilization rages on the streets of Manhattan, Percy faces a terrifying suspicion that he may be fighting against his own fate.",
    "year": 2009,
-   "rating": 4.43,
+   "rating": 4.44,
    "authors": [
     "OL30765A"
    ],
@@ -14508,7 +14506,7 @@
    "work": "OL71037W",
    "title": "The Lion, the Witch and the Wardrobe",
    "summary": "Four adventurous siblings—Peter, Susan, Edmund, and Lucy Pevensie—step through a wardrobe door and into the land of Narnia, a land frozen in eternal winter and enslaved by the power of the White Witch. But when almost all hope is lost, the return of the Great Lion, Aslan, signals a great change . . . and a great sacrifice.\r\n\r\nJourney into the land beyond the wardrobe! The Lion, the Witch and the Wardrobe is the second book in C. S. Lewis's classic fantasy series, which has been captivating readers of all ages for over sixty years. This is a stand-alone novel, but if you would like journey back to Narnia, read The Horse and His Boy, the third book in The Chronicles of Narnia.\r\n([source](http://www.cslewis.com/us/books/hardcover/the-lion-the-witch-and-the-wardrobe/9780060234812/))\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Chronicles of Narnia](https://openlibrary.org/works/OL70988W/The_Chronicles_of_Narnia)\r\n- [Tales of Narnia](https://openlibrary.org/works/OL71080W)",
-   "year": 1968,
+   "year": 1950,
    "rating": 4.13,
    "authors": [
     "OL31574A"
@@ -14636,7 +14634,7 @@
    "work": "OL27448W",
    "title": "The Lord of the Rings",
    "summary": "Originally published from 1954 through 1956, J.R.R. Tolkien's richly complex series ushered in a new age of epic adventure storytelling. A philologist and illustrator who took inspiration from his work, Tolkien invented the modern heroic quest novel from the ground up, creating not just a world, but a domain, not just a lexicon, but a language, that would spawn countless imitators and lead to the inception of the epic fantasy genre. Today, THE LORD OF THE RINGS is considered \"the most influential fantasy novel ever written.\" (THE ENCYCLOPEDIA OF FANTASY)\r\n\r\nDuring his travels across Middle-earth, the hobbit Bilbo Baggins had found the Ring. But the simple band of gold was far from ordinary; it was in fact the One Ring - the greatest of the ancient Rings of Power. Sauron, the Dark Lord, had infused it with his own evil magic, and when it was lost, he was forced to flee into hiding.\r\n\r\nBut now Sauron's exile has ended and his power is spreading anew, fueled by the knowledge that his treasure has been found. He has gathered all the Great Rings to him, and will stop at nothing to reclaim the One that will complete his dominion. The only way to stop him is to cast the Ruling Ring deep into the Fire-Mountain at the heart of the land of Mordor--Sauron's dark realm.\r\n\r\nFate has placed the burden in the hands of Frodo Baggins, Bilbo's heir...and he is resolved to bear it to its end. Or his own.\r\n\r\n---\r\n\r\n**Contains**\r\n\r\n- [The Fellowship of the Ring](https://openlibrary.org/works/OL14933414W/The_Fellowship_of_the_Ring)\r\n- [The Two Towers](https://openlibrary.org/works/OL27479W/The_Two_Towers)\r\n- [The Return of the King](https://openlibrary.org/works/OL27516W/The_Return_of_the_King)\r\n- [The Lord of the Rings \\[2/2\\]](https://openlibrary.org/works/OL27306128W)\r\n- [The Lord of the Rings \\[1/6\\]](https://openlibrary.org/works/OL24170898W)\r\n- [The Lord of the Rings \\[1/9\\]](https://openlibrary.org/works/OL27305953W)\r\n- [The Lord of the Rings \\[2/9\\]](https://openlibrary.org/works/OL27305892W)\r\n- [The Lord of the Rings \\[3/9\\]](https://openlibrary.org/works/OL27306048W)",
-   "year": 2001,
+   "year": 1965,
    "rating": 4.46,
    "authors": [
     "OL26320A"
@@ -15035,7 +15033,7 @@
    "work": "OL276492W",
    "title": "The Monk Who Sold His Ferrari",
    "summary": "Includes a bonus excerpt of Robin Sharma's upcoming The Secret Letters of the Monk Who Sold His Ferrari.\r\n\r\nWith more than four million copies sold in fifty-one languages, The Monk Who Sold His Ferrari launched a bestselling series and continues to help people from every walk of life live with far greater success, happiness and meaning in these times of dramatic uncertainty.\r\n\r\nThe Monk Who Sold His Ferrari celebrates the story of Julian Mantle, a successful but misguided lawyer whose physical and emotional collapse propels him to confront his life. The result is an engaging odyssey on how to release your potential and live with passion, purpose and peace.\r\n\r\nA brilliant blend of timeless wisdom and cutting-edge success principles, The Monk Who Sold His Ferrari is now, more than ever, a guide for the times, as countless Canadians dedicate themselves to living a life where family, work and personal fulfillment are achieved in harmonious balance.",
-   "year": 1999,
+   "year": 1997,
    "rating": 3.91,
    "authors": [
     "OL221968A"
@@ -15146,7 +15144,7 @@
    "work": "OL471932W",
    "title": "The Murder of Roger Ackroyd",
    "summary": "Belgian Inspector Hercule Poirot has retired to the countryside in the small English village of King's Abbot. Dr. Sheppard, observing his new neighbor, is sure that he must be a former hairdresser. But the brutal murder of a local squire reveals the truth: the peculiar little man is actually a detective par excellence. The Murder of the wealthy industrialist Roger Ackroyd begins the night before with the suicide of Mrs. Ferrars, a wealthy widow. Her death is believed to be an accident, until Roger Ackroyd is stabbed to death in his locked study. There are rumors she poisoned her first husband, rumors that she was being blackmailed, rumors that her secret lover was Roger Ackroyd, a man who knew too much, but no one is sure.\r\n\r\nThere's no shortage of suspects, all the members of the household stand to gain from his death, from Roger's neurotic sister-in-law who has accumulated personal debts, to a parlormaid with an uncertain history who resigned her post the afternoon of the murder. But the police focus on Ralph Paton, Ackroyd's stepson and heir, and the person with the most to gain from Roger's death. When sleuth Hercule Poirot, who is living quietly in King's Abbot, agrees to investigate, the case takes a completely different turn. Poirot exonerates all of the original suspects, and lays out a completely reasoned case that the clever and devious murderer is someone who had not come under suspicion at all - someone whose motive has nothing to do with money.\r\n([source](https://www.agathachristie.com/stories/the-murder-of-roger-ackroyd))\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Five Classic Murder Mysteries](https://openlibrary.org/works/OL471533W)\r\n- [Masterpieces of Murder](https://openlibrary.org/works/OL471974W)\r\n- [More Stories to Remember: Volume II](https://openlibrary.org/works/OL15146874W)\r\n- [The Murder of Roger Ackroyd / The Mystery of the Blue Train / Dumb Witness / Death on the Nile](https://openlibrary.org/works/OL20909872W)\r\n- [Murders to die for](https://openlibrary.org/works/OL27311029W)\r\n- [Novels](https://openlibrary.org/works/OL24535152W)\r\n- [Novels](https://openlibrary.org/works/OL26432485W)\r\n- [Works](https://openlibrary.org/works/OL17307260W/Works)",
-   "year": 2003,
+   "year": 1926,
    "rating": 4.23,
    "authors": [
     "OL27695A"
@@ -15216,9 +15214,9 @@
     "OL9118672A"
    ],
    "genres": [
+    "children's fiction",
     "fantasy",
     "literary fiction",
-    "travel",
     "war fiction",
     "young adult"
    ],
@@ -15390,8 +15388,8 @@
    "work": "OL8193416W",
    "title": "The Picture of Dorian Gray",
    "summary": "**The Picture of Dorian Gray** is a philosophical novel by Irish writer Oscar Wilde. A shorter novella-length version was published in the July 1890 issue of the American periodical *Lippincott’s Monthly Magazine*. The novel-length version was published in April 1891.\r\n\r\n(Source: [Wikipedia](https://en.wikipedia.org/wiki/The_Picture_of_Dorian_Gray))",
-   "year": 1993,
-   "rating": 4.17,
+   "year": 1890,
+   "rating": 4.18,
    "authors": [
     "OL20646A"
    ],
@@ -15451,7 +15449,7 @@
    "work": "OL5727686W",
    "title": "The Power of Now",
    "summary": "Eckhart Tolle has emerged as one of today's most inspiring teachers. In The Power of Now, already a worldwide bestseller, the author describes his transition from despair to self-realization soon after his 29th birthday. Tolle took another ten years to understand this transformation, during which time he evolved a philosophy that has parallels in Buddhism, relaxation techniques, and meditation theory but is also eminently practical. In The Power of Now he shows readers how to recognize themselves as the creators of their own pain, and how to have a pain-free existence by living fully in the present. Accessing the deepest self, the true self, can be learned, he says, by freeing ourselves from the conflicting, unreasonable demands of the mind and living \"present, fully, and intensely, in the Now.\"",
-   "year": 1999,
+   "year": 1997,
    "rating": 3.87,
    "authors": [
     "OL1392686A"
@@ -15514,7 +15512,7 @@
    "work": "OL2917168W",
    "title": "The Power of Positive Thinking",
    "summary": "In this phenomenal bestseller, “written with the sole objective of helping the reader achieve a happy, satisfying, and worthwhile life,” Dr. Peale demonstrates the power of faith in action. With the practical techniques outlined in this book, you can energize your life—and give yourself the initiative needed to carry out your ambitions and hopes. You’ll learn how to:\r\n\r\n· Believe in yourself and in everything you do\r\n· Build new power and determination\r\n· Develop the power to reach your goals\r\n· Break the worry habit and achieve a relaxed life\r\n· Improve your personal and professional relationships\r\n· Assume control over your circumstances\r\n· Be kind to yourself",
-   "year": 1998,
+   "year": 1952,
    "rating": 4.08,
    "authors": [
     "OL444324A"
@@ -15577,7 +15575,7 @@
    "work": "OL55806W",
    "title": "The Power of Your Subconscious Mind",
    "summary": "Examines the connection between the mental dynamics of thinking in relation to one's quality of life while offering simple techniques designed to create new, more innovative thought processes and stimulate creativity, in a revised and expanded edition of the best-selling work.",
-   "year": 1973,
+   "year": 1963,
    "rating": 3.91,
    "authors": [
     "OL31176A"
@@ -15639,7 +15637,7 @@
    "work": "OL1089297W",
    "title": "The Prince",
    "summary": "The Prince (Italian: Il Principe [il ˈprintʃipe]; Latin: De Principatibus) is a 16th-century political treatise written by Italian diplomat and political theorist Niccolò Machiavelli as an instruction guide for new princes and royals. The general theme of The Prince is of accepting that the aims of princes – such as glory and survival – can justify the use of immoral means to achieve those ends.\r\n\r\nFrom Machiavelli's correspondence, a version appears to have been distributed in 1513, using a Latin title, De Principatibus (Of Principalities). However, the printed version was not published until 1532, five years after Machiavelli's death. This was carried out with the permission of the Medici pope Clement VII, but \"long before then, in fact since the first appearance of The Prince in manuscript, controversy had swirled about his writings\".\r\n\r\nAlthough The Prince was written as if it were a traditional work in the mirrors for princes style, it was generally agreed as being especially innovative. This is partly because it was written in the vernacular Italian rather than Latin, a practice that had become increasingly popular since the publication of Dante's Divine Comedy and other works of Renaissance literature.",
-   "year": 1959,
+   "year": 1589,
    "rating": 3.87,
    "authors": [
     "OL23135A"
@@ -15698,7 +15696,7 @@
    "work": "OL3151202W",
    "title": "The private diary of Lyle Menendez",
    "summary": "The personal story of Lyle Menendez is based on a four-and-a-half-year intimate correspondence with the author and covers the murders of Jose and Kitty Menendez by Lyle and his brother Erik and the court trials that ended in hung juries.",
-   "year": 1995,
+   "year": 1993,
    "rating": 4.62,
    "authors": [
     "OL501274A"
@@ -15848,7 +15846,7 @@
    "work": "OL8165007W",
    "title": "The Richest Man in Babylon",
    "summary": "To bring your dreams and desires to fulfillment, you must be successful with money. This book shows you how to amass personal wealth by sharing the secrets of the ancient Babylonians, who were the first to discover the universal laws of prosperity.\r\n\r\nHailed as the greatest of all inspirational works on the subject of thrift, financial planning, and personal wealth, The Richest Man in Babylon is a timeless classic that holds the key to all you desire and everything you wish to accomplish. Through entertaining stories about the herdsmen, merchants, and tradesmen of ancient Babylon, George S. Clason provides concrete advice for creating, growing, and preserving wealth. Beloved by millions, this celebrated bestseller offers an understanding of, and a solution to, your personal financial problems. This is the book that holds the secrets to keeping your money and making more.\r\n\r\nFinancial principles covered in this book include:\r\nPay yourself first.\r\nDon't trust a bricklayer to buy jewels. (Don't get caught up in other people's excitement. Go seek the experts instead.)\r\nDon't put all your eggs in a single basket. (Diversify your portfolio.)\r\nControl thy expenses. (Even the richest man has a time constraint on his life. Do what you enjoy, but don't overdo it.)\r\nIncrease your ability to earn.\r\n\r\nKeeping these core principles in mind will help you through economic hard times and put you on the road to riches.",
-   "year": 1955,
+   "year": 1926,
    "rating": 4.2,
    "authors": [
     "OL2280043A"
@@ -15975,7 +15973,7 @@
    "work": "OL492646W",
    "title": "The Sea of Monsters",
    "summary": "After a year spent trying to prevent a catastropic war among the Greek gods, Percy Jackson finds his seventh-grade school year unnervingly quiet. His biggest problem is dealing with his new friend, Tyson--a six-foot-three, mentally challenged homeless kid who follows Percy everywhere, making it hard for Percy to have any \"normal\" friends.\r\n\r\nBut things don't stay quiet for long. Percy soon discovers there is trouble at Camp Half-Blood: The magical borders which protect Half-Blood Hill have been poisoned by a mysterious enemy, and the only safe haven for demigods is on the verge of being overrun by mythological monsters. To save the camp, Percy needs the help of his best friend, Grover, who has been taken prisoner by the Cyclops Polyphemus on an island somewhere in the Sea of Monsters--the dangerous waters Greek heroes have sailed for millenia--only today, the Sea of Monsters goes by a new name...the Bermuda Triangle.\r\n\r\nNow Percy and his friends--Grover, Annabeth, and Tyson--must retrieve the Golden Fleece from the Island of the Cyclopes by the end of the summer or Camp Half-Blood will be destroyed. But first, Percy will learn a stunning new secret about his family--one that makes him question whether being claimed as Poseidon's son is an honor or simply a cruel joke.",
-   "year": 2006,
+   "year": 2005,
    "rating": 4.45,
    "authors": [
     "OL30765A"
@@ -16039,7 +16037,7 @@
    "work": "OL15839737W",
    "title": "The Secret",
    "summary": "Fragments of a Great Secret have been found in the oral traditions, in literature, in religions and philosophies throughout the centuries. For the first time, all the pieces of The Secret come together in an incredible revelation that will be life-transforming for all who experience it. In this book, you'll learn how to use The Secret in every aspect of your life - money, health, relationships, happiness, and in every interaction you have in the world. You'll begin to understand the hidden, untapped power that's within you, and this revelation can bring joy to every aspect of your life. The Secret contains wisdom from modern-day teachers - men and women who have used it to achieve health, wealth, and happiness. By applying the knowledge of The Secret, they bring to light compelling stories of eradicating disease, acquiring massive wealth, overcoming obstacles, and achieving what many would regard as impossible.",
-   "year": 2000,
+   "year": 2006,
    "rating": 3.7,
    "authors": [
     "OL3096588A"
@@ -16099,7 +16097,7 @@
    "work": "OL69612W",
    "title": "The Secret Garden",
    "summary": "A ten-year-old orphan comes to live in a lonely house on the Yorkshire moors where she discovers an invalid cousin and the mysteries of a locked garden.",
-   "year": 2007,
+   "year": 1911,
    "rating": 3.94,
    "authors": [
     "OL23767A"
@@ -16352,7 +16350,7 @@
    "work": "OL81633W",
    "title": "The Shining",
    "summary": "The Shining is a 1977 horror novel by American author Stephen King. It is King's third published novel and first hardback bestseller; its success firmly established King as a preeminent author in the horror genre. The setting and characters are influenced by King's personal experiences, including both his visit to The Stanley Hotel in 1974 and his struggle with alcoholism. The book was followed by a sequel, Doctor Sleep, published in 2013.\r\n\r\nThe Shining centers on the life of Jack Torrance, a struggling writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel in the Colorado Rockies. His family accompanies him on this job, including his young son Danny Torrance, who possesses \"the shining\", an array of psychic abilities that allow Danny to see the hotel's horrific past. Soon, after a winter storm leaves them snowbound, the supernatural forces inhabiting the hotel influence Jack's sanity, leaving his wife and son in incredible danger.\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Carrie / Night Shift / 'Salem's Lot / Shining](https://openlibrary.org/works/OL14917547W)\r\n- [Works (Danse Macabre / Salem's Lot / Shining)](https://openlibrary.org/works/OL24233994W)",
-   "year": 1992,
+   "year": 1977,
    "rating": 4.19,
    "authors": [
     "OL19981A"
@@ -16416,7 +16414,7 @@
    "work": "OL19096402W",
    "title": "The Silent Patient",
    "summary": "Alicia Berenson’s life is seemingly perfect. One evening her husband Gabriel returns home late from a fashion shoot, and Alicia shoots him five times in the face, and then never speaks another word. Alicia’s refusal to talk, or give any kind of explanation, turns a domestic tragedy into something far grander, a mystery that captures the public imagination and casts Alicia into notoriety. The price of her art skyrockets, and she, the silent patient, is hidden away from the tabloids and spotlight at the Grove, a secure forensic unit in North London. Theo Faber is a criminal psychotherapist who has waited a long time for the opportunity to work with Alicia. His determination to get her to talk and unravel the mystery of why she shot her husband takes him down a twisting path into his own motivations–a search for the truth that threatens to consume him.",
-   "year": 2018,
+   "year": 2019,
    "rating": 4.06,
    "authors": [
     "OL7471384A"
@@ -16475,7 +16473,7 @@
    "work": "OL17793648W",
    "title": "The Silver Eyes (Five Nights At Freddy's #1)",
    "summary": "Ten years after the horrific murders at Freddy Fazbear's Pizza that ripped their town apart, Charlie, whose father owned the restaurant, and her childhood friends reunite on the anniversary of the tragedy and find themselves at the old pizza place which had been locked up and abandoned for years. After they discover a way inside, they realize that things are not as they used to be. The four adult-sized animatronic mascots that once entertained patrons have changed. They now have a dark secret . . . and a murderous agenda.",
-   "year": 2016,
+   "year": 2001,
    "rating": 4.58,
    "authors": [
     "OL7400619A",
@@ -16661,7 +16659,7 @@
    "work": "OL81618W",
    "title": "The Stand",
    "summary": "One man escapes from a biological weapon facility after an accident, carrying with him the deadly virus known as Captain Tripps, a rapidly mutating flu that - in the ensuing weeks - wipes out most of the world's population. In the aftermath, survivors choose between following an elderly black woman to Boulder or the dark man, Randall Flagg, who has set up his command post in Las Vegas. The two factions prepare for a confrontation between the forces of good and evil.\r\n([source][1])\r\n\r\n\r\n  [1]: https://stephenking.com/library/novel/stand_the.html",
-   "year": 1980,
+   "year": 1978,
    "rating": 4.31,
    "authors": [
     "OL19981A"
@@ -16669,9 +16667,9 @@
    "genres": [
     "horror",
     "literary fiction",
-    "research",
-    "thriller",
-    "war fiction"
+    "science fiction",
+    "suspense",
+    "thriller"
    ],
    "editions": [
     {
@@ -16724,7 +16722,7 @@
    "work": "OL24156W",
    "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
    "summary": "Mr. Gabriel Utterson is a serious, austere lawyer living a humdrum life in Victorian London. Yet there is a strange clause in his friend, Dr. Henry Jekyll's will: should he disappear for more than 3 months, everything will be inherited by Hyde. But after Edward Hyde's darker nature is revealed one dark winters night, Mr. Utterson begins to investigate the connection between the two men, and finds the dark secret binding them closer then he could have ever thought imaginable.\r\n\r\nAdapted countless times in film, some times in video game form, and referenced countless times in popular culture, here is the story that started it all: The Strange Case of Dr. Jekyll & Mr. Hyde!",
-   "year": 1875,
+   "year": 1886,
    "rating": 3.95,
    "authors": [
     "OL25963A"
@@ -16785,7 +16783,7 @@
    "work": "OL5819962W",
    "title": "The Summer I Turned Pretty",
    "summary": "This book is fresh fun and exciting. 15 year Belly Conklin is enjoying another summer with the people that she loves in Cousins, a place she's been going to since she was a baby! The fishers, Aka Jerimiah and Conrad, are finally grown up, and Belly feels like she can fit in aswell. Belly would be turning 16 this year, as now she feels as if she can fit in with the boys. She thinks the summer will be fun, Hanging out on the beach and Playing with the people she loves, Belly is looking foward to her summer vacation. But that's when she finds out that Susannah Fisher is diagnosed with Cancer, which changes everything. Things are different in the Summer house. Her first love, Conrad is different, he's distant. While the stay in the house was supposed to be enjoying, they need to focus on things that matter the most. Sussanah. Belly decides that it's time she acts like the adult that she is. Choosing between her 2 lovers Jerimiah and Conrad Fisher. Will either of them like her? Because this...Is the Summer I turned Pretty.",
-   "year": 2010,
+   "year": 2009,
    "rating": 4.27,
    "authors": [
     "OL1425972A"
@@ -16966,7 +16964,7 @@
    "work": "OL52267W",
    "title": "The Time Machine",
    "summary": "The Time Traveller, a dreamer obsessed with traveling through time, builds himself a time machine and, much to his surprise, travels over 800,000 years into the future. He lands in the year 802701: the world has been transformed by a society living in apparent harmony and bliss, but as the Traveler stays in the future he discovers a hidden barbaric and depraved subterranean class. Wells's transparent commentary on the capitalist society was an instant bestseller and launched the time-travel genre.",
-   "year": 2004,
+   "year": 1895,
    "rating": 4.01,
    "authors": [
     "OL13066A"
@@ -17092,7 +17090,7 @@
    "work": "OL52114W",
    "title": "The War of the Worlds",
    "summary": "The ultimate science fiction classic: for more than one hundred years, this compelling tale of the Martian invasion of Earth has enthralled readers with a combination of imagination and incisive commentary on the imbalance of power that continues to be relevant today. The style is revolutionary for its era, employing a sophisticated first and third person account of the events which is both personal and focused on the holistic downfall of Earth's society. The Martians, as evil, mechanical and unknown a threat they are, remain daunting in today's society, where, despite technology's mammoth advances, humanity's hegemony over Earth is yet to be called into question. In Well's introduction to the book, where the character discusses with the later deceased Ogilvy about astronomy and the possibility of alien life defeating the 'savage' (to them) nineteenth-century Britain, is he insinuating that this is the truth and fate of humanity? It's up to you to decide…",
-   "year": 2005,
+   "year": 1898,
    "rating": 3.83,
    "authors": [
     "OL13066A"
@@ -17282,7 +17280,7 @@
    "work": "OL891786W",
    "title": "Things Fall Apart",
    "summary": "Things Fall Apart is the debut novel by Nigerian author Chinua Achebe, first published in 1958. It depicts pre-colonial life in the southeastern part of Nigeria and the arrival of Europeans during the late 19th century. It is seen as the archetypal modern African novel in English, and one of the first to receive global critical acclaim. It is a staple book in schools throughout Africa and is widely read and studied in English-speaking countries around the world. The novel was first published in the UK in 1962 by William Heinemann Ltd, and became the first work published in Heinemann's African Writers Series.\r\n\r\nThe novel follows the life of Okonkwo, an Igbo (\"Ibo\" in the novel) man and local wrestling champion in the fictional Nigerian clan of Umuofia. The work is split into three parts, with the first describing his family, personal history, and the customs and society of the Igbo, and the second and third sections introducing the influence of European colonialism and Christian missionaries on Okonkwo, his family, and the wider Igbo community.\r\n\r\nThings Fall Apart was followed by a sequel, No Longer at Ease (1960), originally written as the second part of a larger work along with Arrow of God (1964). Achebe states that his two later novels A Man of the People (1966) and Anthills of the Savannah (1987), while not featuring Okonkwo's descendants, are spiritual successors to the previous novels in chronicling African history.\r\n\r\n\r\n----------\r\nContained in:\r\n[African Trilogy](https://openlibrary.org/works/OL891766W)",
-   "year": 1992,
+   "year": 1958,
    "rating": 3.92,
    "authors": [
     "OL78910A"
@@ -17290,9 +17288,9 @@
    "genres": [
     "children's fiction",
     "classics",
-    "contemporary fiction",
     "historical fiction",
-    "literary fiction"
+    "literary fiction",
+    "young adult"
    ],
    "editions": [
     {
@@ -17345,7 +17343,7 @@
    "work": "OL527464W",
    "title": "Think and Grow Rich",
    "summary": "Napoleon Hill's quintessential volume _Think and grow rich_, the all-time bestseller in the field of professional success, outlines the laws of success and sets the standard of today's motivational thinking.",
-   "year": 1993,
+   "year": 1937,
    "rating": 3.98,
    "authors": [
     "OL37117A"
@@ -17656,15 +17654,15 @@
    "work": "OL3140822W",
    "title": "To Kill a Mockingbird",
    "summary": "One of the best-loved stories of all time, To Kill a Mockingbird has been translated into more than 40 languages, sold more than 30 million copies worldwide, served as the basis for an enormously popular motion picture, and voted one of the best novels of the 20th century by librarians across the United States. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father -- a crusading local lawyer -- risks everything to defend a black man unjustly accused of a terrible crime.\r\n\r\nLawyer Atticus Finch defends Tom Robinson -- a black man charged with the rape of a white girl. Writing through the young eyes of Finch's children Scout and Jem, Harper Lee explores with rich humor and unswerving honesty the irrationality of adult attitudes toward race and class in small-town Alabama during the mid-1930s Depression years. The conscience of a town steeped in prejudice, violence, and hypocrisy is pricked by the stamina and quiet heroism of one man's struggle for justice. But the weight of history will only tolerate so much.\r\n\r\n---\r\n\r\nAlso contained in:\r\n\r\n- [Best Sellers from Reader's Digest Condensed Books](https://openlibrary.org/works/OL16035425W)",
-   "year": 1969,
+   "year": 1960,
    "rating": 4.13,
    "authors": [
     "OL498120A"
    ],
    "genres": [
+    "children's fiction",
     "classics",
     "contemporary fiction",
-    "domestic fiction",
     "legal thriller",
     "literary fiction"
    ],
@@ -17719,7 +17717,7 @@
    "work": "OL4461578W",
    "title": "Trading in the zone",
    "summary": "Maximizing the trader’s state of mind is the key to successful results. Conflicts, contradictions and paradoxes in thinking can spell disaster for even a highly motivated, astute and well grounded trader. Mark Douglas, a trader, personal trading coach, and industry consultant since 1982, sends the message that \"thinking strategy\" will profoundly influence a trader’s success rate. Douglas addresses five very specific issues to give traders the insight and understanding about themselves that will make them consistent winners in the market.Trading In The Zone offers specific solutions to the “people factor” of commodity price movement. It uncovers the true culprit for lack of consistency when it comes to stock picking: lack of focus and self-confidence. Through simple exercises, traders will learn how to think in terms of probabilities, and adopt the specific beliefs necessary to developing a winner’s mindset. Along the way, they’ll gain valuable insights into their own entrenched misconceptions about the market.Backed by compelling examples, Trading In The Zone adds a new dimension to getting an edge on the market. Through a better understanding of themselves, as well as of Wall Street’s realities, traders will come to leverage the power of their psyche for unprecedented profitability.",
-   "year": 2001,
+   "year": 2000,
    "rating": 4.3,
    "authors": [
     "OL889404A"
@@ -17770,8 +17768,8 @@
    "work": "OL24034W",
    "title": "Treasure Island",
    "summary": "Traditionally considered a coming-of-age story, Treasure Island is an adventure tale known for its atmosphere, characters and action, and also as a wry commentary on the ambiguity of morality — as seen in Long John Silver — unusual for children's literature then and now. It is one of the most frequently dramatized of all novels. The influence of Treasure Island on popular perceptions of pirates is enormous, including treasure maps marked with an \"X\", schooners, the Black Spot, tropical islands, and one-legged seamen carrying parrots on their shoulders",
-   "year": 1910,
-   "rating": 3.77,
+   "year": 1880,
+   "rating": 3.78,
    "authors": [
     "OL25963A"
    ],
@@ -17833,7 +17831,7 @@
    "work": "OL1822313W",
    "title": "Tuesdays with Morrie",
    "summary": "Tuesdays with Morrie is a memoir by American author Mitch Albom about a series of visits Albom made to his former sociology professor Morrie Schwartz, as Schwartz gradually dies of ALS. The book topped the New York Times Non-Fiction Best-Sellers List for 23 combined weeks in 2000, and remained on the New York Times best-selling list for more than four years after. In 2006, Tuesdays with Morrie was the bestselling memoir of all time.",
-   "year": 2002,
+   "year": 1997,
    "rating": 3.83,
    "authors": [
     "OL218444A"
@@ -17841,9 +17839,9 @@
    "genres": [
     "biography",
     "memoir",
+    "philosophy",
     "psychological fiction",
-    "psychology",
-    "sociology"
+    "psychology"
    ],
    "editions": [
     {
@@ -17895,7 +17893,7 @@
    "title": "Twilight",
    "summary": "About three things I was absolutely positive. First, Edward was a vampire. Second, there was a part of him -- and I didn't know how dominant that part might be -- that thirsted for my blood. And third, I was unconditionally and irrevocably in love with him. When Isabella Swan moves to the gloomy town of Forks and meets the mysterious, alluring Edward Cullen, her life takes a thrilling and terrifying turn. With his porcelain skin, golden eyes, mesmerizing voice, and supernatural gifts, Edward is both irresistible and impenetrable. Up until now, he has managed to keep his true identity hidden, but Bella is determined to uncover his dark secret. What Bella doesn't realize is the closer she gets to him, the more she is putting herself and those around her at risk. And, it might be too late to turn back. Deeply seductive and extraordinarily suspenseful, Twilight will have listeners riveted right until the end. -- Container.\r\n\r\nBella Swan and Edward Cullen, a pair of star-crossed lovers whose forbidden relationship ripens against the backdrop of small-town suspicion and a mysterious coven of vampires.",
    "year": 2005,
-   "rating": 3.68,
+   "rating": 3.69,
    "authors": [
     "OL1391085A"
    ],
@@ -17959,7 +17957,7 @@
    "title": "Twisted Games",
    "summary": "She can never be his…but he’s taking her anyway.\r\n\r\nStoic, broody, and arrogant, elite bodyguard Rhys Larsen has two rules: 1) Protect his clients at all costs 2) Do not become emotionally involved. Ever.\r\n\r\nHe has never once been tempted to break those rules…until her.\r\n\r\nBridget von Ascheberg. A princess with a stubborn streak that matches his own and a hidden fire that reduces his rules to ash. She’s nothing he expected and everything he never knew he needed.\r\n\r\nDay by day, inch by inch, she breaks down his defenses until he’s faced with a truth he can no longer deny: he swore an oath to protect her, but all he wants is to ruin her. Take her.\r\n\r\nBecause she’s his.\r\n\r\nHis princess.\r\n\r\nHis forbidden fruit.\r\n\r\nHis every depraved fantasy.\r\n\r\n***\r\n\r\nRegal, strong-willed, and bound by the chains of duty, Princess Bridget dreams of the freedom to live and love as she chooses.\r\n\r\nBut when her brother abdicates, she’s suddenly faced with the prospect of a loveless, politically expedient marriage and a throne she never wanted.\r\n\r\nAnd as she navigates the intricacies—and treacheries—of her new role, she must also hide her desire for a man she can’t have.\r\n\r\nHer bodyguard.\r\n\r\nHer protector.\r\n\r\nHer ultimate ruin.\r\n\r\n\r\nUnexpected and forbidden, theirs is a love that could destroy a kingdom…and doom them both.\r\n\r\n\r\nTwisted Games is a contemporary royal bodyguard romance. It’s book two of the Twisted series but can be read as a standalone.\r\n\r\nWarning: This book contains a possessive hero, explicit content, and profanity.",
    "year": 2021,
-   "rating": 4.06,
+   "rating": 4.07,
    "authors": [
     "OL9180803A"
    ],
@@ -18020,7 +18018,7 @@
    "title": "Twisted Hate",
    "summary": "He hates her...almost as much as he wants her.\r\n\r\nGorgeous, cocky, and fast on his way to becoming a hotshot doctor, Josh Chen has never met a woman he couldn’t charm—except for Jules f**king Ambrose.\r\n\r\nThe beautiful redhead has been a thorn in his side since they met, but she also consumes his thoughts in a way no woman ever has.\r\n\r\nWhen their animosity explodes into one unforgettable night, he proposes a solution that’ll get her out of his system once and for all: an enemies with benefits arrangement with simple rules.\r\n\r\nNo jealousy.\r\n\r\nNo strings attached.\r\n\r\nAnd absolutely no falling in love.\r\n\r\n**\r\n\r\nOutgoing and ambitious, Jules Ambrose is a former party girl who’s focused on one thing: passing the attorney’s bar exam.\r\n\r\nThe last thing she needs is to get involved with a doctor who puts the SUFFER in insufferable…no matter how good-looking he is.\r\n\r\nBut the more she gets to know him, the more she realizes there’s more than meets the eye to the man she’s hated for so long.\r\n\r\nHer best friend’s brother.\r\n\r\nHer nemesis.\r\n\r\nAnd her only salvation.\r\n\r\nTheirs is a match made in hell, and when the demons from their past catch up with them, they’re faced with truths that could either save them …or destroy everything they’ve worked for.\r\n\r\nTwisted Hate is a steamy enemies with benefits/enemies to lovers romance. It's book three in the Twisted series but can be read as a standalone.\r\n\r\nWarning: The story contains explicit content, mild violence, profanity, and topics that may be sensitive to some readers. Detailed list linked inside the book. Recommended for 18+.",
    "year": 2022,
-   "rating": 3.82,
+   "rating": 3.81,
    "authors": [
     "OL9180803A"
    ],
@@ -18087,10 +18085,10 @@
    ],
    "genres": [
     "drama",
+    "literary fiction",
     "mystery",
     "romance",
-    "suspense",
-    "thriller"
+    "suspense"
    ],
    "editions": [
     {
@@ -18142,7 +18140,7 @@
    "title": "Twisted Love",
    "summary": "He has a heart of ice … but for her, he'd burn the world. Alex Volkov is a devil blessed with the face of an angel and cursed with a past he can't escape. Driven by a tragedy that has haunted him for most of his life, his ruthless pursuits for success and vengeance leave little room for matters of the heart. But when he's forced to look after his best friend's sister, he starts to feel something in his chest: A crack. A melt. A fire that could end his world as he knew it.\r\n\r\nAva Chen is a free spirit trapped by nightmares of a childhood she can't remember. But despite her broken past, she's never stopped seeing the beauty in the world … including the heart beneath the icy exterior of a man she shouldn't want. Her brother's best friend. Her neighbor. Her savior and her downfall. Theirs is a love that was never supposed to happen - but when it does, it unleashes secrets that could destroy them both … and everything they hold dear. Twisted Love is a brother's best friend/opposites attract romance with a hint of suspense. It's book one in the Twisted series, but can be read as a standalone. WARNING: This book contains a possessive alpha/antihero, explicit sexual content, and profanity. No cheating or ménage, but if you're looking for a traditionally sweet, loveable hero, this is not the book for you. Recommended for 18+.",
    "year": 2021,
-   "rating": 3.8,
+   "rating": 3.81,
    "authors": [
     "OL9180803A"
    ],
@@ -18387,7 +18385,7 @@
    "work": "OL267171W",
    "title": "War and Peace",
    "summary": "War and Peace delineates in graphic detail events surrounding the French invasion of Russia, and the impact of the Napoleonic era on Tsarist society, as seen through the eyes of five Russian aristocratic families.\r\nThe novel begins in the year 1805 during the reign of Tsar Alexander I and leads up to the 1812 French invasion of Russia by Napoleon. The era of Catherine the Great (1762–1796), when the royal court in Paris was the centre of western European civilization,[16] is still fresh in the minds of older people. Catherine, fluent in French and wishing to reshape Russia into a great European nation, made French the language of her royal court. For the next one hundred years, it became a social requirement for members of the Russian nobility to speak French and understand French culture.[16] This historical and cultural context in the aristocracy is reflected in War and Peace. Catherine's grandson, Alexander I, came to the throne in 1801 at the age of 24. In the novel, his mother, Marya Feodorovna, is the most powerful woman in the Russian court.\r\n\r\nWar and Peace tells the story of five aristocratic families — the Bezukhovs, the Bolkonskys, the Rostovs, the Kuragins and the Drubetskoys—and the entanglements of their personal lives with the history of 1805–1813, principally Napoleon's invasion of Russia in 1812. The Bezukhovs, while very rich, are a fragmented family as the old Count, Kirill Vladimirovich, has fathered dozens of illegitimate sons. The Bolkonskys are an old established and wealthy family based at Bald Hills. Old Prince Bolkonsky, Nikolai Andreevich, served as a general under Catherine the Great, in earlier wars. The Moscow Rostovs have many estates, but never enough cash. They are a closely knit, loving family who live for the moment regardless of their financial situation. The Kuragin family has three children, who are all of questionable character. The Drubetskoy family is of impoverished nobility, and consists of an elderly mother and her only son, Boris, whom she wishes to push up the career ladder.",
-   "year": 1970,
+   "year": 1886,
    "rating": 4.23,
    "authors": [
     "OL26783A"
@@ -18651,7 +18649,7 @@
    "work": "OL16142094W",
    "title": "Wonder",
    "summary": "Wonder is a children's novel written by R. J. Palacio,[2] published on 14 February 2012.\r\n\r\nR. J. Palacio wrote Wonder after an incident where her son noticed a girl with a severe facial difference and started to cry. Fearing he would react badly, Palacio attempted to remove her son from the situation so as not to upset the girl and her family but ended up worsening the situation. Natalie Merchant's song of the same name made her realize that the incident could illustrate a valuable lesson. Palacio was inspired by Merchant's lyrics and she began writing. She named the book directly after the song and used the song's chorus as the prologue of the first chapter.",
-   "year": 2001,
+   "year": 2012,
    "rating": 4.3,
    "authors": [
     "OL6995566A"
@@ -18716,7 +18714,7 @@
    "work": "OL21177W",
    "title": "Wuthering Heights",
    "summary": "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.",
-   "year": 2000,
+   "year": 1847,
    "rating": 4.1,
    "authors": [
     "OL24529A"
@@ -18902,7 +18900,7 @@
    "work": "OL267096W",
    "title": "Анна Каренина",
    "summary": "Described by William Faulkner as the best novel ever written and by Fyodor Dostoevsky as “flawless,” Anna Karenina tells of the doomed love affair between the sensuous and rebellious Anna and the dashing officer, Count Vronsky. Tragedy unfolds as Anna rejects her passionless marriage and thereby exposes herself to the hypocrisies of society. Set against a vast and richly textured canvas of nineteenth-century Russia, the novel's seven major characters create a dynamic imbalance, playing out the contrasts of city and country life and all the variations on love and family happiness.",
-   "year": 1997,
+   "year": 1877,
    "rating": 4.11,
    "authors": [
     "OL26783A"
@@ -18961,7 +18959,7 @@
    "work": "OL10432709W",
    "title": "Братья Карамазовы",
    "summary": "The Brothers Karamazov, Dostoevsky’s crowning achievement, is a tale of patricide and family rivalry that embodies the moral and spiritual dissolution of an entire society (Russia in the 1870s). It created a national furor comparable only to the excitement stirred by the publication, in 1866, of Crime and Punishment. To Dostoevsky, The Brothers Karamazov captured the quintessence of Russian character in all its exaltation, compassion, and profligacy. Significantly, the book was on Tolstoy’s bedside table when he died. Readers in every language have since accepted Dostoevsky’s own evaluation of this work and have gone further by proclaiming it one of the few great novels of all ages and countries.\r\n([source][1])",
-   "year": 1986,
+   "year": 1900,
    "rating": 4.3,
    "authors": [
     "OL22242A"
@@ -19025,7 +19023,7 @@
    "work": "OL166894W",
    "title": "Преступление и наказание",
    "summary": "From [wikipedia](https://en.wikipedia.org/wiki/Crime_and_Punishment):\r\n\r\nCrime and Punishment (Russian: Преступлéние и наказáние, tr. Prestupleniye i nakazaniye; IPA: \\[prʲɪstʊˈplʲenʲə ɪ nəkɐˈzanʲə\\]) is a novel by the Russian author Fyodor Dostoyevsky. It was first published in the literary journal The Russian Messenger in twelve monthly installments during 1866.[1](https://en.wikipedia.org/wiki/Crime_and_Punishment) It was later published in a single volume. It is the second of Dostoyevsky's full-length novels following his return from ten years of exile in Siberia. Crime and Punishment is considered the first great novel of his \"mature\" period of writing.\\[2\\]\r\n\r\nCrime and Punishment focuses on the mental anguish and moral dilemmas of Rodion Raskolnikov, an impoverished ex-student in St. Petersburg who formulates and executes a plan to kill an unscrupulous pawnbroker for her cash. Raskolnikov argues that with the pawnbroker's money he can perform good deeds to counterbalance the crime, while ridding the world of a worthless vermin. He also commits this murder to test his own hypothesis that some people are naturally capable of such things, and even have the right to do them. Several times throughout the novel, Raskolnikov justifies his actions by comparing himself with Napoleon Bonaparte, believing that murder is permissible in pursuit of a higher purpose.\r\n\r\n---\r\n\r\nSee also:\r\n\r\n- [Преступлéние и наказáние: 1/2](https://openlibrary.org/works/OL7998899W/Prestuplenie_i_nakazanie._1_2)",
-   "year": 1884,
+   "year": 1866,
    "rating": 4.3,
    "authors": [
     "OL22242A"
@@ -19086,7 +19084,7 @@
    "work": "OL239940W",
    "title": "कामसूत्र",
    "summary": "A work of philosophy, psychology, sociology, Hindu dogma, scientific inquiry, and sexology, the \"Kama Sutra\" has been a classic of world literature for more than 1700 years.",
-   "year": 1883,
+   "year": 1891,
    "rating": 3.84,
    "authors": [
     "OL4328A"
@@ -19149,7 +19147,7 @@
    "work": "OL61981W",
    "title": "Ἰλιάς",
    "summary": "This long-awaited new edition of Lattimore's Iliad is designed to bring the book into the twenty-first century—while leaving the poem as firmly rooted in ancient Greece as ever. Lattimore's elegant, fluent verses—with their memorably phrased heroic epithets and remarkable fidelity to the Greek—remain unchanged, but classicist Richard Martin has added a wealth of supplementary materials designed to aid new generations of readers. A new introduction sets the poem in the wider context of Greek life, warfare, society, and poetry, while line-by-line notes at the back of the volume offer explanations of unfamiliar terms, information about the Greek gods and heroes, and literary appreciation. A glossary and maps round out the book.\r\n\r\n\r\n\r\nThe result is a volume that actively invites readers into Homer's poem, helping them to understand fully the worlds in which he and his heroes lived—and thus enabling them to marvel, as so many have for centuries, at Hektor and Ajax, Paris and Helen, and the devastating rage of Achilleus.",
-   "year": 1925,
+   "year": 1519,
    "rating": 4.06,
    "authors": [
     "OL18404A"
@@ -19212,7 +19210,7 @@
    "work": "OL61982W",
    "title": "Ὀδύσσεια",
    "summary": "The Odyssey (/ˈɒdəsi/; Greek: Ὀδύσσεια, Odýsseia) is one of two major ancient Greek epic poems attributed to Homer. It is, in part, a sequel to the Iliad, the other work ascribed to Homer. The poem is fundamental to the modern Western canon, and is the second oldest extant work of Western literature, the Iliad being the oldest. Scholars believe it was composed near the end of the 8th century BC, somewhere in Ionia, the Greek coastal region of Anatolia. - [Wikipedia][1]\r\n\r\n  [1]: https://en.wikipedia.org/wiki/Odyssey",
-   "year": 1999,
+   "year": 1538,
    "rating": 4.05,
    "authors": [
     "OL18404A"
@@ -19301,6 +19299,17 @@
      ]
     },
     {
+     "isbn": "9781529029581",
+     "kind": "Paperback",
+     "publisher": "Picador",
+     "year": 2019,
+     "language": "eng",
+     "pages": 293,
+     "covers": [
+      10138333
+     ]
+    },
+    {
      "isbn": "9781799920915",
      "kind": "Audiobook",
      "publisher": "Hanover Square Press",
@@ -19312,14 +19321,14 @@
      ]
     },
     {
-     "isbn": "9781529029581",
+     "isbn": "9781529050868",
      "kind": "Paperback",
-     "publisher": "Picador",
-     "year": 2019,
+     "publisher": null,
+     "year": null,
      "language": "eng",
-     "pages": 293,
+     "pages": null,
      "covers": [
-      10138333
+      10504441
      ]
     }
    ]
@@ -19453,7 +19462,7 @@
    "work": "OL2625431W",
    "title": "海辺のカフカ",
    "summary": "A boy trying to escape a gruesome oedipedal prophecy, a simple man who can talk to cats, a mysterious librarian, and a woman waiting for a long-dead lover.",
-   "year": 2006,
+   "year": 2002,
    "rating": 4.01,
    "authors": [
     "OL382524A"

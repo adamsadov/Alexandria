@@ -10,24 +10,24 @@ just runs `python manage.py seed_books`, which loads it with no network.
 What it collects:
   * the most-read works (Open Library "reading log" count) across a spread of
     subjects, plus every book the Discover page shows;
-  * for each work: summary, first-publish year, rating, genres, authors;
+  * for each work: summary, original publication year (see
+    library/utils/publication_year.py), rating, genres, authors;
   * up to MAX_EDITIONS English editions with an ISBN, preferring different
     formats (hardcover / paperback / ebook / audiobook) and editions with covers.
 """
 import json
 import re
-import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from pathlib import Path
 
-import requests
 from django.core.management.base import BaseCommand
 
 from library.utils.genre_utils import extract_genres_from_subjects
+from library.utils.publication_year import (
+    FirstPublishedLookup, get_json, parse_edition_year, pick_first_year,
+)
 
-OL = "https://openlibrary.org"
-HEADERS = {"User-Agent": "AlexandriaSeed/1.0 (student book-sharing project)"}
 FIXTURE = Path(__file__).resolve().parents[2] / "fixtures" / "seed_books.json"
 
 MAX_EDITIONS = 4
@@ -103,32 +103,10 @@ FEATURED_SUBJECT_SIZE = 10
 FORMAT_ORDER = ["Hardcover", "Paperback", "eBook", "Audiobook"]
 
 
-def get_json(path, params=None, tries=5):
-    url = path if path.startswith("http") else OL + path
-    for attempt in range(tries):
-        try:
-            r = requests.get(url, params=params, headers=HEADERS, timeout=30)
-            if r.status_code == 404:
-                return None
-            if r.status_code in (429, 500, 502, 503, 504):
-                time.sleep(2 ** attempt + 1)
-                continue
-            r.raise_for_status()
-            return r.json()
-        except (requests.RequestException, ValueError):
-            time.sleep(2 ** attempt + 1)
-    return None
-
-
 def text_of(value):
     if isinstance(value, dict):
         value = value.get("value", "")
     return (value or "").strip() or None
-
-
-def year_of(date_str):
-    m = re.search(r"\b(1[5-9]\d\d|20\d\d)\b", date_str or "")
-    return int(m.group(1)) if m else None
 
 
 def kind_of(physical_format):
@@ -176,7 +154,7 @@ def pick_editions(entries, want_cover=None):
             "isbn": isbn,
             "kind": kind_of(e.get("physical_format")),
             "publisher": ((e.get("publishers") or [None])[0] or None),
-            "year": year_of(e.get("publish_date")),
+            "year": parse_edition_year(e.get("publish_date")),  # None if unknown
             "language": "eng",
             "pages": e.get("number_of_pages") if isinstance(e.get("number_of_pages"), int) else None,
             "covers": covers[:2],
@@ -198,7 +176,7 @@ def pick_editions(entries, want_cover=None):
                 break
 
     def score(c):
-        return (bool(c["covers"]), c["_has_lang"], bool(c["pages"]), bool(c["publisher"]))
+        return (bool(c["covers"]), c["_has_lang"], bool(c["year"]), bool(c["pages"]), bool(c["publisher"]))
 
     ranked = sorted(candidates, key=score, reverse=True)
     for fmt in FORMAT_ORDER:  # one per format first
@@ -250,7 +228,10 @@ class Command(BaseCommand):
             by_subject[query] = keys
             self.stdout.write(f"{query}: {len(keys)} works")
 
-        self.stdout.write(f"{len(wanted)} unique works; fetching details...")
+        self.stdout.write(f"{len(wanted)} unique works; looking up publication years...")
+        first_published = FirstPublishedLookup().years(list(wanted))
+
+        self.stdout.write("Fetching details...")
 
         # 2. Work details + editions.
         def fetch_work(key):
@@ -271,12 +252,10 @@ class Command(BaseCommand):
                 k = (a.get("author") or {}).get("key", "")
                 if k:
                     author_keys.append(k.rsplit("/", 1)[-1])
-            years = [e["year"] for e in editions if e["year"]]
-            year = year_of(work.get("first_publish_date")) or (min(years) if years else None)
-            if not year:
-                all_years = [year_of(e.get("publish_date")) for e in eds.get("entries", [])]
-                all_years = [y for y in all_years if y]
-                year = min(all_years) if all_years else None
+            # Open Library's search index knows every edition; if it couldn't
+            # answer, use the same rule on the editions we downloaded.
+            year = first_published.get(key) or pick_first_year(
+                e.get("publish_date") for e in eds.get("entries", []))
             return {
                 "work": key,
                 "title": work.get("title", "")[:255],
