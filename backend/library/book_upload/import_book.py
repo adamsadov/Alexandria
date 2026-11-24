@@ -29,7 +29,7 @@ def import_book(title):
         sys.argv = [fetcher_script, title]
         openlibrary_fetcher.main()
         sys.argv = orig_argv
-    except Exception as e:
+    except (Exception, SystemExit) as e:  # the scripts exit on errors; don't stop a batch
         print(f"Error fetching data: {e}")
         traceback.print_exc()
         return False
@@ -51,7 +51,7 @@ def import_book(title):
         sys.argv = ['openlibrary_uploader.py'] + required_files
         openlibrary_uploader.main()
         sys.argv = orig_argv
-    except Exception as e:
+    except (Exception, SystemExit) as e:  # the scripts exit on errors; don't stop a batch
         print(f"Error uploading data: {e}")
         traceback.print_exc()
         return False
