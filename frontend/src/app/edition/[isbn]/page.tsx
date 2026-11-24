@@ -254,7 +254,7 @@ export default function EditionPage() {
         <div className="mt-8">
           <BookDetails 
             pageCount={edition.page_count}
-            publicationDate={edition.publication_year ? String(edition.publication_year) : undefined}
+            publicationYear={edition.publication_year}
             isbn={edition.isbn}
             genres={edition.book_info.genres?.map(g => g.name) || []}
             language={edition.language}

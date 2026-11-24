@@ -325,7 +325,7 @@ export default function BookPage() {
             <div className="mt-8">
               <BookDetails
                 pageCount={book.page_count}
-                publicationDate={book.original_publication_date}
+                publicationYear={book.original_publication_date}
                 isbn={book.isbn}
                 genres={book.genres || []}
                 language={book.language}

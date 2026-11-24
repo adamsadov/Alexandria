@@ -1,20 +1,21 @@
 /*
   Name: BookDetails.tsx
   Date: 03/22/2025
-  Description: React client component that displays detailed information about a book, including page count, publication date, ISBN, genres, and language. 
-  The component formats the publication date into a human-readable format, conditionally renders available book details using Lucid React icons for visual cues, and provides a 
+  Description: React client component that displays detailed information about a book, including page count, publication year, ISBN, genres, and language. 
+  The component conditionally renders available book details using Lucid React icons for visual cues, and provides a 
   toggleable list for genres. If the genres array exceeds 15 items, only the first 15 are shown by default with an option to expand or collapse the full list.
 
   Input:
     - pageCount (optional): A number representing the total number of pages in the book.
-    - publicationDate (optional): A string representing the publication date, which is formatted to a readable date.
+    - publicationYear (optional): The year it was published, shown as-is. We only store years, so it is
+      never turned into a full date (doing that showed every book as "December 31" of the year before).
     - isbn (optional): A string representing the ISBN number of the book.
     - genres (optional): An array of strings indicating the genres of the book (defaults to an empty array).
     - language (optional): A string indicating the language in which the book is written.
 
   Output:
     - Renders a card-like UI displaying available book details in a responsive grid layout.
-    - Each detail (pages, publication date, ISBN, language) is shown if provided.
+    - Each detail (pages, publication year, ISBN, language) is shown if provided.
     - Displays genres as a list of badges. If more than 15 genres are available, a toggle button allows the user to expand/collapse the full list.
 
   Notes:
@@ -33,7 +34,7 @@ import { Calendar, BookOpen, Tag, Globe, Book, Building, Hash, FileText } from '
 
 interface BookDetailsProps {
   pageCount?: number
-  publicationDate?: string
+  publicationYear?: number | string | null
   isbn?: string
   genres?: string[]
   language?: string
@@ -46,7 +47,7 @@ interface BookDetailsProps {
 
 export default function BookDetails({ 
   pageCount, 
-  publicationDate, 
+  publicationYear, 
   isbn, 
   genres = [], 
   language,
@@ -56,15 +57,6 @@ export default function BookDetails({
   isAbridged
 }: BookDetailsProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-  
-  // Format publication date
-  const formattedDate = publicationDate 
-    ? new Date(publicationDate).toLocaleDateString(undefined, { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      }) 
-    : 'Unknown'
   
   // Determine genres to display
   const displayGenres = isExpanded ? genres : genres.slice(0, 15)
@@ -84,15 +76,15 @@ export default function BookDetails({
           </div>
         )}
         
-        {publicationDate && (
+        {publicationYear ? (
           <div className="flex items-start">
             <Calendar className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-gray-500">Published</p>
-              <p className="text-gray-900">{formattedDate}</p>
+              <p className="text-gray-900">{publicationYear}</p>
             </div>
           </div>
-        )}
+        ) : null}
         
         {isbn && (
           <div className="flex items-start">
