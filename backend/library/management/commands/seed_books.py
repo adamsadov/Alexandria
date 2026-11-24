@@ -8,7 +8,6 @@ Reads library/fixtures/seed_books.json (built by `build_seed_data`), so every
 developer gets the same books, editions, authors and Discover shelves. No
 network needed.
 """
-import datetime
 import hashlib
 import json
 from pathlib import Path
@@ -21,6 +20,7 @@ from library.models import (
     Author, Book, BookAuthor, BookGenre, CoverImage, Edition, Genre,
     Publisher, Shelf, ShelfEdition, User,
 )
+from library.utils.publication_year import parse_edition_year
 
 FIXTURE = Path(__file__).resolve().parents[2] / "fixtures" / "seed_books.json"
 CURATOR_USERNAME = "alexandria"
@@ -77,7 +77,6 @@ class Command(BaseCommand):
 
     # ------------------------------------------------------------------ books
     def _books(self, books, authors):
-        this_year = datetime.date.today().year
         genres, publishers, out = {}, {}, {}
 
         for b in books:
@@ -109,8 +108,8 @@ class Command(BaseCommand):
                     if name not in publishers:
                         publishers[name], _ = Publisher.objects.get_or_create(name=name)
                     pub = publishers[name]
-                year = e.get("year") or b.get("year") or 2000
-                year = min(max(year, 1500), this_year)
+                # The printing's own year; blank if unknown, never the book's year.
+                year = parse_edition_year(e.get("year"))
                 edition, _ = Edition.objects.update_or_create(
                     isbn=e["isbn"],
                     defaults={

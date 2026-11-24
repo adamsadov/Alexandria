@@ -1,114 +1,65 @@
+"""
+Correct Book.year_published (the original publication year) from Open Library.
+
+    python manage.py fix_publication_years --dry-run     # show what would change
+    python manage.py fix_publication_years               # apply
+    python manage.py fix_publication_years --book-id OL893414W
+
+Works for every book whose book_id is an Open Library work id (OL...W), seeded
+or imported. Uses the same rule as the importers (library/utils/publication_year.py).
+Books Open Library can't date are left as they are. Edition years are never
+touched: each edition keeps its own printing's year.
+"""
+import re
+
 from django.core.management.base import BaseCommand
-from django.db.models import Min
-from library.models import Book, Edition
-import datetime
+
+from library.models import Book
+from library.utils.publication_year import FirstPublishedLookup
+
+WORK_ID = re.compile(r"^OL\d+W$")
+
 
 class Command(BaseCommand):
-    help = "Updates book publication years to match the oldest edition's year"
+    help = "Correct books' original publication years using Open Library"
 
     def add_arguments(self, parser):
-        parser.add_argument(
-            '--dry-run',
-            action='store_true',
-            help='Show what would be updated without making changes',
-        )
-        parser.add_argument(
-            '--book-id',
-            type=str,
-            help='Process a specific book by ID',
-        )
-        parser.add_argument(
-            '--limit',
-            type=int,
-            default=0,
-            help='Limit the number of books to process (0 for all)',
-        )
-        parser.add_argument(
-            '--force',
-            action='store_true',
-            help='Force update all books even if they already have a publication year',
-        )
+        parser.add_argument("--dry-run", action="store_true",
+                            help="Show what would change without saving")
+        parser.add_argument("--book-id", help="Only this book (its Open Library work id)")
+        parser.add_argument("--limit", type=int, default=0,
+                            help="Only the first N books (0 for all)")
 
     def handle(self, *args, **options):
-        dry_run = options.get('dry_run', False)
-        book_id = options.get('book_id')
-        limit = options.get('limit', 0)
-        force = options.get('force', False)
-        
-        if dry_run:
-            self.stdout.write(self.style.WARNING("Running in DRY RUN mode - no changes will be made"))
-        
-        # Get books to process
-        if book_id:
-            books = Book.objects.filter(book_id=book_id)
-            if not books.exists():
-                self.stdout.write(self.style.ERROR(f'No book found with ID: {book_id}'))
-                return
-        else:
-            books = Book.objects.all()
-            
-            # Apply limit if specified
-            if limit > 0:
-                books = books[:limit]
-        
-        total_books = books.count()
-        self.stdout.write(f"Processing {total_books} books...")
-        
-        books_updated = 0
-        books_skipped = 0
-        
+        dry_run = options["dry_run"]
+        books = Book.objects.order_by("title")
+        if options["book_id"]:
+            books = books.filter(book_id=options["book_id"])
+        books = [b for b in books if WORK_ID.match(b.book_id or "")]
+        if options["limit"]:
+            books = books[:options["limit"]]
+        if not books:
+            self.stdout.write(self.style.WARNING("No books with an Open Library work id to check."))
+            return
+
+        self.stdout.write(f"Looking up {len(books)} books on Open Library...")
+        found = FirstPublishedLookup().years([b.book_id for b in books])
+
+        changed = unknown = 0
         for book in books:
-            # Get all editions for this book
-            editions = Edition.objects.filter(book=book)
-            
-            if not editions.exists():
-                self.stdout.write(f"Skipping book '{book.title}' (ID: {book.book_id}): No editions found")
-                books_skipped += 1
+            year = found.get(book.book_id)
+            if not year:
+                unknown += 1
                 continue
-                
-            # Get the oldest publication year from editions
-            oldest_year = None
-            
-            # Query for the minimum publication year
-            oldest_edition = editions.order_by('publication_year').first()
-            if oldest_edition and oldest_edition.publication_year:
-                oldest_year = oldest_edition.publication_year
-            
-            # Skip if we couldn't determine a year
-            if not oldest_year:
-                self.stdout.write(f"Skipping book '{book.title}' (ID: {book.book_id}): No valid publication years in editions")
-                books_skipped += 1
+            if year == book.year_published:
                 continue
-                
-            # Skip if the book already has the correct year and we're not forcing updates
-            if book.year_published == oldest_year and not force:
-                self.stdout.write(f"Skipping book '{book.title}' (ID: {book.book_id}): Already has correct year ({oldest_year})")
-                books_skipped += 1
-                continue
-                
-            # Skip if the book has a year and it's older than the oldest edition (unless forcing)
-            if book.year_published and book.year_published < oldest_year and not force:
-                self.stdout.write(
-                    f"Skipping book '{book.title}' (ID: {book.book_id}): "
-                    f"Existing year ({book.year_published}) is older than oldest edition ({oldest_year})"
-                )
-                books_skipped += 1
-                continue
-            
-            # Update the book's year_published
-            old_year = book.year_published
+            changed += 1
+            self.stdout.write(f"  {book.title}: {book.year_published or 'none'} -> {year}")
             if not dry_run:
-                book.year_published = oldest_year
-                book.save()
-                
-            books_updated += 1
-            self.stdout.write(
-                f"{'Would update' if dry_run else 'Updated'} book '{book.title}' "
-                f"(ID: {book.book_id}): {old_year} -> {oldest_year}"
-            )
-        
-        # Print summary
+                book.year_published = year
+                book.save(update_fields=["year_published"])
+
+        verb = "Would update" if dry_run else "Updated"
         self.stdout.write(self.style.SUCCESS(
-            f"{'Would update' if dry_run else 'Updated'} {books_updated} books, "
-            f"skipped {books_skipped} books"
-        ))
+            f"{verb} {changed} of {len(books)} books; "
+            f"{unknown} left unchanged because Open Library had no usable year."))

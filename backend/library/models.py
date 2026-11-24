@@ -185,7 +185,7 @@ class Edition(models.Model):
         isbn: unique serial code for each book, cannot be null
         publisher: Foreign Key from Publisher Table
         kind: Enum: Pick Either ['Hardcover', 'Paperback', 'ebook', 'AudioBook'], since format is a keyword lets go with kind
-        publication_year: check valid year, integer
+        publication_year: this edition's own year (blank if unknown)
         language: max_length of 50, not null
     """
 
@@ -203,7 +203,11 @@ class Edition(models.Model):
     publisher = models.ForeignKey("Publisher", on_delete=models.SET_NULL, related_name='editions', null=True, blank=True)
     kind = models.CharField(max_length=10, choices=FORMAT_CHOICES, null=False)
     is_primary = models.BooleanField(default=False)
+    # This printing's own year. Blank when Open Library doesn't say; never
+    # copied from the book's original year.
     publication_year = models.PositiveIntegerField(
+            null=True,
+            blank=True,
             validators=[
                 MinValueValidator(1500),
                 MaxValueValidator(datetime.date.today().year)]
@@ -215,7 +219,7 @@ class Edition(models.Model):
     class Meta:
         verbose_name = "Edition"
         verbose_name_plural = "Editions"
-        ordering = ['-publication_year']
+        ordering = [models.F('publication_year').desc(nulls_last=True)]
         indexes = [
             models.Index(fields=['isbn']),
             models.Index(fields=['publication_year']),

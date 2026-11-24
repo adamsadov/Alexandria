@@ -90,7 +90,7 @@ interface EditionData {
   id: string;
   isbn: string;
   kind: string;
-  publication_year: number;
+  publication_year: number | null;
   language: string;
   page_count?: number;
   edition_number?: number;
@@ -236,7 +236,7 @@ export default function EditionPage() {
       <Header variant="app" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <BookHeader 
-          title={`${edition.book_info.title} (${edition.kind} Edition, ${edition.publication_year})`}
+          title={`${edition.book_info.title} (${edition.kind} Edition${edition.publication_year ? `, ${edition.publication_year}` : ""})`}
           coverImage={edition.cover_image}
           authors={edition.book_info.authors}
           userStatus={edition.user_status}
@@ -254,7 +254,7 @@ export default function EditionPage() {
         <div className="mt-8">
           <BookDetails 
             pageCount={edition.page_count}
-            publicationDate={String(edition.publication_year)}
+            publicationYear={edition.publication_year}
             isbn={edition.isbn}
             genres={edition.book_info.genres?.map(g => g.name) || []}
             language={edition.language}
