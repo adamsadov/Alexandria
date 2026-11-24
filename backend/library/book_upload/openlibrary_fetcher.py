@@ -8,7 +8,20 @@ from typing import Dict, List, Any, Optional, Tuple
 
 # library/ on the path, so this script can use library/utils.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.publication_year import FirstPublishedLookup
+from utils.publication_year import USER_AGENT, FirstPublishedLookup
+
+
+def _get(url, params=None, tries=5):
+    """requests.get that waits and retries when Open Library is busy or briefly down."""
+    for attempt in range(tries):
+        try:
+            response = requests.get(url, params=params, headers={"User-Agent": USER_AGENT}, timeout=60)
+            if response.status_code not in (429, 500, 502, 503, 504) or attempt == tries - 1:
+                return response
+        except requests.RequestException:
+            if attempt == tries - 1:
+                raise
+        time.sleep(2 ** attempt + 1)
 
 class OpenLibraryFetcher:
     """Fetches book data from Open Library API."""
@@ -40,7 +53,7 @@ class OpenLibraryFetcher:
             'fields': '*,availability',
         }
         
-        response = requests.get(f"{self.BASE_URL}/search.json", params=params)
+        response = _get(f"{self.BASE_URL}/search.json", params=params)
         response.raise_for_status()
         
         data = response.json()
@@ -65,7 +78,7 @@ class OpenLibraryFetcher:
         if not work_id.startswith('/works/'):
             work_id = f"/works/{work_id}"
         
-        response = requests.get(f"{self.BASE_URL}{work_id}.json")
+        response = _get(f"{self.BASE_URL}{work_id}.json")
         response.raise_for_status()
         
         time.sleep(self.rate_limit_delay)  # Avoid rate limiting
@@ -85,7 +98,7 @@ class OpenLibraryFetcher:
         if not edition_id.startswith('/books/'):
             edition_id = f"/books/{edition_id}"
         
-        response = requests.get(f"{self.BASE_URL}{edition_id}.json")
+        response = _get(f"{self.BASE_URL}{edition_id}.json")
         response.raise_for_status()
         
         time.sleep(self.rate_limit_delay)  # Avoid rate limiting
@@ -105,7 +118,7 @@ class OpenLibraryFetcher:
         if not author_id.startswith('/authors/'):
             author_id = f"/authors/{author_id}"
         
-        response = requests.get(f"{self.BASE_URL}{author_id}.json")
+        response = _get(f"{self.BASE_URL}{author_id}.json")
         response.raise_for_status()
         
         time.sleep(self.rate_limit_delay)  # Avoid rate limiting
@@ -138,7 +151,7 @@ class OpenLibraryFetcher:
         }
         
         print(f"Fetching edition count for work: {work_query}")
-        initial_response = requests.get(f"{self.BASE_URL}/search.json", params=initial_params)
+        initial_response = _get(f"{self.BASE_URL}/search.json", params=initial_params)
         initial_response.raise_for_status()
         initial_data = initial_response.json()
         
@@ -168,7 +181,7 @@ class OpenLibraryFetcher:
             
             print(f"Fetching editions page {page} with offset {(page - 1) * limit}")
             try:
-                response = requests.get(editions_url, params=params)
+                response = _get(editions_url, params=params)
                 response.raise_for_status()
                 
                 data = response.json()
