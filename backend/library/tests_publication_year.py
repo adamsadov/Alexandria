@@ -50,6 +50,16 @@ class PickFirstYearTests(SimpleTestCase):
         counts = {1777: 1, 1954: 1, 1955: 9, 1956: 4}
         self.assertEqual(pick_first_year(counts, counts.get), 1955)
 
+    def test_skips_a_placeholder_year_shared_by_a_few_editions(self):
+        # Middlemarch: three undated printings filed under "1800".
+        counts = {1800: 3, 1871: 5, 1872: 2, 1873: 2}
+        self.assertEqual(pick_first_year(counts, counts.get), 1871)
+
+    def test_keeps_a_well_attested_first_year_before_sparse_reprints(self):
+        # Moby Dick: 9 editions in 1851, then nothing recorded until 1892.
+        counts = {1851: 9, 1892: 2, 1900: 2}
+        self.assertEqual(pick_first_year(counts, counts.get), 1851)
+
     def test_unconfirmed_years_fall_back_to_the_first_close_pair(self):
         # A newer book with one edition a year: nothing is shared, take 2019.
         self.assertEqual(pick_first_year([1672, 2019, 2020, 2022]), 2019)
