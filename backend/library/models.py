@@ -1,4 +1,6 @@
+from django.contrib.postgres.indexes import GinIndex, OpClass
 from django.db import models
+from django.db.models.functions import Upper
 from django.core.validators import MinValueValidator, MaxValueValidator
 import datetime
 from django.core.exceptions import ValidationError
@@ -66,7 +68,11 @@ class Book(models.Model):
         indexes = [
             models.Index(fields = ['title']),
             models.Index(fields=['year_published']),
-            models.Index(fields=['book_id'])
+            models.Index(fields=['book_id']),
+            # Trigram index for search: fuzzy matches and ILIKE '%...%'
+            GinIndex(fields=['title'], name='book_title_trgm', opclasses=['gin_trgm_ops']),
+            # Case-insensitive "starts with" (istartswith), for search queries under 3 characters
+            models.Index(OpClass(Upper('title'), name='text_pattern_ops'), name='book_title_prefix'),
         ]
 
     def __str__(self):
@@ -96,7 +102,9 @@ class Author(models.Model):
         ordering = ['name']
         indexes = [
             models.Index(fields=['name']),
-            models.Index(fields=['author_id'])
+            models.Index(fields=['author_id']),
+            GinIndex(fields=['name'], name='author_name_trgm', opclasses=['gin_trgm_ops']),
+            models.Index(OpClass(Upper('name'), name='text_pattern_ops'), name='author_name_prefix'),
         ]
 
 
