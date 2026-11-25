@@ -26,6 +26,9 @@ class BookSearchSerializer(serializers.ModelSerializer):
         return [genre.name for genre in obj.genres.all()]
 
     def get_cover_image(self, obj):
+        # search/catalog.py fetches the cover in the same query as the book
+        if hasattr(obj, 'search_cover'):
+            return obj.search_cover
         editions = obj.editions.all().prefetch_related('related_edition_image')
         for edition in editions:
             images = edition.related_edition_image.all()

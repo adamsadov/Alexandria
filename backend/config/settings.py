@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",  # trigram search (pg_trgm)
     'django_filters',
     "mptt",
     "corsheaders",
