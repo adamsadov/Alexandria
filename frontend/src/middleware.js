@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 // Pages that need a signed-in user. The API enforces auth on its own; this
 // only saves a round trip by sending signed-out visitors to the sign-in page.
-const protectedRoutes = ["/bookclubs", "/profile", "/shelf", "/journals"];
+const protectedRoutes = ["/club", "/profile", "/shelf", "/journals"];
 // Exact matches only (e.g. /shelves/<username> stays public).
 const protectedExact = ["/shelves"];
 
