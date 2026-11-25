@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { SearchField } from "@/components/search/BookSearch";
 import { CreateBookClubModal } from "@/components/club/CreateBookClubModal";
 import { useSession } from "@/lib/session";
@@ -53,6 +54,7 @@ export default function BookClubsPage() {
   const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
 
   const { isAuthenticated } = useSession();
+  const router = useRouter();
 
 
   // Fetching book clubs when components are mounted
@@ -71,11 +73,17 @@ export default function BookClubsPage() {
           }
         );
 
-        console.log("Response status:", response.status);
-        const data = await response.json();
-        console.log("API Response data:", data);
+        // Signed out (or the session expired): go sign in, then come back.
+        if (response.status === 401 || response.status === 403) {
+          router.replace("/auth/sign-in?next=/club");
+          return;
+        }
+        if (!response.ok) {
+          throw new Error(`Failed to fetch book clubs: ${response.status}`);
+        }
 
-        const allClubs = data || [];
+        const data = await response.json();
+        const allClubs: any[] = Array.isArray(data) ? data : [];
 
         const userClubs = allClubs.filter((club) => club.is_user_member);
 
