@@ -9,6 +9,8 @@
 from rest_framework import serializers
 from library.models import Edition, Book, CoverImage
 
+from .book_page_serializer import BookPageSerializer
+
 class EditionPageSerializer(serializers.ModelSerializer):
     """
     Serializer for the Edition Page view
@@ -38,6 +40,9 @@ class EditionPageSerializer(serializers.ModelSerializer):
     def get_book_info(self, obj):
         """Return essential book information for the edition page."""
         book = obj.book
+        # The main book's cover, picked exactly as the book page picks it, so
+        # the "Parent Book" card matches /book/<id> (not this edition's cover).
+        primary = BookPageSerializer().get_primary_edition(book)
         return {
             'id': book.book_id,
             'title': book.title,
@@ -53,7 +58,8 @@ class EditionPageSerializer(serializers.ModelSerializer):
             'average_rating': book.average_rating,
             'year_published': book.year_published,
             'original_language': book.original_language,
-            'genres': [{'id': genre.id, 'name': genre.name} for genre in book.genres.all()]
+            'genres': [{'id': genre.id, 'name': genre.name} for genre in book.genres.all()],
+            'cover_image': primary['cover_image'] if primary else None,
         }
     
     def get_cover_image(self, obj):
