@@ -84,6 +84,7 @@ interface BookInfo {
   year_published?: number;
   original_language?: string;
   genres?: {id: string, name: string}[];
+  cover_image?: string | null;  // the main book's cover, as on /book/<id>
 }
 
 interface EditionData {
@@ -214,7 +215,7 @@ export default function EditionPage() {
         <Link href={`/book/${edition.book_info.id}`} className="flex items-center hover:bg-gray-50 p-2 rounded">
           <div className="flex-shrink-0 mr-4">
             <CoverImage 
-              src={edition.cover_image} 
+              src={edition.book_info.cover_image ?? edition.cover_image} 
               alt={edition.book_info.title}
               width={60}
               height={90}
