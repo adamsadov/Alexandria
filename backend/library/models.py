@@ -111,6 +111,24 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+class AuthorKey(models.Model):
+    """
+    An Open Library author key (e.g. "OL118077A") that belongs to an Author.
+
+    Open Library often has several records for one person. An Author's own key
+    and the keys of every duplicate merged into it are stored here, so an
+    importer that meets any of them links to the same Author.
+    """
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="ol_keys")
+    key = models.CharField(max_length=32, unique=True)
+
+    class Meta:
+        verbose_name = "Author key"
+        verbose_name_plural = "Author keys"
+
+    def __str__(self):
+        return f"{self.key} -> {self.author}"
+
 # Normalization table used by Book's ManyToMany relationship with Author.
 class BookAuthor(models.Model):
     """

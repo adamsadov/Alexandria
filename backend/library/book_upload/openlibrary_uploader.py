@@ -40,6 +40,7 @@ if str(PARENT_DIR) not in sys.path:
 
 from utils.genre_utils import extract_genres_from_subjects, get_primary_genre
 from utils.publication_year import parse_edition_year, parse_year, pick_first_year
+from library.utils.authors import resolve_author
 
 class LibraryUpload:
     """Uploads book data from local JSON files into database.."""
@@ -106,41 +107,30 @@ class LibraryUpload:
         author_map = {}
         
         for author_data in self.authors_data:
-            name = author_data.get('name', 'Unknown Author')
-            key = author_data.get('key', '').replace('/authors/', '')
             bio = author_data.get('bio', '')
             
             # Handle different forms of biography field
             if isinstance(bio, dict):
                 bio = bio.get('value', '')
             
-            # Create a unique hash for the author
-            author_id = self._create_hash(key)
-            
-            # Try to get Wikipedia image, but don't let failure disrupt the process
-            author_image = None
-            try:
-                author_image = get_wikipedia_image_for_author(name)
-            except Exception as e:
-                print(f"Note: Could not fetch Wikipedia image for {name}: {e}")
-                # Continue with no image
-            
-            # If no Wikipedia image, use a default placeholder
-            if not author_image:
-                author_image = "https://via.placeholder.com/150?text=Author"  
-            
-            # Get or create the author
-            author, created = Author.objects.get_or_create(
-                author_id=author_id,
-                defaults={
-                    'name': name[:250], 
-                    'biography': bio,
-                    'author_image': author_image
-                }
-            )
+            # Follows Open Library redirects and links known duplicate records
+            # (another OL key for the same person) to the existing author.
+            author, created = resolve_author(author_data, defaults={'biography': bio})
+            key = author_data.get('key', '').replace('/authors/', '')
             
             if created:
-                print(f"Created new author: {name}")
+                # Try to get Wikipedia image, but don't let failure disrupt the process
+                author_image = None
+                try:
+                    author_image = get_wikipedia_image_for_author(author.name)
+                except Exception as e:
+                    print(f"Note: Could not fetch Wikipedia image for {author.name}: {e}")
+                # If no Wikipedia image, use a default placeholder
+                author.author_image = author_image or "https://via.placeholder.com/150?text=Author"
+                author.save(update_fields=['author_image'])
+                print(f"Created new author: {author.name}")
+            else:
+                print(f"Using existing author: {author.name}")
             
             author_map[f"/authors/{key}"] = author
         
