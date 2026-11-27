@@ -1,72 +1,39 @@
-#!/usr/bin/env python
-import os
-import sys
-import json
-import hashlib
-import django
-from typing import Dict, Any, Optional
+"""
+Write one Open Library work (fetched by openlibrary_fetcher.fetch_work) into the
+database: its authors, the book, its genres, and every edition with an ISBN.
+
+Used by `manage.py import_book`.
+"""
 from decimal import Decimal
-import sys
-import os
+from typing import Any, Dict, List
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.wikipedia_utils import get_wikipedia_image_for_author
-
-
-
-
-# Setup Django 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(BASE_DIR)
-
-# Set Django settings
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-django.setup()
-
-# Import models
 from django.db import transaction
+
 from library.models import (
-    Book, Author, BookAuthor, Genre, BookGenre, 
+    Book, Author, BookAuthor, Genre, BookGenre,
     Edition, Publisher, CoverImage
 )
-
-# Get the parent directory of the current script
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_DIR = os.path.dirname(SCRIPT_DIR)
-
-# Add the parent directory to the path 
-if str(PARENT_DIR) not in sys.path:
-    sys.path.append(str(PARENT_DIR))
-
-from utils.genre_utils import extract_genres_from_subjects, get_primary_genre
-from utils.publication_year import parse_edition_year, parse_year, pick_first_year
 from library.utils.authors import resolve_author
+from library.utils.genre_utils import extract_genres_from_subjects, get_primary_genre
+from library.utils.publication_year import parse_edition_year, parse_year, pick_first_year
+from library.utils.wikipedia_utils import get_wikipedia_image_for_author
+
 
 class LibraryUpload:
     """Uploads book data from local JSON files into database.."""
     
-    def __init__(self, work_file: str, editions_file: str, authors_file: str):
+    def __init__(self, work_data: Dict[str, Any], editions_data: List[Dict[str, Any]],
+                 authors_data: List[Dict[str, Any]]):
         """
-        Initialize class.
-        
         Args:
-            work_file: Path to the JSON file containing work data
-            editions_file: Path to the JSON file containing editions data
-            authors_file: Path to the JSON file containing authors data
+            work_data: the Open Library work record
+            editions_data: its edition records
+            authors_data: its author records
         """
-        self.work_data = self._load_json(work_file)
-        self.editions_data = self._load_json(editions_file)
-        self.authors_data = self._load_json(authors_file)
-    
-    def _load_json(self, file_path: str) -> Any:
-        """Load JSON data from a file."""
-        with open(file_path, 'r') as f:
-            return json.load(f)
-    
-    def _create_hash(self, text: str) -> str:
-        """Create a hash from a text string."""
-        return hashlib.sha256(text.encode('utf-8')).hexdigest()
-    
+        self.work_data = work_data
+        self.editions_data = editions_data or []
+        self.authors_data = authors_data or []
+
     def _get_or_create_publisher(self, name: str) -> Publisher:
         """Get or create a Publisher object."""
         if not name:
@@ -323,7 +290,7 @@ class LibraryUpload:
                     
                 print(f"Added cover image for edition {edition}")
     
-    def upload_all(self) -> None:
+    def upload_all(self) -> Book:
         """Upload all data to the database."""
         # Upload authors
         author_map = self.upload_authors()
@@ -335,26 +302,10 @@ class LibraryUpload:
         self.upload_editions(book)
         
         print(f"Successfully uploaded all data for: {book.title}")
+        return book
 
-def main():
-    """Main entry point for the script."""
-    if len(sys.argv) != 4:
-        print("Usage: python openlibrary_uploader.py work_data.json editions_data.json authors_data.json")
-        sys.exit(1)
-    
-    work_file = sys.argv[1]
-    editions_file = sys.argv[2]
-    authors_file = sys.argv[3]
-    
-    uploader = LibraryUpload(work_file, editions_file, authors_file)
-    
-    try:
-        uploader.upload_all()
-    except Exception as e:
-        print(f"Error during upload: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
-
-if __name__ == "__main__":
-    main()
+def import_work(data: Dict[str, Any]) -> Book:
+    """Upload fetch_work()'s result in one transaction (all or nothing). Returns the Book."""
+    uploader = LibraryUpload(data["work"], data["editions"], data["authors"])
+    with transaction.atomic():
+        return uploader.upload_all()

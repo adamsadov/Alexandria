@@ -1,14 +1,14 @@
-#!/usr/bin/env python
-import requests
-import json
-import time
-import sys
-import os
-from typing import Dict, List, Any, Optional, Tuple
+"""
+Fetch one work from Open Library: the work, its authors and all of its editions.
 
-# library/ on the path, so this script can use library/utils.
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.publication_year import USER_AGENT, FirstPublishedLookup
+Used by `manage.py import_book`; see openlibrary_uploader.py for the database side.
+"""
+import time
+from typing import Any, Dict, List, Optional
+
+import requests
+
+from library.utils.publication_year import USER_AGENT, FirstPublishedLookup
 
 
 def _get(url, params=None, tries=5):
@@ -246,76 +246,49 @@ class OpenLibraryFetcher:
         
         return f"{self.COVERS_URL}/a/olid/{author_id}-{size}.jpg"
 
-def main():
-    """Main entry point for the script."""
-    if len(sys.argv) < 2:
-        print("Usage: python openlibrary_fetcher.py 'Book Title'")
-        sys.exit(1)
-    
-    title = sys.argv[1]
-    fetcher = OpenLibraryFetcher()
-    
-    try:
-        # Search for the work
+def fetch_work(title: Optional[str] = None, work_id: Optional[str] = None,
+               fetcher: Optional[OpenLibraryFetcher] = None) -> Dict[str, Any]:
+    """
+    Download everything needed to import one book, by work id (e.g. 'OL893414W')
+    or, failing that, the top search result for `title`.
+
+    Returns {"work": ..., "authors": [...], "editions": [...]}. Raises on failure.
+    """
+    fetcher = fetcher or OpenLibraryFetcher()
+    if not work_id:
+        if not title:
+            raise ValueError("Give a title or a work id")
         search_result = fetcher.search_work(title)
-        
-        # Extract the work ID
-        work_id = search_result.get('key').replace('/works/', '')
-        print(f"Found work ID: {work_id}")
-        
-        # Get detailed work information
-        work_data = fetcher.get_work_details(work_id)
-        print(f"Retrieved work details for: {work_data.get('title', 'Unknown')}")
+        work_id = search_result.get('key')
+    work_id = work_id.replace('/works/', '')
+    print(f"Found work ID: {work_id}")
 
-        # The work record has no reliable first-publication year; work it out
-        # from all of its editions (library/utils/publication_year.py).
-        work_data['first_publish_year'] = FirstPublishedLookup().year(work_id)
-        print(f"First published: {work_data['first_publish_year'] or 'unknown'}")
-        
-        # Get author information
-        author_keys = []
-        for author in work_data.get('authors', []):
-            if isinstance(author, dict):
-                author_key = author.get('author', {}).get('key')
-                if author_key:
-                    author_keys.append(author_key)
-            elif isinstance(author, str):
-                author_keys.append(author)
-        
-        authors_data = []
-        for author_key in author_keys:
-            try:
-                author_data = fetcher.get_author_details(author_key)
-                authors_data.append(author_data)
-                print(f"Retrieved author details for: {author_data.get('name', 'Unknown')}")
-            except Exception as e:
-                print(f"Error retrieving author details for {author_key}: {e}")
-        
-        # Get all editions for work
-        editions_data = fetcher.get_editions_for_work(work_id)
-        print(f"Retrieved {len(editions_data)} editions")
-        
-        # Save the data to JSON files.
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        
-        with open(os.path.join(script_dir, 'work_data.json'), 'w') as f:
-            json.dump(work_data, f, indent=2)
-        
-        with open(os.path.join(script_dir, 'editions_data.json'), 'w') as f:
-            json.dump(editions_data, f, indent=2)
-        
-        with open(os.path.join(script_dir, 'authors_data.json'), 'w') as f:
-            json.dump(authors_data, f, indent=2)
-        
-        print(f"\nData saved to JSON files in {script_dir}")
-        print(f"Total authors: {len(authors_data)}, Total editions: {len(editions_data)}")
-        print("Run the uploader script to import this data into your database.")
-        
-    except Exception as e:
-        print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+    work_data = fetcher.get_work_details(work_id)
+    print(f"Retrieved work details for: {work_data.get('title', 'Unknown')}")
 
-if __name__ == "__main__":
-    main()
+    # The work record has no reliable first-publication year; work it out
+    # from all of its editions (library/utils/publication_year.py).
+    work_data['first_publish_year'] = FirstPublishedLookup().year(work_id)
+    print(f"First published: {work_data['first_publish_year'] or 'unknown'}")
+
+    author_keys = []
+    for author in work_data.get('authors', []):
+        if isinstance(author, dict):
+            author_key = author.get('author', {}).get('key')
+            if author_key:
+                author_keys.append(author_key)
+        elif isinstance(author, str):
+            author_keys.append(author)
+
+    authors_data = []
+    for author_key in author_keys:
+        try:
+            author_data = fetcher.get_author_details(author_key)
+            authors_data.append(author_data)
+            print(f"Retrieved author details for: {author_data.get('name', 'Unknown')}")
+        except Exception as e:
+            print(f"Error retrieving author details for {author_key}: {e}")
+
+    editions_data = fetcher.get_editions_for_work(work_id)
+    print(f"Total authors: {len(authors_data)}, Total editions: {len(editions_data)}")
+    return {"work": work_data, "authors": authors_data, "editions": editions_data}
