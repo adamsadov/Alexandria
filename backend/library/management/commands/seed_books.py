@@ -8,7 +8,6 @@ Reads library/fixtures/seed_books.json (built by `build_seed_data`), so every
 developer gets the same books, editions, authors and Discover shelves. No
 network needed.
 """
-import hashlib
 import json
 from pathlib import Path
 
@@ -20,6 +19,7 @@ from library.models import (
     Author, Book, BookAuthor, BookGenre, CoverImage, Edition, Genre,
     Publisher, Shelf, ShelfEdition, User,
 )
+from library.utils.authors import author_hash, find_author, remember_key
 from library.utils.publication_year import parse_edition_year
 
 FIXTURE = Path(__file__).resolve().parents[2] / "fixtures" / "seed_books.json"
@@ -67,12 +67,15 @@ class Command(BaseCommand):
     def _authors(self, authors):
         out = {}
         for key, a in authors.items():
-            # Same id scheme as library/book_upload/openlibrary_uploader.py
-            author_id = hashlib.sha256(key.encode("utf-8")).hexdigest()
-            out[key], _ = Author.objects.update_or_create(
-                author_id=author_id,
-                defaults={"name": a["name"], "biography": a.get("bio"), "author_image": a.get("image")},
-            )
+            fields = {"name": a["name"], "biography": a.get("bio"), "author_image": a.get("image")}
+            # A key merged into another author (merge_authors) keeps pointing there.
+            author = find_author(key)
+            if author is None:
+                author = Author.objects.create(author_id=author_hash(key), **fields)
+            elif author.author_id == author_hash(key):
+                Author.objects.filter(pk=author.pk).update(**fields)
+            remember_key(author, key)
+            out[key] = author
         return out
 
     # ------------------------------------------------------------------ books
