@@ -57,15 +57,13 @@
    "bio": "Charlotte Brontë was an English novelist, the eldest of the three Brontë sisters whose novels are English literature standards. Under the pen name Currer Bell, she wrote Jane Eyre.  ([Source][1].)\r\n\r\n[1]: http://en.wikipedia.org/wiki/Charlotte_Brontë\r\n\r\nHer sisters, Anne and Emily, first published their works as Acton and Ellis Bell.",
    "image": "https://covers.openlibrary.org/a/id/7005420-L.jpg"
   },
-  "OL11453503A": {
-   "name": "Jay Asher",
-   "bio": null,
-   "image": null
-  },
   "OL118077A": {
    "name": "George Orwell",
    "bio": "George Orwell, originally born as Eric Arthur Blair, was an English novelist and journalist. His work is marked by keen intelligence and wit, a profound awareness of social injustice, an intense, revolutionary opposition to totalitarianism, a passion for clarity in language and a belief in democratic socialism. ([Source][1].)\r\n\r\n[1]:https://en.wikipedia.org/wiki/George_Orwell",
-   "image": "https://covers.openlibrary.org/a/id/9160343-L.jpg"
+   "image": "https://covers.openlibrary.org/a/id/9160343-L.jpg",
+   "aliases": [
+    "OL15318546A"
+   ]
   },
   "OL12044473A": {
    "name": "Yaʻel Akhmon",
@@ -101,11 +99,6 @@
    "name": "Marcus Aurelius",
    "bio": "Marcus Aurelius Antoninus was Roman Emperor from 161 to 180. He ruled with Lucius Verus as co-emperor from 161 until Verus' death in 169. He was the last of the \"Five Good Emperors\", and is also considered one of the most important Stoic philosophers. During his reign, the empire defeated a revitalized Parthian Empire; Aurelius' general Avidius Cassius sacked the capital Ctesiphon in 164. Aurelius fought the Marcomanni, Quadi, and Sarmatians with success during the Marcomannic Wars, but the threat of the Germanic Tribes began to represent a troubling reality for the empire. A revolt in the east led by Avidius Cassius failed to gain momentum and was suppressed immediately.\r\n\r\nMarcus Aurelius' work Meditations, written in Greek while on campaign between 170 and 180, is still revered as a literary monument to a government of service and duty. It serves as an example of how Aurelius approached the Platonic ideal of a philosopher-king and how he symbolized much of what was best about Roman civilization.",
    "image": "https://covers.openlibrary.org/a/id/7283031-L.jpg"
-  },
-  "OL13535039A": {
-   "name": "Angie Thomas",
-   "bio": null,
-   "image": null
   },
   "OL1368A": {
    "name": "Friedrich Engels",
@@ -202,11 +195,6 @@
    "bio": null,
    "image": "https://covers.openlibrary.org/a/id/8157058-L.jpg"
   },
-  "OL15318546A": {
-   "name": "George Orwell",
-   "bio": null,
-   "image": null
-  },
   "OL15330765A": {
    "name": "Palle Vasu",
    "bio": null,
@@ -235,7 +223,10 @@
   "OL1708483A": {
    "name": "Elizabeth Kendall",
    "bio": null,
-   "image": null
+   "image": null,
+   "aliases": [
+    "OL7271032A"
+   ]
   },
   "OL18236A": {
    "name": "Alexandre Dumas",
@@ -280,7 +271,10 @@
   "OL19981A": {
    "name": "Stephen King",
    "bio": "Stephen Edwin King (born September 21, 1947) is an American author of horror, supernatural fiction, suspense, crime, science-fiction, and fantasy novels. His books have sold more than 350 million copies, and many have been adapted into films, television series, miniseries, and comic books. King has published 63 novels, including seven under the pen name Richard Bachman, and five non-fiction books. He has also written approximately 200 short stories, most of which have been published in book collections.\r\n\r\nKing has received Bram Stoker Awards, World Fantasy Awards, and British Fantasy Society Awards. In 2003, the National Book Foundation awarded him the Medal for Distinguished Contribution to American Letters. He has also received awards for his contribution to literature for his entire bibliography, such as the 2004 World Fantasy Award for Life Achievement and the 2007 Grand Master Award from the Mystery Writers of America. In 2015, he was awarded with a National Medal of Arts from the U.S. National Endowment for the Arts for his contributions to literature. He has been described as the \"King of Horror\", a play on his surname and a reference to his high standing in pop culture.",
-   "image": "https://covers.openlibrary.org/a/id/14853840-L.jpg"
+   "image": "https://covers.openlibrary.org/a/id/14853840-L.jpg",
+   "aliases": [
+    "OL7829294A"
+   ]
   },
   "OL20187A": {
    "name": "Kurt Vonnegut",
@@ -680,7 +674,10 @@
   "OL3319277A": {
    "name": "Jay Asher",
    "bio": null,
-   "image": null
+   "image": null,
+   "aliases": [
+    "OL11453503A"
+   ]
   },
   "OL335424A": {
    "name": "William Golding",
@@ -952,11 +949,6 @@
    "bio": "Andy Weir built a career as a software engineer until the success of his first published novel, THE MARTIAN, allowed him to live out his dream of writing fulltime. He is a lifelong space nerd and a devoted hobbyist of subjects such as relativistic physics, orbital mechanics, and the history of manned spaceflight. He also mixes a mean cocktail. He lives in California.",
    "image": "https://covers.openlibrary.org/a/id/8137363-L.jpg"
   },
-  "OL7271032A": {
-   "name": "Elizabeth Kendall ",
-   "bio": null,
-   "image": null
-  },
   "OL7276129A": {
    "name": "Victoria Aveyard",
    "bio": "American writer of young adult and fantasy fiction and screenplays",
@@ -990,7 +982,10 @@
   "OL7370073A": {
    "name": "Angie Thomas",
    "bio": "Angie Thomas was born, raised, and still resides in Jackson, Mississippi. She is a former teen rapper whose greatest accomplishment was an article about her in Right-On Magazine. She holds a BFA in Creative Writing from Belhaven University.\r\n([source][1])\r\n\r\n\r\n  [1]: http://angiethomas.com/about",
-   "image": "https://covers.openlibrary.org/a/id/8249179-L.jpg"
+   "image": "https://covers.openlibrary.org/a/id/8249179-L.jpg",
+   "aliases": [
+    "OL13535039A"
+   ]
   },
   "OL7399550A": {
    "name": "Karen M. McManus",
@@ -1101,11 +1096,6 @@
    "name": "Rebecca Yarros",
    "bio": "Rebecca is a #1 New York Times, USA Today, Sunday Times, and Wall Street Journal bestselling author of over fifteen novels, including FOURTH WING, and is always ready to bring on the emotions. She's also the recipient of the Colorado Romance Writer’s Award of Excellence in New Adult for Eyes Turned Skyward from her Flight and Glory series.\r\n\r\nShe loves military heroes and has been blissfully married to hers for twenty-one years. She’s the mother of six children and lives in Colorado with her family, their stubborn English bulldog, feisty chinchillas, and Maine Coon cat who rules them all. Having fostered then adopted their youngest daughter, Rebecca is passionate about helping children in the foster system through her nonprofit, One October.",
    "image": "https://covers.openlibrary.org/a/id/15133439-L.jpg"
-  },
-  "OL7829294A": {
-   "name": "Stephen King",
-   "bio": "Author of How a college business training office can be developed.",
-   "image": null
   },
   "OL78910A": {
    "name": "Chinua Achebe",
@@ -1236,8 +1226,7 @@
    "year": 1975,
    "rating": 4.03,
    "authors": [
-    "OL19981A",
-    "OL7829294A"
+    "OL19981A"
    ],
    "genres": [
     "horror",
@@ -9635,7 +9624,7 @@
    "year": 1949,
    "rating": 4.29,
    "authors": [
-    "OL15318546A"
+    "OL118077A"
    ],
    "genres": [
     "crime fiction",
@@ -13700,8 +13689,7 @@
    "year": 2017,
    "rating": 4.36,
    "authors": [
-    "OL7370073A",
-    "OL13535039A"
+    "OL7370073A"
    ],
    "genres": [
     "children's fiction",
@@ -15339,8 +15327,7 @@
    "year": 1981,
    "rating": 3.5,
    "authors": [
-    "OL1708483A",
-    "OL7271032A"
+    "OL1708483A"
    ],
    "genres": [
     "biography",
@@ -17467,8 +17454,7 @@
    "year": 2007,
    "rating": 3.76,
    "authors": [
-    "OL3319277A",
-    "OL11453503A"
+    "OL3319277A"
    ],
    "genres": [
     "children's fiction",

@@ -75,6 +75,10 @@ class Command(BaseCommand):
             elif author.author_id == author_hash(key):
                 Author.objects.filter(pk=author.pk).update(**fields)
             remember_key(author, key)
+            # Other Open Library records for the same person (see build_seed_data),
+            # so a later import_book that meets one of them links to this author.
+            for alias in a.get("aliases", []):
+                remember_key(author, alias)
             out[key] = author
         return out
 
