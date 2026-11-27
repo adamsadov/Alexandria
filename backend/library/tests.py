@@ -31,7 +31,7 @@ class BookModelTest(TestCase):
         self.book2.genres.add(self.genre_dystopian)
 
         self.book3 = Book.objects.create(
-            title="To Kill a Mockingbird", unique_hash="book9012", year_published=1960
+            title="To Kill a Mockingbird", book_id="book9012", year_published=1960
         )
         self.book3.authors.add(self.author3)
         self.book3.genres.add(self.genre_classic)
@@ -58,28 +58,25 @@ class BookModelTest(TestCase):
     def test_invalid_year_published(self):
         with self.assertRaises(ValidationError):
             invalid_book = Book(
-                title="Future Book", unique_hash="book9999", year_published=3025
+                title="Future Book", book_id="book9999", year_published=3025
             )
             invalid_book.full_clean()
 
 class AuthorModelTest(TestCase):
     def setUp(self):
-        self.author = Author.objects.create(name="Valid Author", unique_hash="auth001")
+        self.author = Author.objects.create(name="Valid Author", author_id="auth001")
     
     def test_author_creation(self):
         self.assertEqual(self.author.name, "Valid Author")
     
     def test_duplicate_author(self):
         with self.assertRaises(ValidationError):
-            duplicate_author = Author(name="Valid Author", unique_hash="auth001")
+            duplicate_author = Author(name="Valid Author", author_id="auth001")
             duplicate_author.full_clean()
 
 class UserModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="password")
-        user_count = User.objects.count()
-
-        print(f"User counter: {user_count}")
     
     def test_user_creation(self):
         self.assertEqual(self.user.username, "testuser")
@@ -90,7 +87,7 @@ class UserModelTest(TestCase):
 class ReviewModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="reviewuser", password="password")
-        self.book = Book.objects.create(title="Review Book", unique_hash="revbook001")
+        self.book = Book.objects.create(title="Review Book", book_id="revbook001")
         self.review = Review.objects.create(
             user=self.user, book=self.book, rating=4.5, content="Great book!"
         )
@@ -123,7 +120,7 @@ class ShelfModelTest(TestCase):
 class CommunityTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="commuser", password="password")
-        self.book = Book.objects.create(title="Community Book", unique_hash="combook001")
+        self.book = Book.objects.create(title="Community Book", book_id="combook001")
         self.community = Community.objects.create(book=self.book)
         self.community_user = CommunityUser.objects.create(community=self.community, user=self.user)
     
@@ -137,7 +134,7 @@ class CommunityTest(TestCase):
 class BookClubTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="clubuser", password="password")
-        self.book = Book.objects.create(title="Club Book", unique_hash="clubbook001")
+        self.book = Book.objects.create(title="Club Book", book_id="clubbook001")
         self.bookclub = BookClub.objects.create(name="Awesome Club", book=self.book)
     
     def test_bookclub_creation(self):
@@ -146,7 +143,6 @@ class BookClubTest(TestCase):
     
     def test_add_member_to_club(self):
         club_member = ClubMember.objects.create(user=self.user, club=self.bookclub)
-        print(f"Club member created: {club_member}")
         self.assertEqual(self.bookclub.users.count(), 1)
         self.assertEqual(self.bookclub.users.first().username, "clubuser")
 

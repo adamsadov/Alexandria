@@ -1,7 +1,12 @@
 from django.core.management.base import BaseCommand
 from django.db.models import Q
+from django.db.models.functions import Length
 from library.models import Book
 import requests
+from library.utils.publication_year import USER_AGENT
+
+# Wikipedia (and Google) reject requests without a User-Agent (HTTP 403).
+HEADERS = {"User-Agent": USER_AGENT}
 import time
 import re
 import html
@@ -63,7 +68,7 @@ class Command(BaseCommand):
                 params["key"] = api_key
                 
             # Make request
-            response = requests.get(url, params=params, timeout=10)
+            response = requests.get(url, params=params, headers=HEADERS, timeout=10)
             if response.status_code != 200:
                 return None, None
                 
@@ -139,10 +144,10 @@ class Command(BaseCommand):
             self.stdout.write(f"Processing ALL {books.count()} books")
         else:
             # Get books with no or short summaries
-            books = Book.objects.filter(
+            books = Book.objects.annotate(summary_length=Length('summary')).filter(
                 Q(summary__isnull=True) | 
                 Q(summary__exact='') |
-                Q(summary__isnull=False, summary__lt=min_length)
+                Q(summary_length__lt=min_length)
             )
             self.stdout.write(f"Found {books.count()} books needing summary updates")
         
@@ -150,7 +155,10 @@ class Command(BaseCommand):
         failed_count = 0
         
         # Process in batches to avoid overloading API
-        for i in range(0, books.count(), batch_size):
+        # Snapshot the list first: updating rows removes them from the filter, so
+        # slicing the live queryset by offset would skip every other batch.
+        books = list(books.order_by('pk'))
+        for i in range(0, len(books), batch_size):
             batch = books[i:i+batch_size]
             self.stdout.write(f"Processing batch {i//batch_size + 1}")
             
@@ -195,7 +203,7 @@ class Command(BaseCommand):
                 time.sleep(0.5)
             
             # Larger pause between batches
-            if i + batch_size < books.count():
+            if i + batch_size < len(books):
                 self.stdout.write("Pausing between batches...")
                 time.sleep(2)
         

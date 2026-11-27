@@ -23,6 +23,7 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand
 
+from library.utils.authors import normalize_name, same_person
 from library.utils.genre_utils import extract_genres_from_subjects
 from library.utils.publication_year import (
     FirstPublishedLookup, get_json, parse_edition_year, pick_first_year,
@@ -192,6 +193,71 @@ def pick_editions(entries, want_cover=None):
     return chosen
 
 
+def collapse_duplicate_authors(authors, books, fetch=get_json):
+    """
+    Fold duplicate Open Library records for one person into a single seed author,
+    in place. Same rule as merge_authors: the same normalized name AND a shared
+    book or library.utils.authors.same_person(). The kept entry lists the others
+    under "aliases"; books point only at the kept key.
+
+    Returns [(kept_key, [merged keys])].
+    """
+    book_count = {}
+    for b in books:
+        for k in b["authors"]:
+            book_count[k] = book_count.get(k, 0) + 1
+
+    by_name = {}
+    for key, a in authors.items():
+        by_name.setdefault(normalize_name(a["name"]), []).append(key)
+
+    merged, renamed = [], {}
+    for name, keys in by_name.items():
+        if not name or len(keys) < 2:
+            continue
+        parent = {k: k for k in keys}
+
+        def root(k):
+            while parent[k] != k:
+                k = parent[k]
+            return k
+
+        for i, ka in enumerate(keys):
+            for kb in keys[i + 1:]:
+                if root(ka) == root(kb):
+                    continue
+                shared = any(ka in b["authors"] and kb in b["authors"] for b in books)
+                if shared or same_person(ka, kb, fetch)[0]:
+                    parent[root(kb)] = root(ka)
+
+        clusters = {}
+        for k in keys:
+            clusters.setdefault(root(k), []).append(k)
+        for members in clusters.values():
+            if len(members) < 2:
+                continue
+            # Most books, then the fuller entry, then the older (lower-numbered)
+            # record: the stubs that duplicate a person are usually newer.
+            keep = max(members, key=lambda k: (book_count.get(k, 0), bool(authors[k].get("bio")),
+                                               bool(authors[k].get("image")),
+                                               -int(re.sub(r"\D", "", k) or 0)))
+            dupes = sorted(k for k in members if k != keep)
+            kept = authors[keep]
+            kept["name"] = kept["name"].strip()
+            for k in dupes:
+                dupe = authors.pop(k)
+                for field in ("bio", "image"):
+                    if not kept.get(field) and dupe.get(field):
+                        kept[field] = dupe[field]
+                kept["aliases"] = sorted(set(kept.get("aliases", [])) | {k} | set(dupe.get("aliases", [])))
+                renamed[k] = keep
+            merged.append((keep, dupes))
+
+    for b in books:
+        b["authors"] = list(dict.fromkeys(renamed.get(k, k) for k in b["authors"]))
+    return merged
+
+
 class Command(BaseCommand):
     help = "Download the shared seed catalog from Open Library into library/fixtures/seed_books.json"
 
@@ -291,6 +357,10 @@ class Command(BaseCommand):
 
         with ThreadPoolExecutor(workers) as pool:
             authors = dict(pool.map(fetch_author, author_keys))
+
+        # Open Library often has several records for one person (#24); keep one.
+        for keep, dupes in collapse_duplicate_authors(authors, books):
+            self.stdout.write(f"  merged {authors[keep]['name']}: {keep} <- {', '.join(dupes)}")
 
         # 4. Featured shelves, resolved to works we actually have.
         have = {b["work"] for b in books}

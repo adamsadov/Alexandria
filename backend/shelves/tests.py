@@ -547,6 +547,11 @@ class ShelfListTests(TestCase):
             password = "testpassword"
         )
 
+        # Every new user gets public default shelves (accounts/models.py
+        # create_default_shelves); counts below are defaults + test shelves.
+        self.defaults = Shelf.objects.filter(user=self.user_empty).count()
+        self.assertGreater(self.defaults, 0)
+
         # Create various shelves for testing
         # For primary user - public shelves
         Shelf.objects.create(
@@ -615,7 +620,7 @@ class ShelfListTests(TestCase):
 
         # Assert that response is successful and contains the right number of shelves
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 4)  # All 4 shelves from this user
+        self.assertEqual(len(response.data), self.defaults + 4)  # Defaults + all 4 test shelves
 
     # Authentication Status: Unauthenticated user (invalid)
     def test_list_shelves_user_unauthenticated(self):
@@ -638,7 +643,7 @@ class ShelfListTests(TestCase):
         
         # Assert response is successful and contains all shelves
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 4)  # All 4 shelves from this user
+        self.assertEqual(len(response.data), self.defaults + 4)  # Defaults + all 4 test shelves
         
         # Check that it contains both public and private shelves
         shelf_names = [shelf['name'] for shelf in response.data]
@@ -657,10 +662,12 @@ class ShelfListTests(TestCase):
         
         # Assert response is successful and contains only public shelves
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)  # Only the 1 public shelf
+        self.assertEqual(len(response.data), self.defaults + 1)  # Defaults + the 1 public test shelf
         
-        # Check that it contains only the public shelf
-        self.assertEqual(response.data[0]['name'], 'Other User Public Shelf')
+        # Check that it contains the public shelf but not the private one
+        shelf_names = [shelf['name'] for shelf in response.data]
+        self.assertIn('Other User Public Shelf', shelf_names)
+        self.assertNotIn('Other User Private Shelf', shelf_names)
 
     # Non-existent user (invalid)
     def test_list_nonexistent_user_shelves(self):
@@ -685,7 +692,7 @@ class ShelfListTests(TestCase):
         
         # Assert response is successful and contains only public shelves
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)  # Only the 2 public shelves
+        self.assertEqual(len(response.data), self.defaults + 2)  # Defaults + the 2 public test shelves
         
         # Check that it contains only public shelves
         shelf_names = [shelf['name'] for shelf in response.data]
@@ -758,9 +765,11 @@ class ShelfListTests(TestCase):
         # Get response
         response = self.client.get(self.url)
         
-        # Assert response is successful but contains no shelves
+        # Assert response is successful and contains only the default shelves
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 0)  # No shelves
+        self.assertEqual(len(response.data), self.defaults)  # Only the defaults
+        self.assertEqual({shelf['name'] for shelf in response.data},
+                         {'Want to Read', 'Currently Reading', 'Read', 'Owned', 'Favorites'})
 
 ### Equivalent Classes ###
 ##  Authentication Status ##

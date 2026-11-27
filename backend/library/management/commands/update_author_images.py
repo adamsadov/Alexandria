@@ -3,7 +3,7 @@
 from django.core.management.base import BaseCommand
 from django.db import models
 from library.models import Author
-import requests
+from library.utils.wikipedia_utils import wikipedia_get
 import time
 
 class Command(BaseCommand):
@@ -36,7 +36,6 @@ class Command(BaseCommand):
             
         try:
             # Simple API call to get the image directly
-            search_url = "https://en.wikipedia.org/w/api.php"
             params = {
                 "action": "query",
                 "format": "json",
@@ -47,8 +46,8 @@ class Command(BaseCommand):
                 "redirects": 1
             }
             
-            response = requests.get(search_url, params=params, timeout=5)
-            if response.status_code != 200:
+            response = wikipedia_get(params)
+            if response is None or response.status_code != 200:
                 return None
                 
             data = response.json()
@@ -59,7 +58,7 @@ class Command(BaseCommand):
                 page_id = next(iter(pages))
                 page = pages[page_id]
                 if "original" in page:
-                    return page["original"]["source"]
+                    return page["original"]["source"].split("?")[0]  # drop utm_ tracking params
                     
             return None
             
@@ -84,7 +83,8 @@ class Command(BaseCommand):
                 # Find authors with no image or openlibrary images
                 models.Q(author_image__isnull=True) | 
                 models.Q(author_image__exact='') |
-                models.Q(author_image__contains='openlibrary.org')
+                models.Q(author_image__contains='openlibrary.org') |
+                models.Q(author_image__contains='placeholder.com')  # import_book's fallback
             )
             self.stdout.write(f"Found {authors.count()} authors needing image updates")
         
@@ -92,7 +92,10 @@ class Command(BaseCommand):
         failed_count = 0
         
         # Process in batches to avoid overloading
-        for i in range(0, authors.count(), batch_size):
+        # Snapshot the list first: updating rows removes them from the filter, so
+        # slicing the live queryset by offset would skip every other batch.
+        authors = list(authors.order_by('pk'))
+        for i in range(0, len(authors), batch_size):
             batch = authors[i:i+batch_size]
             self.stdout.write(f"Processing batch {i//batch_size + 1}")
             
@@ -155,7 +158,7 @@ class Command(BaseCommand):
                 time.sleep(0.5)
             
             # Larger pause between batches
-            if i + batch_size < authors.count():
+            if i + batch_size < len(authors):
                 self.stdout.write("Pausing between batches...")
                 time.sleep(2)
         

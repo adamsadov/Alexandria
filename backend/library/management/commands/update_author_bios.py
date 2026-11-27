@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db.models import Q, Value, CharField, F
 from django.db.models.functions import Length, Concat
 from library.models import Author
-import requests
+from library.utils.wikipedia_utils import wikipedia_get
 import time
 import re
 
@@ -42,7 +42,6 @@ class Command(BaseCommand):
             
         try:
             # Search for the author page
-            search_url = "https://en.wikipedia.org/w/api.php"
             search_params = {
                 "action": "query",
                 "format": "json",
@@ -51,8 +50,8 @@ class Command(BaseCommand):
                 "srlimit": 1
             }
             
-            response = requests.get(search_url, params=search_params, timeout=10)
-            if response.status_code != 200:
+            response = wikipedia_get(search_params)
+            if response is None or response.status_code != 200:
                 return None
                 
             search_data = response.json()
@@ -75,8 +74,8 @@ class Command(BaseCommand):
                 "pageids": page_id
             }
             
-            extract_response = requests.get(search_url, params=extract_params, timeout=10)
-            if extract_response.status_code != 200:
+            extract_response = wikipedia_get(extract_params)
+            if extract_response is None or extract_response.status_code != 200:
                 return None
                 
             extract_data = extract_response.json()
@@ -134,7 +133,10 @@ class Command(BaseCommand):
         failed_count = 0
         
         # Process in batches to avoid overloading
-        for i in range(0, authors.count(), batch_size):
+        # Snapshot the list first: updating rows removes them from the filter, so
+        # slicing the live queryset by offset would skip every other batch.
+        authors = list(authors.order_by('pk'))
+        for i in range(0, len(authors), batch_size):
             batch = authors[i:i+batch_size]
             self.stdout.write(f"Processing batch {i//batch_size + 1}")
             
@@ -165,7 +167,7 @@ class Command(BaseCommand):
                     ))
                     failed_count += 1
                 time.sleep(1)
-            if i + batch_size < authors.count():
+            if i + batch_size < len(authors):
                 self.stdout.write("Pausing between batches...")
                 time.sleep(3)
         
